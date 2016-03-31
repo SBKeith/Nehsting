@@ -7,11 +7,15 @@
 //
 
 import Foundation
+import UIKit
 
 class PlaceHolderData {
     
     struct data {
         
-        let dataArray = ["DATE":75]
+        var dataDictionary = ["September 4, 2016": 75,
+                              "October 8, 2016"  : 70,
+                              "November 7, 2016" : 73
+        ]
     }
 }
