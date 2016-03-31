@@ -13,7 +13,7 @@ class PlaceHolderData {
     
     struct data {
         
-        var dataDictionary = ["September 4, 2016": 75,
+        let dataDictionary = ["September 4, 2016": 75,
                               "October 8, 2016"  : 70,
                               "November 7, 2016" : 73
         ]
