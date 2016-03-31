@@ -26,7 +26,7 @@
                                 </constraints>
                                 <state key="normal" image="menuButton"/>
                                 <connections>
-                                    <segue destination="HuA-DC-n2i" kind="presentation" modalTransitionStyle="flipHorizontal" id="TPs-xF-JfD"/>
+                                    <segue destination="HuA-DC-n2i" kind="presentation" modalTransitionStyle="crossDissolve" id="TPs-xF-JfD"/>
                                 </connections>
                             </button>
                         </subviews>
