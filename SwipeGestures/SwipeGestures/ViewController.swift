@@ -12,54 +12,63 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var value: UILabel!
     
-    var valueInt = 50
+    let kMAXVALUE = 90
+    let kMINVALUE = 50
+    
+    var currentTemp = 75
+    var valueParser = 0
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-//    @IBAction func panGestureUp(recognizer: UIPanGestureRecognizer) {
-////        valueInt++
-////        value.text = "\(valueInt)"
-//        
-//    }
-    
-    // Capture initial starting point
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
-        if let theTouch = touches.first {
-            let startPoint = theTouch.locationInView(self.view)
-            
-            let x = startPoint.x
-            let y = startPoint.y
-            
-            print("START POINT:\nx = \(x)\ny = \(y)")
-        }
-        
+        value.text = "\(currentTemp)"
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         if let theTouch = touches.first {
             let touchLocation = theTouch.locationInView(self.view)
+            let previousTouchLocation = theTouch.previousLocationInView(self.view)
             
-            let x = touchLocation.x
-            let y = touchLocation.y
+            // ValueParser makes Y coordinates become manageable values, which simplifies data manipulation
+            valueParser += 1
             
-            print("x = \(x)\ny = \(y)")
+            // Check for touch-drag direction
+            let directionValue = checkTouchDirection(touchLocation, previousTouch: previousTouchLocation)
+            
+            // Check for temperature limits
+            let withinTempBounds = checkTempBounds()
+            
+            if valueParser % 10 == 0 {
+                if !directionValue && withinTempBounds.0 {
+                    currentTemp += 1
+                } else if directionValue && withinTempBounds.1 {
+                    currentTemp -= 1
+                }
+            }
+            
+            // Set temperatue value
+            value.text = "\(currentTemp)"
         }
     }
     
+    // Reset valueParser when user lifts finger
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
-        if let theTouch = touches.first {
-            let touchLocation = theTouch.locationInView(self.view)
-            
-            let x = touchLocation.x
-            let y = touchLocation.y
-            
-            print("END POINT:\nx = \(x)\ny = \(y)")
-        }
+        valueParser = 0
+    }
+
+    // MARK: - Helper Methods
+    
+    func checkTouchDirection(currentTouch: CGPoint, previousTouch: CGPoint) -> Bool {
+        
+        return currentTouch.y > previousTouch.y
+    }
+    
+    func checkTempBounds() -> (Bool, Bool) {
+        
+        return ((currentTemp < kMAXVALUE), (currentTemp > kMINVALUE))
     }
 }
 
