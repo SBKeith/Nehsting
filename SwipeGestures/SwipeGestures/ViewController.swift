@@ -31,9 +31,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         value.text = "\(currentTemp)"
-        
-        // Gradient Code
-        setGradientColors()
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -54,9 +51,6 @@ class ViewController: UIViewController {
             if valueParser % 10 == 0 {
                 if !directionValue && withinTempBounds.0 {
                     currentTemp += 1
-                    red1 += 5
-                    green1 -= 5
-                    setGradientColors()
                 } else if directionValue && withinTempBounds.1 {
                     currentTemp -= 1
                 }
@@ -88,24 +82,19 @@ class ViewController: UIViewController {
     
     // GRADIENT SET METHODS
     
-    func setGradientColors() {
-        
-//        print(red1, green1, blue1)
-        
-        let topColor = UIColor(red: red1/255.0, green: green1/255.0, blue: blue1/255.0, alpha: 1)
-        let bottomColor = UIColor(red: red2/255.0, green: green2/255.0, blue: blue2/255.0, alpha: 1)
-        
-        let gradientColors: [CGColor] = [topColor.CGColor, bottomColor.CGColor]
-        let gradientLocations: [Float] = [0.0, 1.0]
-        
-        let gradientLayer: CAGradientLayer = CAGradientLayer()
-        gradientLayer.colors = gradientColors
-        gradientLayer.locations = gradientLocations
-        
-        gradientLayer.frame = self.view.bounds
-        self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
-    }
+//    func setGradientColors() {
+//        
+//        let topColor = UIColor(red: red1/255.0, green: green1/255.0, blue: blue1/255.0, alpha: 1)
+//        let bottomColor = UIColor(red: red2/255.0, green: green2/255.0, blue: blue2/255.0, alpha: 1)
+//        
+//        let gradientColors: [CGColor] = [topColor.CGColor, bottomColor.CGColor]
+//        let gradientLocations: [Float] = [0.0, 1.0]
+//        
+//        let gradientLayer: CAGradientLayer = CAGradientLayer()
+//        gradientLayer.colors = gradientColors
+//        gradientLayer.locations = gradientLocations
+//        
+//        gradientLayer.frame = self.view.bounds
+//        self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
+//    }
 }
-
-
-
