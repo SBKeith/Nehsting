@@ -12,55 +12,28 @@ class GradientView: UIView {
 
     let gradientLayer = CAGradientLayer()
     
-    var red: CGFloat?
-    var green: CGFloat?
-    var blue: CGFloat?
-    
-    var color1: UIColor {
-        get{
-            return UIColor(red: red!, green: green!, blue: blue!, alpha: 1)
-        }
-        set {
-            self.red = red;, self.green = green; self.blue = blue
-        }
-    }
-    
-    
+    var color1 = UIColor(red: 205/255, green: 122/255, blue: 42/255, alpha: 1)
+    var color2 = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
+
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
         gradientLayer.frame = bounds
         
-        let color1 = UIColor.redColor().CGColor as CGColorRef
-        let color2 = UIColor.blueColor().CGColor as CGColorRef
-        gradientLayer.colors = [color1, color2]
+        let cgColor1 = color1.CGColor
+        let cgColor2 = color2.CGColor
         
+        gradientLayer.colors = [cgColor1, cgColor2]
         gradientLayer.locations = [0.0, 1.0]
         
         layer.addSublayer(gradientLayer)
     }
     
-    
+    func updateGradientColor(color1: UIColor, color2: UIColor) {
+        
+        self.color1 = color1
+        self.color2 = color2
+        
+        setNeedsDisplay()
+    }
 }
-
-
-
-
-//    func setGradientColors() {
-//
-//        let topColor = UIColor(red: red1/255.0, green: green1/255.0, blue: blue1/255.0, alpha: 1)
-//        let bottomColor = UIColor(red: red2/255.0, green: green2/255.0, blue: blue2/255.0, alpha: 1)
-//
-//        let gradientColors: [CGColor] = [topColor.CGColor, bottomColor.CGColor]
-//        let gradientLocations: [Float] = [0.0, 1.0]
-//
-//        let gradientLayer: CAGradientLayer = CAGradientLayer()
-//        gradientLayer.colors = gradientColors
-//        gradientLayer.locations = gradientLocations
-//
-//        gradientLayer.frame = self.view.bounds
-//        self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
-//    }
-
-
-//setNeedsDisplay

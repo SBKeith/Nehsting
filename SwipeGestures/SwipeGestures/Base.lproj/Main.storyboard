@@ -39,6 +39,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="gradientView" destination="2UN-aq-dsf" id="bnb-8I-s7y"/>
                         <outlet property="value" destination="MEr-gw-eJc" id="v8W-0P-Pwo"/>
                     </connections>
                 </viewController>
