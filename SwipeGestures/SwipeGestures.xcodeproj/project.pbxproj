@@ -15,6 +15,7 @@
 		471C8FA11CADA20400920597 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 471C8F9F1CADA20400920597 /* LaunchScreen.storyboard */; };
 		471C8FAC1CADA20400920597 /* SwipeGesturesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471C8FAB1CADA20400920597 /* SwipeGesturesTests.swift */; };
 		471C8FB71CADA20500920597 /* SwipeGesturesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471C8FB61CADA20500920597 /* SwipeGesturesUITests.swift */; };
+		472EC22D1CB6A70200D7CC9F /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472EC22C1CB6A70200D7CC9F /* Values.swift */; };
 		47E431211CB4627900087BD5 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E431201CB4627900087BD5 /* GradientView.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		471C8FB21CADA20400920597 /* SwipeGesturesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwipeGesturesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		471C8FB61CADA20500920597 /* SwipeGesturesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeGesturesUITests.swift; sourceTree = "<group>"; };
 		471C8FB81CADA20500920597 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		472EC22C1CB6A70200D7CC9F /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
 		47E431201CB4627900087BD5 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +106,7 @@
 				471C8F971CADA20400920597 /* Main.storyboard */,
 				471C8F951CADA20400920597 /* ViewController.swift */,
 				47E431201CB4627900087BD5 /* GradientView.swift */,
+				472EC22C1CB6A70200D7CC9F /* Values.swift */,
 				471C8FC41CADA20C00920597 /* Support */,
 			);
 			path = SwipeGestures;
@@ -271,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				472EC22D1CB6A70200D7CC9F /* Values.swift in Sources */,
 				471C8F961CADA20400920597 /* ViewController.swift in Sources */,
 				471C8F941CADA20400920597 /* AppDelegate.swift in Sources */,
 				47E431211CB4627900087BD5 /* GradientView.swift in Sources */,
