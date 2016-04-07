@@ -8,17 +8,11 @@
 
 import UIKit
 
-struct data {
-    
-    let dataArray = [["date":"September 4, 2016", "temp": 75],
-                          ["date":"October 8, 2016",  "temp": 70],
-                          ["date":"November 7, 2016", "temp": 73]
-    ]
-}
+
 
 class SchedulerTableViewController: UITableViewController {
 
-    let sampleData = data()
+    let sampleData = PlaceHolderData.data()
     
     override func viewDidLoad() {
         super.viewDidLoad()

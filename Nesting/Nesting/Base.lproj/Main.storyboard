@@ -19,12 +19,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVv-zw-FYT">
-                                <rect key="frame" x="20" y="8" width="20" height="20"/>
+                                <rect key="frame" x="545" y="557" width="35" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="ZPP-Qh-Cfy"/>
-                                    <constraint firstAttribute="width" constant="20" id="gMK-NE-PwW"/>
+                                    <constraint firstAttribute="width" constant="35" id="DM0-op-AzW"/>
+                                    <constraint firstAttribute="height" constant="35" id="UnI-vS-crr"/>
                                 </constraints>
-                                <state key="normal" image="menuButton"/>
+                                <state key="normal" image="menuIcon"/>
                                 <connections>
                                     <segue destination="HuA-DC-n2i" kind="presentation" modalTransitionStyle="crossDissolve" id="TPs-xF-JfD"/>
                                 </connections>
@@ -32,8 +32,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.70588235294117641" green="0.60392156862745094" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="HVv-zw-FYT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="RED-Cx-Pkp"/>
-                            <constraint firstItem="HVv-zw-FYT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="SEX-3g-qhS"/>
+                            <constraint firstAttribute="trailing" secondItem="HVv-zw-FYT" secondAttribute="trailing" constant="20" symbolic="YES" id="Njo-6O-54G"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HVv-zw-FYT" secondAttribute="bottom" constant="8" symbolic="YES" id="uhD-8e-VhW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eok-IY-Csj"/>
@@ -71,16 +71,16 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THs-in-opJ">
-                                <rect key="frame" x="20" y="8" width="20" height="20"/>
+                                <rect key="frame" x="545" y="557" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="ISV-cw-BsN"/>
                                     <constraint firstAttribute="height" constant="20" id="P9d-MZ-XOK"/>
-                                    <constraint firstAttribute="height" constant="20" id="c1L-yV-7a9"/>
-                                    <constraint firstAttribute="width" constant="20" id="d3t-Ij-ZlR"/>
+                                    <constraint firstAttribute="height" constant="35" id="dFS-NU-EI8"/>
+                                    <constraint firstAttribute="width" constant="35" id="iNv-Pv-BMq"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="jif-gi-Itf"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="pGk-oT-lIs"/>
                                 </constraints>
-                                <state key="normal" image="menuButtonReturn"/>
+                                <state key="normal" image="menuIconLight"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="ISV-cw-BsN"/>
@@ -96,15 +96,15 @@
                         </subviews>
                         <color key="backgroundColor" red="0.70588235290000001" green="0.60392156860000001" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="THs-in-opJ" firstAttribute="leading" secondItem="Zfl-xS-8sC" secondAttribute="leading" constant="20" symbolic="YES" id="1Au-6b-mE9"/>
                             <constraint firstItem="f8H-gV-Q6f" firstAttribute="bottom" secondItem="Zfl-xS-8sC" secondAttribute="centerY" multiplier="0.9" id="2fm-Y0-ZoV"/>
                             <constraint firstItem="f8H-gV-Q6f" firstAttribute="centerX" secondItem="Zfl-xS-8sC" secondAttribute="centerX" id="7zz-je-4Xk"/>
                             <constraint firstItem="zc0-Kc-jEd" firstAttribute="top" secondItem="Zfl-xS-8sC" secondAttribute="centerY" multiplier="1.1" id="8uq-fS-iDZ"/>
                             <constraint firstItem="THs-in-opJ" firstAttribute="top" secondItem="X5w-xU-P7Z" secondAttribute="bottom" constant="8" symbolic="YES" id="BOv-eY-bcU"/>
                             <constraint firstItem="zc0-Kc-jEd" firstAttribute="centerX" secondItem="Zfl-xS-8sC" secondAttribute="centerX" id="DyZ-vL-hOJ"/>
                             <constraint firstItem="THs-in-opJ" firstAttribute="top" secondItem="X5w-xU-P7Z" secondAttribute="bottom" constant="8" symbolic="YES" id="Gqg-Wh-rFQ"/>
+                            <constraint firstAttribute="trailing" secondItem="THs-in-opJ" secondAttribute="trailing" constant="20" symbolic="YES" id="aAf-JV-GFR"/>
+                            <constraint firstItem="g55-y6-bp0" firstAttribute="top" secondItem="THs-in-opJ" secondAttribute="bottom" constant="8" symbolic="YES" id="btL-9c-VqW"/>
                             <constraint firstItem="THs-in-opJ" firstAttribute="top" secondItem="X5w-xU-P7Z" secondAttribute="bottom" constant="8" symbolic="YES" id="rLa-kM-odW"/>
-                            <constraint firstItem="THs-in-opJ" firstAttribute="top" secondItem="X5w-xU-P7Z" secondAttribute="bottom" constant="8" symbolic="YES" id="yps-du-dhr"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -139,7 +139,7 @@
     <resources>
         <image name="caledner" width="200" height="200"/>
         <image name="clock" width="200" height="200"/>
-        <image name="menuButton" width="20" height="20"/>
-        <image name="menuButtonReturn" width="20" height="20"/>
+        <image name="menuIcon" width="25" height="25"/>
+        <image name="menuIconLight" width="25" height="25"/>
     </resources>
 </document>
