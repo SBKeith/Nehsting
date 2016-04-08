@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		472EC22F1CB82EBA00D7CC9F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472EC22E1CB82EBA00D7CC9F /* GradientView.swift */; };
 		473DC8751CAC5032000E6B8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8741CAC5032000E6B8B /* AppDelegate.swift */; };
 		473DC8771CAC5032000E6B8B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8761CAC5032000E6B8B /* MainViewController.swift */; };
 		473DC87A1CAC5032000E6B8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 473DC8781CAC5032000E6B8B /* Main.storyboard */; };
@@ -21,7 +22,7 @@
 		473DC8B11CAC89EC000E6B8B /* SetTemperatureDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8B01CAC89EC000E6B8B /* SetTemperatureDateViewController.swift */; };
 		473DC8B31CAC8B71000E6B8B /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 473DC8B21CAC8B71000E6B8B /* History.storyboard */; };
 		473DC8B51CAC8C03000E6B8B /* TemperatureHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8B41CAC8C03000E6B8B /* TemperatureHistoryTableViewController.swift */; };
-		473DC8B81CAC8D19000E6B8B /* PlaceHolderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8B71CAC8D19000E6B8B /* PlaceHolderData.swift */; };
+		473DC8B81CAC8D19000E6B8B /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8B71CAC8D19000E6B8B /* Values.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		472EC22E1CB82EBA00D7CC9F /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		473DC8711CAC5032000E6B8B /* Nesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		473DC8741CAC5032000E6B8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		473DC8761CAC5032000E6B8B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -62,7 +64,7 @@
 		473DC8B01CAC89EC000E6B8B /* SetTemperatureDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTemperatureDateViewController.swift; sourceTree = "<group>"; };
 		473DC8B21CAC8B71000E6B8B /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
 		473DC8B41CAC8C03000E6B8B /* TemperatureHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureHistoryTableViewController.swift; sourceTree = "<group>"; };
-		473DC8B71CAC8D19000E6B8B /* PlaceHolderData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceHolderData.swift; sourceTree = "<group>"; };
+		473DC8B71CAC8D19000E6B8B /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		472EC2301CB8300E00D7CC9F /* Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				472EC22E1CB82EBA00D7CC9F /* GradientView.swift */,
+			);
+			name = Subclasses;
+			sourceTree = "<group>";
+		};
 		473DC8681CAC5032000E6B8B = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +126,7 @@
 				473DC8B61CAC8D03000E6B8B /* Data */,
 				473DC8A81CAC8039000E6B8B /* Storyboards */,
 				473DC8A91CAC8045000E6B8B /* View Controllers */,
+				472EC2301CB8300E00D7CC9F /* Subclasses */,
 				473DC8A51CAC507E000E6B8B /* Support */,
 			);
 			path = Nesting;
@@ -176,7 +187,7 @@
 		473DC8B61CAC8D03000E6B8B /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				473DC8B71CAC8D19000E6B8B /* PlaceHolderData.swift */,
+				473DC8B71CAC8D19000E6B8B /* Values.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -320,9 +331,10 @@
 				473DC87D1CAC5032000E6B8B /* Nesting.xcdatamodeld in Sources */,
 				473DC8771CAC5032000E6B8B /* MainViewController.swift in Sources */,
 				473DC8751CAC5032000E6B8B /* AppDelegate.swift in Sources */,
-				473DC8B81CAC8D19000E6B8B /* PlaceHolderData.swift in Sources */,
+				473DC8B81CAC8D19000E6B8B /* Values.swift in Sources */,
 				473DC8B11CAC89EC000E6B8B /* SetTemperatureDateViewController.swift in Sources */,
 				473DC8AF1CAC885C000E6B8B /* SchedulerTableViewController.swift in Sources */,
+				472EC22F1CB82EBA00D7CC9F /* GradientView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,6 +563,7 @@
 				473DC89E1CAC5032000E6B8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		473DC89F1CAC5032000E6B8B /* Build configuration list for PBXNativeTarget "NestingTests" */ = {
 			isa = XCConfigurationList;
@@ -559,6 +572,7 @@
 				473DC8A11CAC5032000E6B8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		473DC8A21CAC5032000E6B8B /* Build configuration list for PBXNativeTarget "NestingUITests" */ = {
 			isa = XCConfigurationList;
@@ -567,6 +581,7 @@
 				473DC8A41CAC5032000E6B8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

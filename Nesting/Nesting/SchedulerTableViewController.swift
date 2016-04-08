@@ -12,7 +12,7 @@ import UIKit
 
 class SchedulerTableViewController: UITableViewController {
 
-    let sampleData = PlaceHolderData.data()
+    let sampleData = Values.data()
     
     override func viewDidLoad() {
         super.viewDidLoad()

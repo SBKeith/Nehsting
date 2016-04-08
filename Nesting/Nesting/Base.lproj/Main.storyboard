@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -18,31 +18,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVv-zw-FYT">
-                                <rect key="frame" x="545" y="557" width="35" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="35" id="DM0-op-AzW"/>
-                                    <constraint firstAttribute="height" constant="35" id="UnI-vS-crr"/>
-                                </constraints>
-                                <state key="normal" image="menuIcon"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLd-7T-zH6" userLabel="GradientView" customClass="GradientView" customModule="Nesting" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Vh-Gp-Uv2">
+                                <rect key="frame" x="20" y="564" width="560" height="29"/>
+                                <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <segments>
+                                    <segment title="ON"/>
+                                    <segment title="Second"/>
+                                    <segment title=""/>
+                                </segments>
+                                <color key="tintColor" red="0.1620998676" green="0.56818181820000002" blue="0.18254492550000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <segue destination="HuA-DC-n2i" kind="presentation" modalTransitionStyle="crossDissolve" id="TPs-xF-JfD"/>
+                                    <action selector="segmentBarTouched:" destination="BYZ-38-t0r" eventType="valueChanged" id="xIp-Wf-Sqb"/>
                                 </connections>
-                            </button>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="75" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7j-e3-ssd">
+                                <rect key="frame" x="229" y="225" width="142" height="150"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="125"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.70588235294117641" green="0.60392156862745094" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="HVv-zw-FYT" secondAttribute="trailing" constant="20" symbolic="YES" id="Njo-6O-54G"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HVv-zw-FYT" secondAttribute="bottom" constant="8" symbolic="YES" id="uhD-8e-VhW"/>
+                            <constraint firstItem="G7j-e3-ssd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3sn-7z-QO4"/>
+                            <constraint firstAttribute="trailing" secondItem="5Vh-Gp-Uv2" secondAttribute="trailing" constant="20" symbolic="YES" id="7c9-Vl-n4L"/>
+                            <constraint firstItem="5Vh-Gp-Uv2" firstAttribute="top" secondItem="TLd-7T-zH6" secondAttribute="bottom" id="Hxw-hk-G07"/>
+                            <constraint firstItem="G7j-e3-ssd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="IyF-xw-SLk"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5Vh-Gp-Uv2" secondAttribute="bottom" constant="8" symbolic="YES" id="MC9-KK-NTQ"/>
+                            <constraint firstAttribute="trailing" secondItem="TLd-7T-zH6" secondAttribute="trailing" id="Xt2-Vq-ljt"/>
+                            <constraint firstItem="5Vh-Gp-Uv2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="Xx2-VO-dEp"/>
+                            <constraint firstItem="TLd-7T-zH6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="cPh-UA-KLt"/>
+                            <constraint firstItem="TLd-7T-zH6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lrM-jT-irf"/>
+                            <constraint firstItem="5Vh-Gp-Uv2" firstAttribute="top" secondItem="TLd-7T-zH6" secondAttribute="bottom" constant="8" symbolic="YES" id="ndP-EI-4u0"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="TLd-7T-zH6" secondAttribute="bottom" id="zh0-GG-ktC"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Hxw-hk-G07"/>
+                                <exclude reference="ndP-EI-4u0"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="eok-IY-Csj"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="displayValue" destination="G7j-e3-ssd" id="zRh-55-jxF"/>
+                        <outlet property="gradientView" destination="TLd-7T-zH6" id="g7W-AJ-fHO"/>
+                        <outlet property="segmentedMenuBar" destination="5Vh-Gp-Uv2" id="WvC-5t-8Ll"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="346" y="672"/>
+            <point key="canvasLocation" x="39" y="672"/>
         </scene>
         <!--Menu Selection View Controller-->
         <scene sceneID="t74-ug-wwA">
@@ -139,7 +170,6 @@
     <resources>
         <image name="caledner" width="200" height="200"/>
         <image name="clock" width="200" height="200"/>
-        <image name="menuIcon" width="25" height="25"/>
         <image name="menuIconLight" width="25" height="25"/>
     </resources>
 </document>
