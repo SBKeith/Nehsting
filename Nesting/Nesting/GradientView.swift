@@ -11,29 +11,25 @@ import UIKit
 class GradientView: UIView {
 
     let gradientLayer = CAGradientLayer()
-    
-    var color1 = UIColor(red: 205/255, green: 122/255, blue: 42/255, alpha: 1)
-    var color2 = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
+    let settings = NSUserDefaults.standardUserDefaults()
+
+    var cgColor1 = UIColor(red: 205/255, green: 122/255, blue: 42/255, alpha: 1).CGColor
+    var cgColor2 = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1).CGColor
     
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
         gradientLayer.frame = bounds
-        
-        let cgColor1 = color1.CGColor
-        let cgColor2 = color2.CGColor
-        
-        gradientLayer.colors = [cgColor1, cgColor2]
+        settings.stringForKey("temp") == "heat" ? (gradientLayer.colors = [cgColor1, cgColor2]) : (gradientLayer.colors = [cgColor2, cgColor1])
         gradientLayer.locations = [0.0, 1.0]
-        
         layer.addSublayer(gradientLayer)
     }
     
-    func updateGradientColor(color1: UIColor, color2: UIColor) {
+    func updateGradientColor(cgColor1: CGColor, cgColor2: CGColor) {
         
-        self.color1 = color1
-        self.color2 = color2
-        
+        self.cgColor1 = cgColor1
+        self.cgColor2 = cgColor2
+                
         setNeedsDisplay()
     }
 }

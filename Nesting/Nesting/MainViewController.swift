@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var segmentedMenuBar: UISegmentedControl!
     
     let value = Values()
+    var tempSetting = Values.temperature()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,13 +51,13 @@ class MainViewController: UIViewController {
                     value.currentTemp += 1
                     
                     if value.currentTemp % 5 == 0 {
-                        adjustGradient("HEAT")
+                        adjustGradient("INCREASE")
                     }
                 } else if directionValueDecrease && withinTempBounds.1 {
                     value.currentTemp -= 1
                     
                     if value.currentTemp % 5 == 0 {
-                        adjustGradient("COOL")
+                        adjustGradient("DECREASE")
                     }
                 }
             }
@@ -95,23 +96,43 @@ class MainViewController: UIViewController {
     
     func adjustGradient(setting: String) {
         
-        let rValue: CGFloat = value.red1
-        let gValue: CGFloat = 10
-        let bValue: CGFloat = 20
-        let rgb2 = value.kLOWERGRADIENT
-        
-        switch(setting) {
-        case "HEAT":
-            value.red1 = rValue
-            value.green1 -= gValue
-            value.blue1 -= bValue
-        case "COOL":
-            value.red1 = rValue
-            value.green1 += gValue
-            value.blue1 += bValue
-        default: break
+        switch(value.settings.stringForKey("temp")!) {
+            case "heat":
+                switch(setting) {
+                case "INCREASE":
+                    tempSetting.hRed = value.hRed
+                    tempSetting.hGreen -= value.tempDifferential_1
+                    tempSetting.hBlue -= value.tempDifferential_2
+                    gradientView.updateGradientColor(tempSetting.heat, cgColor2: tempSetting.neutral)
+                    
+                case "DECREASE":
+                    tempSetting.hRed = value.hRed
+                    tempSetting.hGreen += value.tempDifferential_1
+                    tempSetting.hBlue += value.tempDifferential_2
+                    gradientView.updateGradientColor(tempSetting.heat, cgColor2: tempSetting.neutral)
+                    
+                default: break
+            }
+            
+            case "cool":
+                switch(setting) {
+                case "INCREASE":
+                    tempSetting.cBlue = value.cBlue
+                    tempSetting.cGreen += value.tempDifferential_1
+                    tempSetting.cRed += value.tempDifferential_2
+                    gradientView.updateGradientColor(tempSetting.cool, cgColor2: tempSetting.neutral)
+                    
+                case "DECREASE":
+                    tempSetting.cBlue = value.cBlue
+                    tempSetting.cGreen -= value.tempDifferential_1
+                    tempSetting.cRed -= value.tempDifferential_2
+                    gradientView.updateGradientColor(tempSetting.cool, cgColor2: tempSetting.neutral)
+                    
+                default: break
+            }
+            
+            default: break
         }
-        gradientView.updateGradientColor(UIColor(red: value.red1/255.0, green: value.green1/255.0, blue: value.blue1/255.0, alpha: 1), color2: UIColor(red: rgb2, green: rgb2, blue: rgb2, alpha: 1))
     }
     
     func getSegmentedMenuBarTouch() {
@@ -122,11 +143,21 @@ class MainViewController: UIViewController {
             case 0:
                 segmentedMenuBar.titleForSegmentAtIndex(0) == "ON" ?
                     segmentedMenuBar.setTitle("OFF", forSegmentAtIndex: 0) : segmentedMenuBar.setTitle("ON", forSegmentAtIndex: 0)
-                
+            
             case 1:
                 segmentedMenuBar.titleForSegmentAtIndex(1) == "COOL" ?
                     segmentedMenuBar.setTitle("HEAT", forSegmentAtIndex: 1) : segmentedMenuBar.setTitle("COOL", forSegmentAtIndex: 1)
-                
+            
+                if segmentedMenuBar.titleForSegmentAtIndex(1) == "COOL" {
+                    value.settings.setValue("cool", forKey: "temp")
+                    value.settings.synchronize()
+                    gradientView.updateGradientColor(tempSetting.cool, cgColor2: tempSetting.neutral)
+                } else {
+                    value.settings.setValue("heat", forKey: "temp")
+                    value.settings.synchronize()
+                    gradientView.updateGradientColor(tempSetting.heat, cgColor2: tempSetting.neutral)
+                }
+            
             case 2:
                 // Insert segue code here...
                 break
