@@ -90,7 +90,6 @@ class MainViewController: UIViewController {
     }
     
     func checkTempBounds() -> (Bool, Bool) {
-        
         return ((value.currentTemp < value.kMAXTEMP), (value.currentTemp > value.kMINTEMP))
     }
     
@@ -159,8 +158,8 @@ class MainViewController: UIViewController {
                 }
             
             case 2:
-                // Insert segue code here...
-                break
+                let historyVC = UIStoryboard(name: "History", bundle: nil).instantiateViewControllerWithIdentifier("HistoryVC_ID")
+                presentViewController(historyVC, animated: true, completion: nil)
             
             default: break
         }
