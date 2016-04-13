@@ -21,29 +21,53 @@ class Values {
         ]
     }
     
-    struct temperature {
-        
-        // Initial heat values
-        var hRed:CGFloat = 255.0, hGreen:CGFloat = 113.0, hBlue:CGFloat = 0.0
-        
-        // Initial Cool Values
-        var cRed:CGFloat = 0.0, cGreen:CGFloat = 30.0, cBlue:CGFloat = 140.0
-
-        
-        var heat: CGColor {
-            return UIColor(red: hRed/255, green: hGreen/255, blue: hBlue/255, alpha: 1).CGColor
-        }
-        
-        var cool: CGColor {
-            return UIColor(red: cRed/255, green: cGreen/255, blue: cBlue/255, alpha: 1).CGColor
-        }
-        
-        var neutral: CGColor {
-            return UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1).CGColor
-        }
+    enum temperatureType: String {
+        case heat = "Heat"
+        case cool = "Cool"
+        case on   = "ON"
+        case off  = "OFF"
     }
     
+    struct temperatureSettings {
+        
+        var settingTitle: temperatureType?
+        var currentTemperature = 75
+        
+        var rgbHeatValues: [String: CGFloat] = ["red":255.0/255.0, "green":113.0/255.0, "blue":0.0/255.0]
+        var rgbCoolValues: [String: CGFloat] = ["red":0.0/255.0, "green":30.0/255.0, "blue":140.0/255.0]
+    }
+    
+    func gradientValue(rgbDict: [String: CGFloat]) -> CGColor {
+        
+        return UIColor(red:rgbDict["red"]!, green:rgbDict["green"]!, blue:rgbDict["blue"]!, alpha:1.0).CGColor
+    }
+    
+//    struct temperature {
+//        
+//        // Initial heat values
+//        var hRed:CGFloat = 255.0, hGreen:CGFloat = 113.0, hBlue:CGFloat = 0.0
+//        
+//        // Initial Cool Values
+//        var cRed:CGFloat = 0.0, cGreen:CGFloat = 30.0, cBlue:CGFloat = 140.0
+//
+//        
+//        var heat: CGColor {
+//            return UIColor(red: hRed/255, green: hGreen/255, blue: hBlue/255, alpha: 1).CGColor
+//        }
+//        
+//        var cool: CGColor {
+//            return UIColor(red: cRed/255, green: cGreen/255, blue: cBlue/255, alpha: 1).CGColor
+//        }
+//        
+//        var neutral: CGColor {
+//            return UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1).CGColor
+//        }
+//    }
+    
     // MARK: - CONSTANTS
+    
+    // Neutral Color for gradients
+    let neutralColor = UIColor(red: 238.0/255.0, green: 238.0/255.0, blue: 238.0/255.0, alpha: 1.0).CGColor
     
     // NSUserDefaults
     let settings = NSUserDefaults.standardUserDefaults()
@@ -61,20 +85,23 @@ class Values {
     
     // MARK: - VARIABLES
     
+    // Power
+    var power: temperatureType?
+    
     // system temperature (temporary)
-    var currentTemp = 75
+//    var currentTemp = 75
     
     // Parsed value for finger drag
     var valueParser = 0
     
     // RGB changable values
     // HEAT
-    var hRed: CGFloat = 255.0
-    var hGreen: CGFloat = 113.0
-    var hBlue: CGFloat = 0.0
-    
-    // COOL
-    var cRed: CGFloat = 0.0
-    var cGreen: CGFloat = 30.0
-    var cBlue: CGFloat = 140.0
+//    var hRed: CGFloat = 255.0
+//    var hGreen: CGFloat = 113.0
+//    var hBlue: CGFloat = 0.0
+//    
+//    // COOL
+//    var cRed: CGFloat = 0.0
+//    var cGreen: CGFloat = 30.0
+//    var cBlue: CGFloat = 140.0
 }

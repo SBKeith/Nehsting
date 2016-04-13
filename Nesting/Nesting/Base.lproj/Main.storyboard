@@ -65,7 +65,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="displayValue" destination="G7j-e3-ssd" id="zRh-55-jxF"/>
+                        <outlet property="displayTemperatureValue" destination="G7j-e3-ssd" id="UEs-8t-Zw3"/>
                         <outlet property="gradientView" destination="TLd-7T-zH6" id="g7W-AJ-fHO"/>
                         <outlet property="segmentedMenuBar" destination="5Vh-Gp-Uv2" id="WvC-5t-8Ll"/>
                     </connections>
