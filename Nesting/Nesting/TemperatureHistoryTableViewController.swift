@@ -10,6 +10,8 @@ import UIKit
 
 class TemperatureHistoryTableViewController: UITableViewController {
 
+    let sampleData = Values.data()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -17,13 +19,24 @@ class TemperatureHistoryTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+
+        return sampleData.dataArray.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
+        let data = sampleData.dataArray[indexPath.row]
+        
+        cell.textLabel!.text = data["date"] as? String
+        cell.detailTextLabel!.text = "\(data["date"]!)"
+        
+        return cell
     }
     
     @IBAction func doneButtonTapped(sender: UIBarButtonItem) {
