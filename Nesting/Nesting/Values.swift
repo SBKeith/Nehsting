@@ -33,36 +33,21 @@ class Values {
         var settingTitle: temperatureType?
         var currentTemperature = 75
         
-        var rgbHeatValues: [String: CGFloat] = ["red":255.0/255.0, "green":113.0/255.0, "blue":0.0/255.0]
-        var rgbCoolValues: [String: CGFloat] = ["red":0.0/255.0, "green":30.0/255.0, "blue":140.0/255.0]
+        var rgbHeatValues: [String: CGFloat] = ["red":255.0, "green":113.0, "blue":0.0]
+        var rgbCoolValues: [String: CGFloat] = ["red":0.0, "green":30.0, "blue":140.0]
+        
+        var cgColorHeat: CGColor?
+        var cgColorCool: CGColor?
+        
+        init() {
+//            cgColorHeat = gradientValue(self.rgbHeatValues)
+        }
     }
     
     func gradientValue(rgbDict: [String: CGFloat]) -> CGColor {
         
-        return UIColor(red:rgbDict["red"]!, green:rgbDict["green"]!, blue:rgbDict["blue"]!, alpha:1.0).CGColor
+        return UIColor(red:rgbDict["red"]!/255.0, green:rgbDict["green"]!/255.0, blue:rgbDict["blue"]!/255.0, alpha:1.0).CGColor
     }
-    
-//    struct temperature {
-//        
-//        // Initial heat values
-//        var hRed:CGFloat = 255.0, hGreen:CGFloat = 113.0, hBlue:CGFloat = 0.0
-//        
-//        // Initial Cool Values
-//        var cRed:CGFloat = 0.0, cGreen:CGFloat = 30.0, cBlue:CGFloat = 140.0
-//
-//        
-//        var heat: CGColor {
-//            return UIColor(red: hRed/255, green: hGreen/255, blue: hBlue/255, alpha: 1).CGColor
-//        }
-//        
-//        var cool: CGColor {
-//            return UIColor(red: cRed/255, green: cGreen/255, blue: cBlue/255, alpha: 1).CGColor
-//        }
-//        
-//        var neutral: CGColor {
-//            return UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1).CGColor
-//        }
-//    }
     
     // MARK: - CONSTANTS
     
@@ -79,9 +64,6 @@ class Values {
     // Values that are responsible for increasing / decreasing gradient color values
     let tempDifferential_1: CGFloat = 10.0
     let tempDifferential_2: CGFloat = 20.0
-    
-    // Static gradient color
-    let kLOWERGRADIENT:CGFloat = 238.0 / 255.0
     
     // MARK: - VARIABLES
     

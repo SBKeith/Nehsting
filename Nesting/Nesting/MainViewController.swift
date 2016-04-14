@@ -15,7 +15,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var segmentedMenuBar: UISegmentedControl!
     
     let value = Values()
-//    var tempSetting = Values.temperature()
     
     // Values for heating and cooling
     var temperatureSettings = Values.temperatureSettings()
@@ -34,6 +33,10 @@ class MainViewController: UIViewController {
         
         // Set Initial Power Value
         value.power = .off
+        
+        // Initialize cgColors
+        temperatureSettings.cgColorHeat = value.gradientValue(temperatureSettings.rgbHeatValues)
+        temperatureSettings.cgColorCool = value.gradientValue(temperatureSettings.rgbCoolValues)
         
         // Set Values for the segmentedMenuBar
         setSegmentedMenuBarValues()
@@ -97,9 +100,6 @@ class MainViewController: UIViewController {
         
         // Set current temperature (for "heat" or "cool" in NSUserDefaults
         value.settings.setValue(temperatureSettings.currentTemperature, forKey: temperatureSettings.settingTitle!.rawValue)
-        
-//        print(temperatureSettings.settingTitle!.rawValue)
-//        print(value.settings.stringForKey("\(temperatureSettings.settingTitle!.rawValue)"))
     }
 
     
@@ -140,33 +140,25 @@ class MainViewController: UIViewController {
                 }
             
             case 1:
-                // Toggle Segmented Menu Bar Temperature Value
-                segmentedMenuBar.titleForSegmentAtIndex(1) == "COOL" ?
-                    segmentedMenuBar.setTitle("HEAT", forSegmentAtIndex: 1) : segmentedMenuBar.setTitle("COOL", forSegmentAtIndex: 1)
-                
-                temperatureSettings.currentTemperature 
-            
-                // Set NSUserDefaults for heating or cooling
+                // Toggle Segmented Menu Bar Temperature Value and set NSUserDefaults
                 if segmentedMenuBar.titleForSegmentAtIndex(1) == "COOL" {
-                    temperatureSettings.settingTitle = .cool
-                    value.settings.setValue(temperatureSettings.settingTitle!.rawValue, forKey: "temp")
-                    value.settings.synchronize()
-                    
-//                    print(temperatureSettings.settingTitle?.rawValue)
-                    
-                    // Update gradient color when temp changed from heat / cool
-                    gradientView.updateGradientColor(value.gradientValue(temperatureSettings.rgbCoolValues), cgColor2: value.neutralColor)
-                } else {
+                    segmentedMenuBar.setTitle("HEAT", forSegmentAtIndex: 1)
                     temperatureSettings.settingTitle = .heat
-                    value.settings.setValue(temperatureSettings.settingTitle!.rawValue, forKey: "temp")
-                    value.settings.synchronize()
-                    
-//                    print(temperatureSettings.settingTitle?.rawValue)
-
-                    
-                    // Update gradient color when temp changed from heat / cool
-                    gradientView.updateGradientColor(value.gradientValue(temperatureSettings.rgbHeatValues), cgColor2: value.neutralColor)
+                } else {
+                    segmentedMenuBar.setTitle("COOL", forSegmentAtIndex: 1)
+                    temperatureSettings.settingTitle = .cool
                 }
+                
+                // Update temperature title
+                value.settings.setValue(temperatureSettings.settingTitle!.rawValue, forKey: "temp")
+                value.settings.synchronize()
+            
+                // Update temperature value
+                temperatureSettings.currentTemperature = value.settings.integerForKey(temperatureSettings.settingTitle!.rawValue)
+                displayTemperatureValue.text = "\(temperatureSettings.currentTemperature)"
+                
+                // Update gradient color when temp changed from heat / cool
+                gradientView.updateGradientColor(value.gradientValue(temperatureSettings.rgbCoolValues), cgColor2: value.neutralColor)
             
             case 2:
                 // Segue to history view controller
@@ -178,8 +170,6 @@ class MainViewController: UIViewController {
     }
     
     func adjustGradient(setting: String) {
-        
-//        print(value.settings.stringForKey("temp"))
         
         switch(value.settings.stringForKey("temp")!) {
         case "Heat":
