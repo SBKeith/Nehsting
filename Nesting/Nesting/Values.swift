@@ -29,30 +29,17 @@ class Values {
     }
     
     struct temperatureSettings {
-        
         var settingTitle: temperatureType?
         var currentTemperature = 75
-        
-        var rgbHeatValues: [String: CGFloat] = ["red":255.0, "green":113.0, "blue":0.0]
-        var rgbCoolValues: [String: CGFloat] = ["red":0.0, "green":30.0, "blue":140.0]
-        
-        var cgColorHeat: CGColor?
-        var cgColorCool: CGColor?
-        
-        init() {
-//            cgColorHeat = gradientValue(self.rgbHeatValues)
-        }
+        let cgColorNeutral: CGColor = UIColor(red: 238.0/255.0, green: 238.0/255.0, blue: 238.0/255.0, alpha: 1.0).CGColor
     }
     
-    func gradientValue(rgbDict: [String: CGFloat]) -> CGColor {
+    func gradientValue(red: CGFloat, green: CGFloat, blue: CGFloat) -> CGColor {
         
-        return UIColor(red:rgbDict["red"]!/255.0, green:rgbDict["green"]!/255.0, blue:rgbDict["blue"]!/255.0, alpha:1.0).CGColor
+        return UIColor(red: red/255, green: green/255, blue: blue/255, alpha:1.0).CGColor
     }
     
     // MARK: - CONSTANTS
-    
-    // Neutral Color for gradients
-    let neutralColor = UIColor(red: 238.0/255.0, green: 238.0/255.0, blue: 238.0/255.0, alpha: 1.0).CGColor
     
     // NSUserDefaults
     let settings = NSUserDefaults.standardUserDefaults()
@@ -70,20 +57,6 @@ class Values {
     // Power
     var power: temperatureType?
     
-    // system temperature (temporary)
-//    var currentTemp = 75
-    
     // Parsed value for finger drag
     var valueParser = 0
-    
-    // RGB changable values
-    // HEAT
-//    var hRed: CGFloat = 255.0
-//    var hGreen: CGFloat = 113.0
-//    var hBlue: CGFloat = 0.0
-//    
-//    // COOL
-//    var cRed: CGFloat = 0.0
-//    var cGreen: CGFloat = 30.0
-//    var cBlue: CGFloat = 140.0
 }

@@ -14,14 +14,18 @@ class MainViewController: UIViewController {
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var segmentedMenuBar: UISegmentedControl!
     
-    let value = Values()
+    // RGB Values for heat (h) and cool (c)
+    var red_H:CGFloat = 255.0, green_H:CGFloat = 113.0, blue_H:CGFloat = 0.0
+    var red_C:CGFloat = 0.0,   green_C:CGFloat = 30.0,  blue_C:CGFloat = 140.0
     
     // Values for heating and cooling
     var temperatureSettings = Values.temperatureSettings()
+    let value = Values()
+    let settings = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         // Set whether heat / cool is set (will need to pull data later)
         temperatureSettings.settingTitle = .heat
         
@@ -34,17 +38,13 @@ class MainViewController: UIViewController {
         // Set Initial Power Value
         value.power = .off
         
-        // Initialize cgColors
-        temperatureSettings.cgColorHeat = value.gradientValue(temperatureSettings.rgbHeatValues)
-        temperatureSettings.cgColorCool = value.gradientValue(temperatureSettings.rgbCoolValues)
-        
         // Set Values for the segmentedMenuBar
         setSegmentedMenuBarValues()
         
         // Track pList for NSUserDefaults
-        let path = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)
-        let folder = path[0]
-        NSLog("Your NSUserDefaults are stored in this folder: \(folder)/preferences")
+//        let path = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)
+//        let folder = path[0]
+//        NSLog("Your NSUserDefaults are stored in this folder: \(folder)/preferences")
     }
     
     func setSegmentedMenuBarValues() {
@@ -158,7 +158,7 @@ class MainViewController: UIViewController {
                 displayTemperatureValue.text = "\(temperatureSettings.currentTemperature)"
                 
                 // Update gradient color when temp changed from heat / cool
-                gradientView.updateGradientColor(value.gradientValue(temperatureSettings.rgbCoolValues), cgColor2: value.neutralColor)
+                gradientView.updateGradientColor()
             
             case 2:
                 // Segue to history view controller
@@ -169,22 +169,25 @@ class MainViewController: UIViewController {
         }
     }
     
+    func setCGColor(temp: String) {
+        
+        temp == "Heat" ? settings.setValue(value.gradientValue(red_H, green: green_H, blue: blue_H), forKey: "cgColor_Heat") : settings.setValue(value.gradientValue(red_H, green: green_H, blue: blue_H), forKey: "cgColor_Cool")
+    }
+    
     func adjustGradient(setting: String) {
         
         switch(value.settings.stringForKey("temp")!) {
         case "Heat":
             switch(setting) {
             case "INCREASE":
-                temperatureSettings.rgbHeatValues["red"]! = 255.0
-                temperatureSettings.rgbHeatValues["green"]! -= value.tempDifferential_1
-                temperatureSettings.rgbHeatValues["blue"]! -= value.tempDifferential_2
-                gradientView.updateGradientColor(value.gradientValue(temperatureSettings.rgbHeatValues), cgColor2: value.neutralColor)
+                green_H -= value.tempDifferential_1
+                blue_H -= value.tempDifferential_2
+                setCGColor("Heat")
                 
             case "DECREASE":
-                temperatureSettings.rgbHeatValues["red"]! = 255.0
-                temperatureSettings.rgbHeatValues["green"]! += value.tempDifferential_1
-                temperatureSettings.rgbHeatValues["blue"]! += value.tempDifferential_2
-                gradientView.updateGradientColor(value.gradientValue(temperatureSettings.rgbHeatValues), cgColor2: value.neutralColor)
+                green_H += value.tempDifferential_1
+                blue_H += value.tempDifferential_2
+                setCGColor("Heat")
                 
             default: break
             }
@@ -192,16 +195,14 @@ class MainViewController: UIViewController {
         case "Cool":
             switch(setting) {
             case "INCREASE":
-                temperatureSettings.rgbHeatValues["blue"]! = 140.0
-                temperatureSettings.rgbHeatValues["green"]! += value.tempDifferential_1
-                temperatureSettings.rgbHeatValues["red"]! += value.tempDifferential_2
-                gradientView.updateGradientColor(value.gradientValue(temperatureSettings.rgbHeatValues), cgColor2: value.neutralColor)
+                green_C += value.tempDifferential_1
+                red_C += value.tempDifferential_2
+                setCGColor("Cool")
                 
             case "DECREASE":
-                temperatureSettings.rgbHeatValues["blue"]! = 140.0
-                temperatureSettings.rgbHeatValues["green"]! -= value.tempDifferential_1
-                temperatureSettings.rgbHeatValues["red"]! -= value.tempDifferential_2
-                gradientView.updateGradientColor(value.gradientValue(temperatureSettings.rgbHeatValues), cgColor2: value.neutralColor)
+                green_C -= value.tempDifferential_1
+                red_C -= value.tempDifferential_2
+                setCGColor("Cool")
                 
             default: break
             }
