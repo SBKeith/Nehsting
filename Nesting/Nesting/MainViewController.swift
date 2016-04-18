@@ -21,30 +21,32 @@ class MainViewController: UIViewController {
     // Values for heating and cooling
     var temperatureSettings = Values.temperatureSettings()
     let value = Values()
-    let settings = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
         // Set whether heat / cool is set (will need to pull data later)
         temperatureSettings.settingTitle = .heat
-        
+
         // Setup NSUserDefaults temperature value under the key 'Heat' or 'Cool'
         value.settings.setValue(temperatureSettings.currentTemperature, forKey: temperatureSettings.settingTitle!.rawValue)
-        
+        value.settings.synchronize()
+
         // Set Initial Display Temperature
         displayTemperatureValue.text = "\(value.settings.valueForKey(temperatureSettings.settingTitle!.rawValue)!)"
-        
+        value.settings.synchronize()
+
         // Set Initial Power Value
         value.power = .off
-        
+
         // Set Values for the segmentedMenuBar
         setSegmentedMenuBarValues()
+
         
         // Track pList for NSUserDefaults
-//        let path = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)
-//        let folder = path[0]
-//        NSLog("Your NSUserDefaults are stored in this folder: \(folder)/preferences")
+        let path = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)
+        let folder = path[0]
+        NSLog("Your NSUserDefaults are stored in this folder: \(folder)/preferences")
     }
     
     func setSegmentedMenuBarValues() {
@@ -158,7 +160,7 @@ class MainViewController: UIViewController {
                 displayTemperatureValue.text = "\(temperatureSettings.currentTemperature)"
                 
                 // Update gradient color when temp changed from heat / cool
-                gradientView.updateGradientColor()
+//                gradientView.updateGradientColor()
             
             case 2:
                 // Segue to history view controller
@@ -171,7 +173,9 @@ class MainViewController: UIViewController {
     
     func setCGColor(temp: String) {
         
-        temp == "Heat" ? settings.setValue(value.gradientValue(red_H, green: green_H, blue: blue_H), forKey: "cgColor_Heat") : settings.setValue(value.gradientValue(red_H, green: green_H, blue: blue_H), forKey: "cgColor_Cool")
+        temp == "Heat" ? value.settings.setValue(value.gradientValue(red_H, green: green_H, blue: blue_H), forKey: "cgColor_Heat") : value.settings.setValue(value.gradientValue(red_H, green: green_H, blue: blue_H), forKey: "cgColor_Cool")
+        
+        value.settings.synchronize()
     }
     
     func adjustGradient(setting: String) {

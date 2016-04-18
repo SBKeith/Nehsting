@@ -11,7 +11,6 @@ import UIKit
 class GradientView: UIView {
 
     let gradientLayer = CAGradientLayer()
-    let settings = NSUserDefaults.standardUserDefaults()
     let temp = Values.temperatureSettings()
     let value = Values()
     
@@ -23,7 +22,7 @@ class GradientView: UIView {
         
         gradientLayer.frame = bounds
         
-        settings.stringForKey("temp")! == "Heat" ? (gradientLayer.colors = [cgColorHeat, temp.cgColorNeutral]) : (gradientLayer.colors = [temp.cgColorNeutral,cgColorCool])
+        value.settings.stringForKey("temp")! == "Heat" ? (gradientLayer.colors = [cgColorHeat, temp.cgColorNeutral]) : (gradientLayer.colors = [temp.cgColorNeutral,cgColorCool])
         
         gradientLayer.locations = [0.0, 1.0]
         layer.addSublayer(gradientLayer)
@@ -31,8 +30,8 @@ class GradientView: UIView {
     
     func updateGradientColor() {
         
-        self.cgColorHeat = settings.objectForKey("cgColorHeat")! as! CGColor
-        self.cgColorCool = settings.objectForKey("cgColorCool")! as! CGColor
+        self.cgColorHeat = value.settings.objectForKey("cgColorHeat")! as! CGColor
+        self.cgColorCool = value.settings.objectForKey("cgColorCool")! as! CGColor
         setNeedsDisplay()
     }
 }
