@@ -12,15 +12,11 @@ class GradientView: UIView {
     
     // Singletons
     let sharedValues = Values.sharedValues
-    var sharedStruct = Values.sharedStruct
     var sharedTempStruct = Values.sharedTempStruct
     
     let gradientLayer = CAGradientLayer()
     let settings = NSUserDefaults.standardUserDefaults()
     
-//    var cgColor1 = UIColor(red: 205/255, green: 122/255, blue: 42/255, alpha: 1).CGColor
-//    var cgColor2 = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1).CGColor
-
     var cgColor1: CGColor?
     var cgColor2: CGColor?
 
@@ -28,7 +24,7 @@ class GradientView: UIView {
         super.init(coder: aDecoder)
         
         cgColor1 = sharedTempStruct.cgColor1
-        cgColor2 = sharedTempStruct.cgColor2
+        cgColor2 = sharedTempStruct.cgColorNeutral
     }
     
     override func drawRect(rect: CGRect) {
@@ -40,52 +36,46 @@ class GradientView: UIView {
         layer.addSublayer(gradientLayer)
     }
     
-    func updateGradientColor(cgColor1: CGColor, cgColor2: CGColor) {
+    func updateGradientColor(cgColor1: CGColor) {
         
         self.cgColor1 = cgColor1
-        self.cgColor2 = cgColor2
-        
         setNeedsDisplay()
     }
     
     func adjustGradient(setting: String) {
         
         switch(sharedValues.settings.stringForKey("temperature")!) {
-        case "Heat":
-            switch(setting) {
-            case "INCREASE":
-                sharedStruct.hRed = sharedValues.hRed
-                sharedStruct.hGreen -= sharedValues.tempDifferential_1
-                sharedStruct.hBlue -= sharedValues.tempDifferential_2
-                updateGradientColor(sharedStruct.heat, cgColor2: sharedStruct.neutral)
+            case "Heat":
+                switch(setting) {
+                    case "INCREASE":
+                        sharedTempStruct.rgbHeat.1 -= sharedValues.tempDifferential_1
+                        sharedTempStruct.rgbHeat.2 -= sharedValues.tempDifferential_2
+                        updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbHeat.0, green: sharedTempStruct.rgbHeat.1, blue: sharedTempStruct.rgbHeat.2))
+                        
+                    case "DECREASE":
+                        sharedTempStruct.rgbHeat.1 += sharedValues.tempDifferential_1
+                        sharedTempStruct.rgbHeat.2 += sharedValues.tempDifferential_2
+                        updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbHeat.0, green: sharedTempStruct.rgbHeat.1, blue: sharedTempStruct.rgbHeat.2))
+                        
+                    default: break
+                }
                 
-            case "DECREASE":
-                sharedStruct.hRed = sharedValues.hRed
-                sharedStruct.hGreen += sharedValues.tempDifferential_1
-                sharedStruct.hBlue += sharedValues.tempDifferential_2
-                updateGradientColor(sharedStruct.heat, cgColor2: sharedStruct.neutral)
-                
+            case "Cool":
+                switch(setting) {
+                    case "INCREASE":
+                        sharedTempStruct.rgbCool.1 += sharedValues.tempDifferential_1
+                        sharedTempStruct.rgbCool.0 += sharedValues.tempDifferential_2
+                        updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbCool.0, green: sharedTempStruct.rgbCool.1, blue: sharedTempStruct.rgbCool.2))
+                        
+                    case "DECREASE":
+                        sharedTempStruct.rgbCool.1 -= sharedValues.tempDifferential_1
+                        sharedTempStruct.rgbCool.0 -= sharedValues.tempDifferential_2
+                        updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbCool.0, green: sharedTempStruct.rgbCool.1, blue: sharedTempStruct.rgbCool.2))
+                        
+                    default: break
+                }
             default: break
             }
-            
-        case "Cool":
-            switch(setting) {
-            case "INCREASE":
-                sharedStruct.cBlue = sharedValues.cBlue
-                sharedStruct.cGreen += sharedValues.tempDifferential_1
-                sharedStruct.cRed += sharedValues.tempDifferential_2
-                updateGradientColor(sharedStruct.cool, cgColor2: sharedStruct.neutral)
-                
-            case "DECREASE":
-                sharedStruct.cBlue = sharedValues.cBlue
-                sharedStruct.cGreen -= sharedValues.tempDifferential_1
-                sharedStruct.cRed -= sharedValues.tempDifferential_2
-                updateGradientColor(sharedStruct.cool, cgColor2: sharedStruct.neutral)
-                
-            default: break
-            }
-        default: break
-        }
     }
 }
 
