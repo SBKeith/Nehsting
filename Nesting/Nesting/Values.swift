@@ -30,8 +30,13 @@ class Values {
         var currentTemperature = 75
         var power = temperatureType?()
         
-        let cgColorNeutral: CGColor = UIColor(red: 238.0/255.0, green: 238.0/255.0, blue: 238.0/255.0, alpha: 1.0).CGColor
+        // Constant 2nd gradient color
+        let cgColorNeutral = UIColor(red: 238.0/255.0, green: 238.0/255.0, blue: 238.0/255.0, alpha: 1.0).CGColor
         
+        // Variables for heat / cool
+        var cgColor1 = UIColor(red: 205/255, green: 122/255, blue: 42/255, alpha: 1).CGColor
+        var cgColor2 = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1).CGColor
+
         
         enum temperatureType: String {
             case heat = "Heat"

@@ -13,18 +13,29 @@ class GradientView: UIView {
     // Singletons
     let sharedValues = Values.sharedValues
     var sharedStruct = Values.sharedStruct
+    var sharedTempStruct = Values.sharedTempStruct
     
     let gradientLayer = CAGradientLayer()
     let settings = NSUserDefaults.standardUserDefaults()
     
-    var cgColor1 = UIColor(red: 205/255, green: 122/255, blue: 42/255, alpha: 1).CGColor
-    var cgColor2 = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1).CGColor
+//    var cgColor1 = UIColor(red: 205/255, green: 122/255, blue: 42/255, alpha: 1).CGColor
+//    var cgColor2 = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1).CGColor
+
+    var cgColor1: CGColor?
+    var cgColor2: CGColor?
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        cgColor1 = sharedTempStruct.cgColor1
+        cgColor2 = sharedTempStruct.cgColor2
+    }
     
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
         gradientLayer.frame = bounds
-        settings.stringForKey("temperature") == "Heat" ? (gradientLayer.colors = [cgColor1, cgColor2]) : (gradientLayer.colors = [cgColor2, cgColor1])
+        settings.stringForKey("temperature")! == "Heat" ? (gradientLayer.colors = [cgColor1!, cgColor2!]) : (gradientLayer.colors = [cgColor2!, cgColor1!])
         gradientLayer.locations = [0.0, 1.0]
         layer.addSublayer(gradientLayer)
     }

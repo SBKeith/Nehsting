@@ -27,12 +27,15 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         // Track pList for NSUserDefaults
-        //        let path = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)
-        //        let folder = path[0]
-        //        NSLog("Your NSUserDefaults are stored in this folder: \(folder)/preferences")
+//                let path = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)
+//                let folder = path[0]
+//                NSLog("Your NSUserDefaults are stored in this folder: \(folder)/preferences")
         
         
         displayValue.text = "\(sharedTempStruct.currentTemperature)"  // Set initial temp
+        
+        
+        
         setSegmentedMenuBarValues()
     }
     
