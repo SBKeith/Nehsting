@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		46960C2E4E839CCEEEA5DF3D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABB2C568D2D02EC10069AAF /* Pods.framework */; };
+		470C4DF11CC9877500CDDFF5 /* NetworkingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C4DF01CC9877500CDDFF5 /* NetworkingData.swift */; };
 		472EC22F1CB82EBA00D7CC9F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472EC22E1CB82EBA00D7CC9F /* GradientView.swift */; };
 		473DC8751CAC5032000E6B8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8741CAC5032000E6B8B /* AppDelegate.swift */; };
 		473DC8771CAC5032000E6B8B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8761CAC5032000E6B8B /* MainViewController.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		470C4DF01CC9877500CDDFF5 /* NetworkingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingData.swift; sourceTree = "<group>"; };
 		472EC22E1CB82EBA00D7CC9F /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		473DC8711CAC5032000E6B8B /* Nesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		473DC8741CAC5032000E6B8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				473DC8B71CAC8D19000E6B8B /* Values.swift */,
+				470C4DF01CC9877500CDDFF5 /* NetworkingData.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				473DC87D1CAC5032000E6B8B /* Nesting.xcdatamodeld in Sources */,
 				473DC8771CAC5032000E6B8B /* MainViewController.swift in Sources */,
 				473DC8751CAC5032000E6B8B /* AppDelegate.swift in Sources */,
+				470C4DF11CC9877500CDDFF5 /* NetworkingData.swift in Sources */,
 				473DC8B81CAC8D19000E6B8B /* Values.swift in Sources */,
 				D8BF0ACF1CC8C2A1001CA91D /* NestConnectViewController.swift in Sources */,
 				473DC8AF1CAC885C000E6B8B /* SchedulerTableViewController.swift in Sources */,

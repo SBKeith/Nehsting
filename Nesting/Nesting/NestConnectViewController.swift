@@ -18,6 +18,9 @@ class NestConnectViewController: UIViewController {
     
     var structuresObserverHandle: NestSDKObserverHandle = 0
     
+    // Networking Singleton
+//    var sharedNetworkStruct = NetworkingData.networkDataStruct()
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -67,7 +70,7 @@ class NestConnectViewController: UIViewController {
             
             // Iterate through all structures and set observers for all devices
             for structure in structuresArray as! [NestSDKStructure] {
-                self.logMessage("Found structure: \(structure.name)!")
+                self.logMessage("Structure Name: \(structure.name)!")
                 self.observeThermostatsWithinStructure(structure)
             }
         })
@@ -82,7 +85,11 @@ class NestConnectViewController: UIViewController {
                     self.logMessage("Error observing thermostat: \(error)")
                     
                 } else {
-                    self.logMessage("Thermostat \(thermostat.name) updated! Current temperature in F: \(thermostat.ambientTemperatureF)")
+                    self.logMessage("Thermostat Name: \(thermostat.name) \n Current temperature in F: \(thermostat.ambientTemperatureF) \n HVAC-Mode: \(thermostat.hvacMode.rawValue) \n Target Temp: \(thermostat.targetTemperatureF) \n HVAC-state: \(thermostat.hvacState.rawValue)")
+                    
+//                    sharedNetworkStruct.structureName = "\(thermostat.name)"
+//                    
+//                    print(sharedNetworkStruct.structureName)
                 }
             })
             
