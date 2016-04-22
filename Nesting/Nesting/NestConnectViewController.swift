@@ -11,6 +11,9 @@ import NestSDK
 
 class NestConnectViewController: UIViewController {
 
+    // Singleton for class
+    static let sharedInstance = NestConnectViewController()
+    
     @IBOutlet weak var nestInfoTextView: UITextView!
     
     var dataManager: NestSDKDataManager = NestSDKDataManager()
@@ -19,7 +22,6 @@ class NestConnectViewController: UIViewController {
     var structuresObserverHandle: NestSDKObserverHandle = 0
     
     // Networking Singleton
-//    var sharedNetworkStruct = NetworkingData.networkDataStruct()
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -87,9 +89,11 @@ class NestConnectViewController: UIViewController {
                 } else {
                     self.logMessage("Thermostat Name: \(thermostat.name) \n Current temperature in F: \(thermostat.ambientTemperatureF) \n HVAC-Mode: \(thermostat.hvacMode.rawValue) \n Target Temp: \(thermostat.targetTemperatureF) \n HVAC-state: \(thermostat.hvacState.rawValue)")
                     
-//                    sharedNetworkStruct.structureName = "\(thermostat.name)"
-//                    
-//                    print(sharedNetworkStruct.structureName)
+                    NetworkingDataSingleton.targetTemp = thermostat.targetTemperatureF
+                    
+                  
+                    
+                    NetworkingDataSingleton.execute()
                 }
             })
             
