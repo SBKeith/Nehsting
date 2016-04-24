@@ -10,26 +10,30 @@ import UIKit
 import NestSDK
 
 class NestConnectViewController: UIViewController {
-
-    // Singleton for class
-    static let sharedInstance = NestConnectViewController()
-    
-    @IBOutlet weak var nestInfoTextView: UITextView!
-    
-    var dataManager: NestSDKDataManager = NestSDKDataManager()
-    var deviceObserverHandles: Array<NestSDKObserverHandle> = []
-    
-    var structuresObserverHandle: NestSDKObserverHandle = 0
-    
-    // Networking Singleton
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         // Check authorization
         if (NestSDKAccessToken.currentAccessToken() != nil) {
-            observeStructures()
+            
+            sharedDataManager.observeStructures()
+            
+//            print("Structure Found: \(sharedDataManager.structure!.name)")
+
         }
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+        // Check authorization
+//        if (NestSDKAccessToken.currentAccessToken() != nil) {
+//            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Main") as! MainViewController
+//            presentViewController(vc, animated: true, completion: nil)
+//        }
     }
     
     @IBAction func connectWithNestButtonTapped(sender: UIButton) {
@@ -54,72 +58,6 @@ class NestConnectViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         // Clean up
-        removeObservers()
+        sharedDataManager.removeObservers()
     }
-    
-    func observeStructures() {
-        // Clean up previous observers
-        removeObservers()
-        
-        // Start observing structures
-        structuresObserverHandle = dataManager.observeStructuresWithBlock({
-            structuresArray, error in
-            
-            self.logMessage("Structures updated!")
-            
-            // Structure may change while observing, so remove all current device observers and then set all new ones
-            self.removeDevicesObservers()
-            
-            // Iterate through all structures and set observers for all devices
-            for structure in structuresArray as! [NestSDKStructure] {
-                self.logMessage("Structure Name: \(structure.name)!")
-                self.observeThermostatsWithinStructure(structure)
-            }
-        })
-    }
-    
-    func observeThermostatsWithinStructure(structure: NestSDKStructure) {
-        for thermostatId in structure.thermostats as! [String] {
-            let handle = dataManager.observeThermostatWithId(thermostatId, block: {
-                thermostat, error in
-                
-                if (error != nil) {
-                    self.logMessage("Error observing thermostat: \(error)")
-                    
-                } else {
-                    self.logMessage("Thermostat Name: \(thermostat.name) \n Current temperature in F: \(thermostat.ambientTemperatureF) \n HVAC-Mode: \(thermostat.hvacMode.rawValue) \n Target Temp: \(thermostat.targetTemperatureF) \n HVAC-state: \(thermostat.hvacState.rawValue)")
-                    
-                    NetworkingDataSingleton.targetTemp = thermostat.targetTemperatureF
-                    
-                  
-                    
-                    NetworkingDataSingleton.execute()
-                }
-            })
-            
-            deviceObserverHandles.append(handle)
-        }
-    }
-    
-    func removeObservers() {
-        removeDevicesObservers();
-        removeStructuresObservers();
-    }
-    
-    func removeDevicesObservers() {
-        for (_, handle) in deviceObserverHandles.enumerate() {
-            dataManager.removeObserverWithHandle(handle);
-        }
-        
-        deviceObserverHandles.removeAll()
-    }
-    
-    func removeStructuresObservers() {
-        dataManager.removeObserverWithHandle(structuresObserverHandle)
-    }
-    
-    func logMessage(message: String) {
-        nestInfoTextView.text = nestInfoTextView.text + "\(message)\n"
-    }
-
 }

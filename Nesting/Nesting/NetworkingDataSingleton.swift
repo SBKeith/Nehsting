@@ -10,20 +10,84 @@ import Foundation
 import NestSDK
 import UIKit
 
+let sharedDataManager = NetworkingDataSingleton()
 
 class NetworkingDataSingleton {
-
-    static var targetTemp: UInt?
     
-    class func execute() {
-        print(targetTemp)
+    var dataManager: NestSDKDataManager = NestSDKDataManager()
+    var deviceObserverHandles: Array<NestSDKObserverHandle> = []
+    var structuresObserverHandle: NestSDKObserverHandle = 0
+
+    var targetTemp: UInt?
+    
+    func observeStructures() {
+        // Clean up previous observers
+        removeObservers()
+        
+        // Start observing structures
+        structuresObserverHandle = dataManager.observeStructuresWithBlock({
+            structuresArray, error in
+            
+            // Structure may change while observing, so remove all current device observers and then set all new ones
+            self.removeDevicesObservers()
+            
+            // Iterate through all structures and set observers for all devices
+            for structure in structuresArray as! [NestSDKStructure] {
+                self.observeThermostatsWithinStructure(structure)
+                
+//                print("Structure Found: \(structured.name)")
+            }
+        })
+    }
+    
+    func observeThermostatsWithinStructure(structure: NestSDKStructure) {
+        for thermostatId in structure.thermostats as! [String] {
+            let handle = dataManager.observeThermostatWithId(thermostatId, block: {
+                thermostat, error in
+                
+                if (error != nil) {
+                    print("Error observing thermostat")
+                    
+                } else {
+                    print("Observing: \(thermostat.name)")
+                }
+            })
+            
+            deviceObserverHandles.append(handle)
+        }
+    }
+    
+    func setThermostatTemperature() {
+        
+        let handle = dataManager.observeThermostatWithId(<#T##thermostatId: String!##String!#>, block: <#T##NestSDKThermostatUpdateHandler!##NestSDKThermostatUpdateHandler!##(NestSDKThermostat!, NSError!) -> Void#>)
+
+        
+//        thermostat.targetTemperatureF = 82
+//        
+//        self.dataManager.setThermostat(thermostat, block: { thermostat, error in
+//            if error != nil {
+//                print("ERROR")
+//            }
+//            else {
+//                print("SUCCESS!")
+//            }
+//        })
+    }
+    
+    func removeObservers() {
+        removeDevicesObservers();
+        removeStructuresObservers();
+    }
+    
+    func removeDevicesObservers() {
+        for (_, handle) in deviceObserverHandles.enumerate() {
+            dataManager.removeObserverWithHandle(handle);
+        }
+        
+        deviceObserverHandles.removeAll()
+    }
+    
+    func removeStructuresObservers() {
+        dataManager.removeObserverWithHandle(structuresObserverHandle)
     }
 }
-
-
-//    let structureName: String?
-//    let thermostatName: String?
-//    let ambientTemperature: UInt?
-//    var targetTemperatureF: UInt?
-//    var hvacMode: NestSDKThermostatHVACMode?
-//    var hvacState: NestSDKThermostatHVACState?

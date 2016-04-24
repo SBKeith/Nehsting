@@ -8,7 +8,7 @@
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Nesting" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Main" id="BYZ-38-t0r" customClass="MainViewController" customModule="Nesting" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -64,6 +64,7 @@
                     <navigationItem key="navigationItem" id="eok-IY-Csj"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="displayValue" destination="G7j-e3-ssd" id="EU7-6O-UWB"/>
                         <outlet property="gradientView" destination="TLd-7T-zH6" id="g7W-AJ-fHO"/>

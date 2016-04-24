@@ -16,6 +16,7 @@ class MainViewController: UIViewController {
     
     let sharedValues = Values.sharedValues
     var sharedTempStruct = Values.sharedTempStruct
+    var networkDataSingleton = NetworkingDataSingleton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +111,28 @@ class MainViewController: UIViewController {
         
         // Set NSUserDefaults for temperature value changes
         setNSUserDefaults()
+        
+        // Set thermostat temperature
+        
+//        if sharedValues.settings.stringForKey("temperature") == "Heat" {
+//            networkingDataSingleton.targetTemp = UInt(sharedValues.settings.integerForKey("tempHeat"))
+//        } else {
+//            networkingDataSingleton.targetTemp = UInt(sharedValues.settings.integerForKey("tempCool"))
+//        }
+        
+//        thermostat.targetTemperatureF = 82
+//        
+//        self.dataManager.setThermostat(thermostat, block: { thermostat, error in
+//            if error != nil {
+//                print("ERROR")
+//            }
+//            else {
+//                print("SUCCESS!")
+//            }
+//        })
+        
+//        networkDataSingleton.observeThermostatsWithinStructure()
+        
     }
     
     // Determine finger drag direction (up or down)

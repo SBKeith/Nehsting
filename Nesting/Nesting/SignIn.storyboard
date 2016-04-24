@@ -18,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2A-aJ-zpp">
-                                <rect key="frame" x="237" y="28" width="127" height="30"/>
+                                <rect key="frame" x="237" y="8" width="127" height="30"/>
                                 <state key="normal" title="Connect with Nest"/>
                                 <connections>
                                     <action selector="connectWithNestButtonTapped:" destination="Ont-ZM-m11" eventType="touchUpInside" id="Fws-r0-g2f"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mx5-LE-fUn">
-                                <rect key="frame" x="20" y="66" width="560" height="526"/>
+                                <rect key="frame" x="20" y="46" width="560" height="546"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -41,9 +41,9 @@
                             <constraint firstItem="vV2-U2-AfW" firstAttribute="top" secondItem="Mx5-LE-fUn" secondAttribute="bottom" constant="8" symbolic="YES" id="kID-FC-ZiP"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="nestInfoTextView" destination="Mx5-LE-fUn" id="Ks2-B1-U9D"/>
-                    </connections>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tYr-Rn-mNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
