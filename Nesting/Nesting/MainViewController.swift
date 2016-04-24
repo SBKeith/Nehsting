@@ -133,6 +133,8 @@ class MainViewController: UIViewController {
         
 //        networkDataSingleton.observeThermostatsWithinStructure()
         
+        
+        
     }
     
     // Determine finger drag direction (up or down)

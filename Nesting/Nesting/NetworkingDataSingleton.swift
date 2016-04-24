@@ -36,10 +36,6 @@ class NetworkingDataSingleton {
             // Iterate through all structures and set observers for all devices
             for structure in structuresArray as! [NestSDKStructure] {
                 
-                
-                self.sharedStructure = structure    // DOESN'T WORK...
-                
-                
                 self.observeThermostatsWithinStructure(structure)
                 
                 print("Structure Found: \(self.sharedStructure!.name)")
@@ -64,21 +60,51 @@ class NetworkingDataSingleton {
         }
     }
     
-    func setThermostatTemperature() {
+    func setThermostatTemperature(newTemp: UInt) {
         
-//        let handle = dataManager.observeThermostatWithId(<#T##thermostatId: String!##String!#>, block: <#T##NestSDKThermostatUpdateHandler!##NestSDKThermostatUpdateHandler!##(NestSDKThermostat!, NSError!) -> Void#>)
+        // Clean up previous observers
+        removeObservers()
+        
+        // Start observing structures
+        structuresObserverHandle = dataManager.observeStructuresWithBlock({
+            structuresArray, error in
+            
+            // Structure may change while observing, so remove all current device observers and then set all new ones
+            self.removeDevicesObservers()
+            
+            // Iterate through all structures and set observers for all devices
+            for structure in structuresArray as! [NestSDKStructure] {
+                for thermostatId in structure.thermostats as! [String] {
+                    let handle = self.dataManager.observeThermostatWithId(thermostatId, block: {
+                        thermostat, error in
+                        
+                        if (error != nil) {
+                            print("Error observing thermostat")
+                            
+                        } else {
+                            
+                            thermostat.targetTemperatureF = 82
+                    
+                            self.dataManager.setThermostat(thermostat, block: { thermostat, error in
+                                if error != nil {
+                                    print("ERROR")
+                                }
+                                else {
+                                    print("SUCCESS!")
+                                }
+                            })
+                            
+                        }
+                    })
+                    
+                    self.deviceObserverHandles.append(handle)
+                }
+            }
+        })
 
         
-//        thermostat.targetTemperatureF = 82
-//        
-//        self.dataManager.setThermostat(thermostat, block: { thermostat, error in
-//            if error != nil {
-//                print("ERROR")
-//            }
-//            else {
-//                print("SUCCESS!")
-//            }
-//        })
+        
+
     }
     
     func removeObservers() {
