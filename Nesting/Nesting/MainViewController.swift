@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NestSDK
 
 class MainViewController: UIViewController {
     
@@ -31,6 +32,19 @@ class MainViewController: UIViewController {
     
         // Set initial display value
         displayValue.text = "\(sharedTempStruct.displayCurrentTemp!)"
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        NetworkingDataSingleton.sharedDataManager.observeStructures()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NetworkingDataSingleton.sharedDataManager.removeObservers()
     }
     
     // MARK: -SET INITIAL VALUES
@@ -114,27 +128,13 @@ class MainViewController: UIViewController {
         
         // Set thermostat temperature
         
-//        if sharedValues.settings.stringForKey("temperature") == "Heat" {
-//            networkingDataSingleton.targetTemp = UInt(sharedValues.settings.integerForKey("tempHeat"))
-//        } else {
-//            networkingDataSingleton.targetTemp = UInt(sharedValues.settings.integerForKey("tempCool"))
-//        }
+        if sharedValues.settings.stringForKey("temperature") == "Heat" {
+            NetworkingDataSingleton.sharedDataManager.targetTemp = UInt(sharedValues.settings.integerForKey("tempHeat"))
+        } else {
+            NetworkingDataSingleton.sharedDataManager.targetTemp = UInt(sharedValues.settings.integerForKey("tempCool"))
+        }
         
-//        thermostat.targetTemperatureF = 82
-//        
-//        self.dataManager.setThermostat(thermostat, block: { thermostat, error in
-//            if error != nil {
-//                print("ERROR")
-//            }
-//            else {
-//                print("SUCCESS!")
-//            }
-//        })
-        
-//        networkDataSingleton.observeThermostatsWithinStructure()
-        
-        
-        
+        NetworkingDataSingleton.sharedDataManager.setThermostatTemperature(NetworkingDataSingleton.sharedDataManager.targetTemp!)
     }
     
     // Determine finger drag direction (up or down)

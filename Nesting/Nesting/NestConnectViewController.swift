@@ -14,15 +14,6 @@ class NestConnectViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Check authorization
-        if (NestSDKAccessToken.currentAccessToken() != nil) {
-            
-            sharedDataManager.observeStructures()
-            
-//            print("Structure Found: \(sharedDataManager.structure!.name)")
-
-        }
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -30,10 +21,20 @@ class NestConnectViewController: UIViewController {
         
         
         // Check authorization
-//        if (NestSDKAccessToken.currentAccessToken() != nil) {
-//            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Main") as! MainViewController
-//            presentViewController(vc, animated: true, completion: nil)
-//        }
+        if (NestSDKAccessToken.currentAccessToken() != nil) {
+            
+            NetworkingDataSingleton.sharedDataManager.observeStructures()
+            
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Main") as! MainViewController
+            presentViewController(vc, animated: true, completion: nil)
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Clean up
+        NetworkingDataSingleton.sharedDataManager.removeObservers()
     }
     
     @IBAction func connectWithNestButtonTapped(sender: UIButton) {
@@ -52,12 +53,5 @@ class NestConnectViewController: UIViewController {
                 print("Authorized!")
             }
         })
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // Clean up
-        sharedDataManager.removeObservers()
     }
 }
