@@ -23,7 +23,9 @@ class NestConnectViewController: UIViewController {
         // Check authorization
         if (NestSDKAccessToken.currentAccessToken() != nil) {
             
-            NetworkingDataSingleton.sharedDataManager.observeStructures()
+            NetworkingDataSingleton.sharedDataManager.observeStructures( { temp in
+
+            })
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Main") as! MainViewController
             presentViewController(vc, animated: true, completion: nil)

@@ -18,9 +18,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLd-7T-zH6" userLabel="GradientView" customClass="GradientView" customModule="Nesting" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="-20" width="600" height="620"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="75" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7j-e3-ssd">
+                                <rect key="frame" x="229" y="225" width="142" height="150"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="125"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Vh-Gp-Uv2">
                                 <rect key="frame" x="20" y="564" width="560" height="29"/>
                                 <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -34,12 +40,6 @@
                                     <action selector="segmentBarTouched:" destination="BYZ-38-t0r" eventType="valueChanged" id="xIp-Wf-Sqb"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="75" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7j-e3-ssd">
-                                <rect key="frame" x="229" y="225" width="142" height="150"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="125"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="G7j-e3-ssd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3sn-7z-QO4"/>
@@ -49,7 +49,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5Vh-Gp-Uv2" secondAttribute="bottom" constant="8" symbolic="YES" id="MC9-KK-NTQ"/>
                             <constraint firstAttribute="trailing" secondItem="TLd-7T-zH6" secondAttribute="trailing" id="Xt2-Vq-ljt"/>
                             <constraint firstItem="5Vh-Gp-Uv2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="Xx2-VO-dEp"/>
-                            <constraint firstItem="TLd-7T-zH6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="cPh-UA-KLt"/>
+                            <constraint firstItem="TLd-7T-zH6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="cPh-UA-KLt"/>
                             <constraint firstItem="TLd-7T-zH6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lrM-jT-irf"/>
                             <constraint firstItem="5Vh-Gp-Uv2" firstAttribute="top" secondItem="TLd-7T-zH6" secondAttribute="bottom" constant="8" symbolic="YES" id="ndP-EI-4u0"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="TLd-7T-zH6" secondAttribute="bottom" id="zh0-GG-ktC"/>

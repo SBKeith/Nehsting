@@ -27,7 +27,7 @@ class NetworkingDataSingleton {
     
     var sharedStructure: NestSDKStructure?
     
-    func observeStructures() {
+    func observeStructures(tempClosure: (temp: UInt?) -> Void) {
         // Clean up previous observers
         removeObservers()
         
@@ -41,14 +41,18 @@ class NetworkingDataSingleton {
             // Iterate through all structures and set observers for all devices
             for structure in structuresArray as! [NestSDKStructure] {
                 
-                self.observeThermostatsWithinStructure(structure)
+                self.observeThermostatsWithinStructure(structure, tempHandler: { temp in
+                    tempClosure(temp: temp)
+                })
                 
                 print("Structure: \(structure.name)")
             }
+            
+            tempClosure(temp: nil)
         })
     }
     
-    func observeThermostatsWithinStructure(structure: NestSDKStructure) {
+    func observeThermostatsWithinStructure(structure: NestSDKStructure, tempHandler: (temp: UInt?) -> Void) {
         for thermostatId in structure.thermostats as! [String] {
             let handle = dataManager.observeThermostatWithId(thermostatId, block: {
                 thermostat, error in
@@ -56,9 +60,15 @@ class NetworkingDataSingleton {
                 if (error != nil) {
                     print("Error observing thermostat")
                     
+                    tempHandler(temp: nil)
+                    
                 } else {
                     
                     self.thermostat = thermostat
+                    
+                    self.targetTemp = thermostat.targetTemperatureF
+                    
+                    tempHandler(temp: self.targetTemp)
                     
                     print("Structure Location: \(self.thermostat!.name)")
                 }

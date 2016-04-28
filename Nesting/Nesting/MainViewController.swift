@@ -38,7 +38,11 @@ class MainViewController: UIViewController {
         
         super.viewWillAppear(animated)
         
-        NetworkingDataSingleton.sharedDataManager.observeStructures()
+        NetworkingDataSingleton.sharedDataManager.observeStructures( { temp in
+            if let temp = temp {
+                self.displayValue.text = "\(temp)"
+            }
+        })
     }
     
     override func viewWillDisappear(animated: Bool) {
