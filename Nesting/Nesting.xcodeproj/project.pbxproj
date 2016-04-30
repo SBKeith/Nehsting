@@ -19,10 +19,9 @@
 		473DC88D1CAC5032000E6B8B /* NestingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC88C1CAC5032000E6B8B /* NestingTests.swift */; };
 		473DC8981CAC5032000E6B8B /* NestingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8971CAC5032000E6B8B /* NestingUITests.swift */; };
 		473DC8A71CAC5CC0000E6B8B /* Scheduler.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 473DC8A61CAC5CC0000E6B8B /* Scheduler.storyboard */; };
-		473DC8AF1CAC885C000E6B8B /* SchedulerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8AE1CAC885C000E6B8B /* SchedulerTableViewController.swift */; };
 		473DC8B31CAC8B71000E6B8B /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 473DC8B21CAC8B71000E6B8B /* History.storyboard */; };
 		473DC8B51CAC8C03000E6B8B /* TemperatureHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8B41CAC8C03000E6B8B /* TemperatureHistoryTableViewController.swift */; };
-		473DC8B81CAC8D19000E6B8B /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8B71CAC8D19000E6B8B /* Values.swift */; };
+		473DC8B81CAC8D19000E6B8B /* ValuesSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8B71CAC8D19000E6B8B /* ValuesSingleton.swift */; };
 		D8BF0ACD1CC8C11C001CA91D /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8BF0ACC1CC8C11C001CA91D /* SignIn.storyboard */; };
 		D8BF0ACF1CC8C2A1001CA91D /* NestConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BF0ACE1CC8C2A1001CA91D /* NestConnectViewController.swift */; };
 /* End PBXBuildFile section */
@@ -62,10 +61,9 @@
 		473DC8971CAC5032000E6B8B /* NestingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestingUITests.swift; sourceTree = "<group>"; };
 		473DC8991CAC5032000E6B8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		473DC8A61CAC5CC0000E6B8B /* Scheduler.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Scheduler.storyboard; sourceTree = "<group>"; };
-		473DC8AE1CAC885C000E6B8B /* SchedulerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerTableViewController.swift; sourceTree = "<group>"; };
 		473DC8B21CAC8B71000E6B8B /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
 		473DC8B41CAC8C03000E6B8B /* TemperatureHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureHistoryTableViewController.swift; sourceTree = "<group>"; };
-		473DC8B71CAC8D19000E6B8B /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
+		473DC8B71CAC8D19000E6B8B /* ValuesSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValuesSingleton.swift; sourceTree = "<group>"; };
 		6ABB2C568D2D02EC10069AAF /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32F4A006F1EC2289F804244 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B7F77959087765B3A34B16F3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 				D8BF0ACE1CC8C2A1001CA91D /* NestConnectViewController.swift */,
 				473DC8761CAC5032000E6B8B /* MainViewController.swift */,
 				473DC8B41CAC8C03000E6B8B /* TemperatureHistoryTableViewController.swift */,
-				473DC8AE1CAC885C000E6B8B /* SchedulerTableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -196,7 +193,7 @@
 		473DC8B61CAC8D03000E6B8B /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				473DC8B71CAC8D19000E6B8B /* Values.swift */,
+				473DC8B71CAC8D19000E6B8B /* ValuesSingleton.swift */,
 				470C4DF01CC9877500CDDFF5 /* NetworkingDataSingleton.swift */,
 			);
 			name = Data;
@@ -410,9 +407,8 @@
 				473DC8771CAC5032000E6B8B /* MainViewController.swift in Sources */,
 				473DC8751CAC5032000E6B8B /* AppDelegate.swift in Sources */,
 				470C4DF11CC9877500CDDFF5 /* NetworkingDataSingleton.swift in Sources */,
-				473DC8B81CAC8D19000E6B8B /* Values.swift in Sources */,
+				473DC8B81CAC8D19000E6B8B /* ValuesSingleton.swift in Sources */,
 				D8BF0ACF1CC8C2A1001CA91D /* NestConnectViewController.swift in Sources */,
-				473DC8AF1CAC885C000E6B8B /* SchedulerTableViewController.swift in Sources */,
 				472EC22F1CB82EBA00D7CC9F /* GradientView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-class Values {
+class ValuesSingleton {
     
-    static let sharedValues = Values()
-    static let sharedTempStruct = Values.temperatureSettings()
+    static let sharedValues = ValuesSingleton()
+    static let sharedTempStruct = ValuesSingleton.temperatureSettings()
     
     // MARK: - DATA STRUCTS
     
@@ -25,23 +25,15 @@ class Values {
     }
     
     struct temperatureSettings {
-        var settingTitle: temperatureType?
-        var power = temperatureType?()
-        var currentTempHeat: Int?
-        var currentTempCool: Int?
-        var displayCurrentTemp: Int?
-
-        enum temperatureType: String {
-            case heat = "Heat"
-            case cool = "Cool"
-            case on   = "ON"
-            case off  = "OFF"
-        }
+        var hvacMode: UInt?
+        var currentTempHeat: UInt?
+        var currentTempCool: UInt?
+        var displayCurrentTemp: UInt?
         
         // GRADIENT VALUES
         
-        var rgbHeat: (CGFloat, CGFloat, CGFloat) = (255.0, 113.0, 0.0)
-        var rgbCool: (CGFloat, CGFloat, CGFloat) = (0.0, 30.0, 140.0)
+        var rgbHeat: (CGFloat, CGFloat, CGFloat) = (255.0, 113.0, 0.0)  // initial values
+        var rgbCool: (CGFloat, CGFloat, CGFloat) = (0.0, 30.0, 140.0)   // initial values
         
         // Variables for heat / cool
         var cgColor1 = UIColor(red: 255/255, green: 113/255, blue: 0/255, alpha: 1).CGColor
@@ -54,12 +46,9 @@ class Values {
             
             return UIColor(red: red/255, green: green/255, blue: blue/255, alpha:1.0).CGColor
         }
-    }
+}
     
     // MARK: - CONSTANTS
-    
-    // NSUserDefaults
-    let settings = NSUserDefaults.standardUserDefaults()
     
     // Thermostat max and min constants
     let kMAXTEMP = 90

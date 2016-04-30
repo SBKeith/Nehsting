@@ -10,7 +10,7 @@ import UIKit
 
 class TemperatureHistoryTableViewController: UITableViewController {
 
-    let sampleData = Values.data()
+    let sampleData = ValuesSingleton.data()
     
     override func viewDidLoad() {
         super.viewDidLoad()

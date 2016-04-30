@@ -10,10 +10,6 @@ import Foundation
 import NestSDK
 import UIKit
 
-
-typealias NetworkClosure = (error: String) -> Void
-
-
 class NetworkingDataSingleton {
     
     static let sharedDataManager = NetworkingDataSingleton()
@@ -22,12 +18,13 @@ class NetworkingDataSingleton {
     var deviceObserverHandles: Array<NestSDKObserverHandle> = []
     var structuresObserverHandle: NestSDKObserverHandle = 0
 
-    var targetTemp: UInt?
+    // Values Singleton
+    let sharedValues = ValuesSingleton.sharedValues
+    var sharedTempStruct = ValuesSingleton.sharedTempStruct
+    
     var thermostat: NestSDKThermostat?
     
-    var sharedStructure: NestSDKStructure?
-    
-    func observeStructures(tempClosure: (temp: UInt?) -> Void) {
+    func observeStructures(tempClosure: (temp: UInt?, hvacMode: UInt?) -> Void) {
         // Clean up previous observers
         removeObservers()
         
@@ -41,18 +38,18 @@ class NetworkingDataSingleton {
             // Iterate through all structures and set observers for all devices
             for structure in structuresArray as! [NestSDKStructure] {
                 
-                self.observeThermostatsWithinStructure(structure, tempHandler: { temp in
-                    tempClosure(temp: temp)
+                self.observeThermostatsWithinStructure(structure, tempHandler: { (temp, hvacMode) in
+                    tempClosure(temp: temp, hvacMode: hvacMode)
                 })
                 
-                print("Structure: \(structure.name)")
+//                print("Structure: \(structure.name)")
             }
             
-            tempClosure(temp: nil)
+            tempClosure(temp: nil, hvacMode: nil)
         })
     }
     
-    func observeThermostatsWithinStructure(structure: NestSDKStructure, tempHandler: (temp: UInt?) -> Void) {
+    func observeThermostatsWithinStructure(structure: NestSDKStructure, tempHandler: (temp: UInt?, hvacMode: UInt?) -> Void) {
         for thermostatId in structure.thermostats as! [String] {
             let handle = dataManager.observeThermostatWithId(thermostatId, block: {
                 thermostat, error in
@@ -60,17 +57,15 @@ class NetworkingDataSingleton {
                 if (error != nil) {
                     print("Error observing thermostat")
                     
-                    tempHandler(temp: nil)
+                    tempHandler(temp: nil, hvacMode: nil)
                     
                 } else {
                     
                     self.thermostat = thermostat
                     
-                    self.targetTemp = thermostat.targetTemperatureF
-                    
-                    tempHandler(temp: self.targetTemp)
-                    
-                    print("Structure Location: \(self.thermostat!.name)")
+                    tempHandler(temp: self.sharedTempStruct.displayCurrentTemp, hvacMode: self.sharedTempStruct.hvacMode)
+
+                    self.getAndLocallySetThermostatTemperature()
                 }
             })
             
@@ -78,18 +73,52 @@ class NetworkingDataSingleton {
         }
     }
     
-    func setThermostatTemperature(newTemp: UInt) {
+    func getAndLocallySetThermostatTemperature() {
         
-        self.thermostat?.targetTemperatureF = newTemp
+        // Set displayTemp
+        self.sharedTempStruct.displayCurrentTemp = self.thermostat?.targetTemperatureF
         
-        dataManager.setThermostat(self.thermostat, block: { thermostat, error in
-            if error != nil {
-                print("ERROR")
-            } else {
-                print("SUCCESS!")
-            }
-        })
+        // Set hvacMode
+        self.sharedTempStruct.hvacMode = self.thermostat?.hvacMode.rawValue
+        
+        // Store temperatures for cooling and heating
+        switch(UInt(sharedTempStruct.hvacMode!)) {
+            case 1:
+                print("SYSTEM IS HEATING\n")
+                if let temp = sharedTempStruct.displayCurrentTemp {
+                    sharedTempStruct.currentTempHeat = temp
+                }
+            
+            case 2:
+                print("SYSTEM IS COOLING\n")
+                if let temp = sharedTempStruct.displayCurrentTemp {
+                    sharedTempStruct.currentTempCool = temp
+                }
+            
+            case 4:
+                print("SYSTEM IS OFF\n")
+            
+            default:
+                break
+        }
+        
+//        print("STORED HEATING TEMP: \(sharedTempStruct.currentTempHeat)")
+//        print("STORED COOLING TEMP: \(sharedTempStruct.currentTempCool)")
     }
+    
+    
+    // SET TEMP
+    
+//        self.thermostat?.targetTemperatureF = newTemp
+//        
+//        dataManager.setThermostat(self.thermostat, block: { thermostat, error in
+//            if error != nil {
+//                print("ERROR")
+//            } else {
+//                print("SUCCESS!")
+//            }
+//        })
+    
 
     func removeObservers() {
         removeDevicesObservers();
