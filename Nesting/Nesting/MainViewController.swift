@@ -50,8 +50,11 @@ class MainViewController: UIViewController {
                 self.sharedTempStruct.hvacMode = hvacMode
                 print("DISPLAY hvacMode: \(self.sharedTempStruct.hvacMode)")
             }
+            
+            if let displayTemp = self.sharedTempStruct.displayCurrentTemp {
+                self.displayValue.text = "\(displayTemp)"
+            }
         })
-        
     }
         
 
