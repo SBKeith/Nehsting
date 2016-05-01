@@ -12,61 +12,89 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var displayValue: UILabel!
     @IBOutlet weak var gradientView: GradientView!
-    @IBOutlet weak var segmentedMenuBar: UISegmentedControl!
+    @IBOutlet weak var mainButtonImage: UIButton!
     
+    // Singleton Values
     let sharedValues = ValuesSingleton.sharedValues
-    var sharedTempStruct = ValuesSingleton.sharedTempStruct
+//    var sharedTempStruct = ValuesSingleton.sharedTempStruct
+//    var sharedButtonImages = ValuesSingleton.sharedMainButtons
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        updateDisplayTemp()
     }
     
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
-        
         updateDisplayTemp()
     }
     
     override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
         
+        super.viewWillDisappear(animated)
         NetworkingDataSingleton.sharedDataManager.removeObservers()
     }
     
-    // MARK: -SET INITIAL VALUES
+    // MARK: -SET VALUES
+    func setMainButton() {
+        
+        if var hvacIndex = sharedTempStruct.hvacMode {
+            
+            // Nest marks 'off' as 4, change to '0' for local indexing
+            if hvacIndex == 4 {
+                hvacIndex = 0
+            }
+            
+            // Set button image
+            mainButtonImage.imageView?.image = sharedButtonImages.mainButtonArray[Int(hvacIndex)]
+            sharedButtonImages.index = Int(hvacIndex)
+        }
+        
+        // Set display temperature
+        if let displayTemp = self.sharedTempStruct.displayCurrentTemp {
+            displayValue.text = "\(displayTemp)"
+        }
+    }
+    
     func updateDisplayTemp() {
         
         NetworkingDataSingleton.sharedDataManager.observeStructures( { (temp, hvacMode) in
-            if let temp = temp {
-                self.sharedTempStruct.displayCurrentTemp = temp
-                
-                print("DISPLAY TEMP: \(self.sharedTempStruct.displayCurrentTemp)")
-            }
             
-            if let hvacMode = hvacMode {
-                self.sharedTempStruct.hvacMode = hvacMode
-                print("DISPLAY hvacMode: \(self.sharedTempStruct.hvacMode)")
-            }
+            // ??
             
-            if let displayTemp = self.sharedTempStruct.displayCurrentTemp {
-                self.displayValue.text = "\(displayTemp)"
-            }
+            print("HVAC VALUE(main class): \(self.sharedTempStruct.hvacMode)")
         })
+        
+//        setMainButton()
+//        print("DISPLAY hvacMode: \(self.sharedTempStruct.hvacMode)")
     }
+    
+    // MARK: USER INTERACTION FUNCTIONS
+    
+    // Main button tapped
+    @IBAction func mainButtonTapped(sender: UIButton) {
         
-
+        if var index = sharedButtonImages.index {
+            print(index)
+            
+            if index < 2 {
+                index += 1
+            } else {
+                index = 0
+            }
+            
+            print(index)
+            
+            mainButtonImage.imageView?.image = sharedButtonImages.mainButtonArray[index]
+        }
         
-
-    // Set Segmented Bar Values
-//    func setSegmentedMenuBarValues() {
-//        
-//        segmentedMenuBar.setTitle("ON", forSegmentAtIndex: 0)
-//        segmentedMenuBar.setTitle("HEAT", forSegmentAtIndex: 1)
-//        segmentedMenuBar.setTitle("HISTORY", forSegmentAtIndex: 2)
-//    }
+        
+        
+    }
+    
+    
+    
+    
     
     // MARK: USER TOUCH INPUT / DRAG DETECTION
     

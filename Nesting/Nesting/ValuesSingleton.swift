@@ -12,8 +12,7 @@ import UIKit
 class ValuesSingleton {
     
     static let sharedValues = ValuesSingleton()
-    static let sharedTempStruct = ValuesSingleton.temperatureSettings()
-    
+       
     // MARK: - DATA STRUCTS
     
     struct data {
@@ -22,6 +21,16 @@ class ValuesSingleton {
                          ["date":"October 8, 2016",   "temp": 70],
                          ["date":"November 7, 2016",  "temp": 73]
         ]
+    }
+    
+    // Main Buttons Available
+    struct mainButtonStruct {
+        
+        let mainButtonArray = [UIImage(named: "offButton"),
+                               UIImage(named: "heatButton"),
+                               UIImage(named: "coolButton")]
+        
+        var index: Int?
     }
     
     struct temperatureSettings {
@@ -46,7 +55,7 @@ class ValuesSingleton {
             
             return UIColor(red: red/255, green: green/255, blue: blue/255, alpha:1.0).CGColor
         }
-}
+    }
     
     // MARK: - CONSTANTS
     

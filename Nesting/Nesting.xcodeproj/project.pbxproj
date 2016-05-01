@@ -18,7 +18,6 @@
 		473DC8821CAC5032000E6B8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 473DC8801CAC5032000E6B8B /* LaunchScreen.storyboard */; };
 		473DC88D1CAC5032000E6B8B /* NestingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC88C1CAC5032000E6B8B /* NestingTests.swift */; };
 		473DC8981CAC5032000E6B8B /* NestingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8971CAC5032000E6B8B /* NestingUITests.swift */; };
-		473DC8A71CAC5CC0000E6B8B /* Scheduler.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 473DC8A61CAC5CC0000E6B8B /* Scheduler.storyboard */; };
 		473DC8B31CAC8B71000E6B8B /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 473DC8B21CAC8B71000E6B8B /* History.storyboard */; };
 		473DC8B51CAC8C03000E6B8B /* TemperatureHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8B41CAC8C03000E6B8B /* TemperatureHistoryTableViewController.swift */; };
 		473DC8B81CAC8D19000E6B8B /* ValuesSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8B71CAC8D19000E6B8B /* ValuesSingleton.swift */; };
@@ -60,7 +59,6 @@
 		473DC8931CAC5032000E6B8B /* NestingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NestingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		473DC8971CAC5032000E6B8B /* NestingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestingUITests.swift; sourceTree = "<group>"; };
 		473DC8991CAC5032000E6B8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		473DC8A61CAC5CC0000E6B8B /* Scheduler.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Scheduler.storyboard; sourceTree = "<group>"; };
 		473DC8B21CAC8B71000E6B8B /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
 		473DC8B41CAC8C03000E6B8B /* TemperatureHistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemperatureHistoryTableViewController.swift; sourceTree = "<group>"; };
 		473DC8B71CAC8D19000E6B8B /* ValuesSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValuesSingleton.swift; sourceTree = "<group>"; };
@@ -160,8 +158,8 @@
 		473DC8A51CAC507E000E6B8B /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				473DC8741CAC5032000E6B8B /* AppDelegate.swift */,
 				473DC87E1CAC5032000E6B8B /* Assets.xcassets */,
+				473DC8741CAC5032000E6B8B /* AppDelegate.swift */,
 				473DC8831CAC5032000E6B8B /* Info.plist */,
 				473DC87B1CAC5032000E6B8B /* Nesting.xcdatamodeld */,
 				473DC8801CAC5032000E6B8B /* LaunchScreen.storyboard */,
@@ -175,7 +173,6 @@
 				D8BF0ACC1CC8C11C001CA91D /* SignIn.storyboard */,
 				473DC8781CAC5032000E6B8B /* Main.storyboard */,
 				473DC8B21CAC8B71000E6B8B /* History.storyboard */,
-				473DC8A61CAC5CC0000E6B8B /* Scheduler.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -326,7 +323,6 @@
 			files = (
 				473DC8821CAC5032000E6B8B /* LaunchScreen.storyboard in Resources */,
 				473DC87F1CAC5032000E6B8B /* Assets.xcassets in Resources */,
-				473DC8A71CAC5CC0000E6B8B /* Scheduler.storyboard in Resources */,
 				473DC8B31CAC8B71000E6B8B /* History.storyboard in Resources */,
 				D8BF0ACD1CC8C11C001CA91D /* SignIn.storyboard in Resources */,
 				473DC87A1CAC5032000E6B8B /* Main.storyboard in Resources */,

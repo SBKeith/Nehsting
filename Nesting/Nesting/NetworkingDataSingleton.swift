@@ -12,19 +12,28 @@ import UIKit
 
 class NetworkingDataSingleton {
     
+    // MARK: SET VARIABLES
+    
+    // Set singleton for class
     static let sharedDataManager = NetworkingDataSingleton()
     
-    var dataManager: NestSDKDataManager = NestSDKDataManager()
-    var deviceObserverHandles: Array<NestSDKObserverHandle> = []
-    var structuresObserverHandle: NestSDKObserverHandle = 0
-
-    // Values Singleton
+    // Values Singletons
     let sharedValues = ValuesSingleton.sharedValues
     var sharedTempStruct = ValuesSingleton.sharedTempStruct
     
+    // Data and structures variables
+    var dataManager: NestSDKDataManager = NestSDKDataManager()
+    var deviceObserverHandles: Array<NestSDKObserverHandle> = []
+    var structuresObserverHandle: NestSDKObserverHandle = 0
+    
+    // Thermostat Values
     var thermostat: NestSDKThermostat?
     
+    // MARK: STRUCTURES / THERMOSTAT FUNCTIONS
+    
+    // Find Structure(s)
     func observeStructures(tempClosure: (temp: UInt?, hvacMode: UInt?) -> Void) {
+        
         // Clean up previous observers
         removeObservers()
         
@@ -41,14 +50,13 @@ class NetworkingDataSingleton {
                 self.observeThermostatsWithinStructure(structure, tempHandler: { (temp, hvacMode) in
                     tempClosure(temp: temp, hvacMode: hvacMode)
                 })
-                
-//                print("Structure: \(structure.name)")
+                print("Structure: \(structure.name)")
             }
-            
             tempClosure(temp: nil, hvacMode: nil)
         })
     }
     
+    // Observe Thermostat(s)
     func observeThermostatsWithinStructure(structure: NestSDKStructure, tempHandler: (temp: UInt?, hvacMode: UInt?) -> Void) {
         for thermostatId in structure.thermostats as! [String] {
             let handle = dataManager.observeThermostatWithId(thermostatId, block: {
@@ -56,70 +64,22 @@ class NetworkingDataSingleton {
                 
                 if (error != nil) {
                     print("Error observing thermostat")
-                    
                     tempHandler(temp: nil, hvacMode: nil)
-                    
                 } else {
                     
                     self.thermostat = thermostat
                     
-                    tempHandler(temp: self.sharedTempStruct.displayCurrentTemp, hvacMode: self.sharedTempStruct.hvacMode)
-
                     self.getAndLocallySetThermostatTemperature()
+                    
+                    tempHandler(temp: self.sharedTempStruct.displayCurrentTemp, hvacMode: self.sharedTempStruct.hvacMode)
+                    
                 }
             })
-            
             deviceObserverHandles.append(handle)
         }
     }
     
-    func getAndLocallySetThermostatTemperature() {
-        
-        // Set displayTemp
-        self.sharedTempStruct.displayCurrentTemp = self.thermostat?.targetTemperatureF
-        
-        // Set hvacMode
-        self.sharedTempStruct.hvacMode = self.thermostat?.hvacMode.rawValue
-        
-        // Store temperatures for cooling and heating
-        switch(UInt(sharedTempStruct.hvacMode!)) {
-            case 1:
-                print("SYSTEM IS HEATING\n")
-                if let temp = sharedTempStruct.displayCurrentTemp {
-                    sharedTempStruct.currentTempHeat = temp
-                }
-            
-            case 2:
-                print("SYSTEM IS COOLING\n")
-                if let temp = sharedTempStruct.displayCurrentTemp {
-                    sharedTempStruct.currentTempCool = temp
-                }
-            
-            case 4:
-                print("SYSTEM IS OFF\n")
-            
-            default:
-                break
-        }
-        
-//        print("STORED HEATING TEMP: \(sharedTempStruct.currentTempHeat)")
-//        print("STORED COOLING TEMP: \(sharedTempStruct.currentTempCool)")
-    }
-    
-    
-    // SET TEMP
-    
-//        self.thermostat?.targetTemperatureF = newTemp
-//        
-//        dataManager.setThermostat(self.thermostat, block: { thermostat, error in
-//            if error != nil {
-//                print("ERROR")
-//            } else {
-//                print("SUCCESS!")
-//            }
-//        })
-    
-
+    // Remove observers functions
     func removeObservers() {
         removeDevicesObservers();
         removeStructuresObservers();
@@ -136,4 +96,48 @@ class NetworkingDataSingleton {
     func removeStructuresObservers() {
         dataManager.removeObserverWithHandle(structuresObserverHandle)
     }
+    
+    // MARK: HELPER FUNCTIONS
+    
+    // Get thermostat data and set it
+    func getAndLocallySetThermostatTemperature() {
+        
+        // Set displayTemp
+        self.sharedTempStruct.displayCurrentTemp = self.thermostat?.targetTemperatureF
+        
+        // Set hvacMode
+        self.sharedTempStruct.hvacMode = self.thermostat?.hvacMode.rawValue
+        
+        // Store temperatures for cooling and heating
+        switch(UInt(sharedTempStruct.hvacMode!)) {
+            case 1:
+                print("SYSTEM IS HEATING\n")
+                if let temp = sharedTempStruct.displayCurrentTemp {
+                    sharedTempStruct.currentTempHeat = temp
+                }
+            case 2:
+                print("SYSTEM IS COOLING\n")
+                if let temp = sharedTempStruct.displayCurrentTemp {
+                    sharedTempStruct.currentTempCool = temp
+                }
+            case 4:
+                print("SYSTEM IS OFF\n")
+            default:
+                break
+        }
+//        print("STORED HEATING TEMP: \(sharedTempStruct.currentTempHeat)")
+//        print("STORED COOLING TEMP: \(sharedTempStruct.currentTempCool)")
+    }
+    
+    // SET TEMP
+    
+//        self.thermostat?.targetTemperatureF = newTemp
+//        
+//        dataManager.setThermostat(self.thermostat, block: { thermostat, error in
+//            if error != nil {
+//                print("ERROR")
+//            } else {
+//                print("SUCCESS!")
+//            }
+//        })
 }

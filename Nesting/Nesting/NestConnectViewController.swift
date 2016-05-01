@@ -12,19 +12,17 @@ import NestSDK
 class NestConnectViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
+        super.viewWillAppear(animated)
     }
     
     override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
         
+        super.viewDidAppear(animated)
         
         // Check authorization
         if (NestSDKAccessToken.currentAccessToken() != nil) {
-            
             NetworkingDataSingleton.sharedDataManager.observeStructures( { temp in
-
             })
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Main") as! MainViewController
