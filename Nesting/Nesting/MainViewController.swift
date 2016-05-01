@@ -16,8 +16,9 @@ class MainViewController: UIViewController {
     
     // Singleton Values
     let sharedValues = ValuesSingleton.sharedValues
-//    var sharedTempStruct = ValuesSingleton.sharedTempStruct
-//    var sharedButtonImages = ValuesSingleton.sharedMainButtons
+    var sharedButtonImages = ValuesSingleton.mainButtonStruct()
+    var sharedTempStruct = ValuesSingleton.temperatureSettings()
+    var networkDataSingleton = NetworkingDataSingleton.sharedDataManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +61,8 @@ class MainViewController: UIViewController {
         
         NetworkingDataSingleton.sharedDataManager.observeStructures( { (temp, hvacMode) in
             
-            // ??
+//            hvacMode = networkDataSingleton.thermostat?.hvacMode.rawValue
+//            temp = networkDataSingleton.thermostat?.targetTemperatureF
             
             print("HVAC VALUE(main class): \(self.sharedTempStruct.hvacMode)")
         })

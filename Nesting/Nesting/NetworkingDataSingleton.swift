@@ -19,7 +19,7 @@ class NetworkingDataSingleton {
     
     // Values Singletons
     let sharedValues = ValuesSingleton.sharedValues
-    var sharedTempStruct = ValuesSingleton.sharedTempStruct
+    var sharedTempStruct = ValuesSingleton.temperatureSettings()
     
     // Data and structures variables
     var dataManager: NestSDKDataManager = NestSDKDataManager()
@@ -59,6 +59,7 @@ class NetworkingDataSingleton {
     // Observe Thermostat(s)
     func observeThermostatsWithinStructure(structure: NestSDKStructure, tempHandler: (temp: UInt?, hvacMode: UInt?) -> Void) {
         for thermostatId in structure.thermostats as! [String] {
+            
             let handle = dataManager.observeThermostatWithId(thermostatId, block: {
                 thermostat, error in
                 
@@ -68,7 +69,6 @@ class NetworkingDataSingleton {
                 } else {
                     
                     self.thermostat = thermostat
-                    
                     self.getAndLocallySetThermostatTemperature()
                     
                     tempHandler(temp: self.sharedTempStruct.displayCurrentTemp, hvacMode: self.sharedTempStruct.hvacMode)

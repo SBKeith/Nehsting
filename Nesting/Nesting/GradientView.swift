@@ -12,7 +12,7 @@ class GradientView: UIView {
     
     // Singletons
     let sharedValues = ValuesSingleton.sharedValues
-    var sharedTempStruct = ValuesSingleton.sharedTempStruct
+    var sharedTempStruct = ValuesSingleton.temperatureSettings()
     
     let gradientLayer = CAGradientLayer()
     let settings = NSUserDefaults.standardUserDefaults()
