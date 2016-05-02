@@ -17,28 +17,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLd-7T-zH6" userLabel="GradientView" customClass="GradientView" customModule="Nesting" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="-20" width="600" height="620"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LqO-Du-7ax">
-                                        <rect key="frame" x="285" y="566" width="30" height="34"/>
-                                        <connections>
-                                            <action selector="mainButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lyn-jN-8db"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="LqO-Du-7ax" secondAttribute="bottom" constant="20" symbolic="YES" id="8el-IS-eqU"/>
-                                    <constraint firstItem="LqO-Du-7ax" firstAttribute="centerX" secondItem="TLd-7T-zH6" secondAttribute="centerX" id="RBX-Y1-xJC"/>
-                                </constraints>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7j-e3-ssd">
                                 <rect key="frame" x="300" y="300" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="125"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLd-7T-zH6" userLabel="GradientView" customClass="GradientView" customModule="Nesting" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="-20" width="600" height="620"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyc-aC-BMm">
+                                        <rect key="frame" x="292" y="574" width="16" height="22"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Wyc-aC-BMm" firstAttribute="centerX" secondItem="TLd-7T-zH6" secondAttribute="centerX" id="VCd-AW-aM8"/>
+                                    <constraint firstAttribute="bottom" secondItem="Wyc-aC-BMm" secondAttribute="bottom" constant="20" symbolic="YES" id="WaG-vm-rkI"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="G7j-e3-ssd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3sn-7z-QO4"/>
@@ -56,7 +53,7 @@
                     <connections>
                         <outlet property="displayValue" destination="G7j-e3-ssd" id="EU7-6O-UWB"/>
                         <outlet property="gradientView" destination="TLd-7T-zH6" id="g7W-AJ-fHO"/>
-                        <outlet property="mainButtonImage" destination="LqO-Du-7ax" id="Qrn-5F-ypI"/>
+                        <outlet property="mainButton" destination="Wyc-aC-BMm" id="mcU-sx-TKy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
