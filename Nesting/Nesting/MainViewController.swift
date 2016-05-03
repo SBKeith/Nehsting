@@ -39,25 +39,23 @@ class MainViewController: UIViewController {
     
     // MARK: -SET VALUES
     func setMainButton() {
-        
-        if var hvacIndex = self.sharedTempStruct.hvacMode {
-            
-//            print("HVAC VALUE(main class): \(hvacIndex)")
-            
-            // Nest marks 'off' as 4, change to '0' for local indexing
-            if Int(hvacIndex) == 4 {
-                hvacIndex = 0
-            }
-            
-//            print("HVAC VALUE(main class): \(hvacIndex)")
-            
-            // Set button image
-            mainButton.setBackgroundImage(sharedButtonImages.mainButtonArray[Int(hvacIndex)], forState: UIControlState.Normal)
 
-//            sharedButtonImages.index = Int(hvacIndex)
+        if let hvacMode = self.sharedTempStruct.hvacMode {
+            switch(Int(hvacMode)) {
+                case 1:
+                    mainButton.setBackgroundImage(sharedButtonImages.mainButtonArray[0], forState: .Normal)
+                case 2:
+                    mainButton.setBackgroundImage(sharedButtonImages.mainButtonArray[1], forState: .Normal)
+                case 4:
+                    mainButton.setBackgroundImage(sharedButtonImages.mainButtonArray[2], forState: .Normal)
+                default:
+                    break
+            }
         }
-        
-        // Set display temperature
+    }
+    
+    func setDisplayTemp() {
+    // Set display temperature
         if let displayTemp = self.sharedTempStruct.displayCurrentTemp {
             displayValue.text = "\(displayTemp)"
         }
@@ -68,11 +66,12 @@ class MainViewController: UIViewController {
         NetworkingDataSingleton.sharedDataManager.observeStructures( { (temp, hvacMode) in
             
             self.sharedTempStruct.hvacMode = hvacMode
-//            self.sharedTempStruct.displayCurrentTemp = 
+            self.sharedTempStruct.displayCurrentTemp = temp
             
             self.setMainButton()
-
-//            print("HVAC VALUE(main class): \(self.sharedTempStruct.hvacMode)")
+            self.setDisplayTemp()
+            
+//            print("Display Temp: \(self.sharedTempStruct.displayCurrentTemp)")
         })
     }
     
@@ -81,7 +80,7 @@ class MainViewController: UIViewController {
     // Main button tapped
     @IBAction func mainButtonTapped(sender: UIButton) {
         
-        print("HVAC VALUE(main class): \(self.sharedTempStruct.hvacMode!)")
+//        print("HVAC VALUE(main class): \(self.sharedTempStruct.hvacMode!)")
     }
     
     // MARK: USER TOUCH INPUT / DRAG DETECTION

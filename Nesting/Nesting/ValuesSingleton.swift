@@ -26,17 +26,17 @@ class ValuesSingleton {
     // Main Buttons Available
     struct mainButtonStruct {
         
-        let mainButtonArray = [UIImage(named: "offButton"),
-                               UIImage(named: "heatButton"),
-                               UIImage(named: "coolButton")]
+        let mainButtonArray = [UIImage(named: "heatButton"),
+                               UIImage(named: "coolButton"),
+                               UIImage(named: "offButton")]
         
         var index: Int?
     }
     
     struct temperatureSettings {
         var hvacMode: UInt?
-        var currentTempHeat: UInt?
-        var currentTempCool: UInt?
+//        var currentTempHeat: UInt?
+//        var currentTempCool: UInt?
         var displayCurrentTemp: UInt?
         
         // GRADIENT VALUES

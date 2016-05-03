@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7j-e3-ssd">
-                                <rect key="frame" x="300" y="300" width="0.0" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="75" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7j-e3-ssd">
+                                <rect key="frame" x="0.0" y="0.0" width="29" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="125"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -26,8 +26,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLd-7T-zH6" userLabel="GradientView" customClass="GradientView" customModule="Nesting" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="-20" width="600" height="620"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyc-aC-BMm">
-                                        <rect key="frame" x="292" y="574" width="16" height="22"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyc-aC-BMm">
+                                        <rect key="frame" x="285" y="566" width="30" height="34"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,8 +38,6 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="G7j-e3-ssd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3sn-7z-QO4"/>
-                            <constraint firstItem="G7j-e3-ssd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="IyF-xw-SLk"/>
                             <constraint firstAttribute="trailing" secondItem="TLd-7T-zH6" secondAttribute="trailing" id="Xt2-Vq-ljt"/>
                             <constraint firstItem="TLd-7T-zH6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="cPh-UA-KLt"/>
                             <constraint firstItem="TLd-7T-zH6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lrM-jT-irf"/>
@@ -58,7 +56,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="39" y="672"/>
+            <point key="canvasLocation" x="39" y="0.0"/>
         </scene>
     </scenes>
 </document>
