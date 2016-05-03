@@ -50,7 +50,7 @@ class NetworkingDataSingleton {
                 self.observeThermostatsWithinStructure(structure, tempHandler: { (temp, hvacMode) in
                     tempClosure(temp: temp, hvacMode: hvacMode)
                 })
-                print("Structure: \(structure.name)")
+//                print("Structure: \(structure.name)")
             }
             tempClosure(temp: nil, hvacMode: nil)
         })
@@ -107,27 +107,21 @@ class NetworkingDataSingleton {
         
         // Set hvacMode
         self.sharedTempStruct.hvacMode = self.thermostat?.hvacMode.rawValue
-        
-        // Store temperatures for cooling and heating
-//        switch(UInt(sharedTempStruct.hvacMode!)) {
-//            case 1:
-//                print("SYSTEM IS HEATING\n")
-//                if let temp = sharedTempStruct.displayCurrentTemp {
-//                    sharedTempStruct.currentTempHeat = temp
-//                }
-//            case 2:
-//                print("SYSTEM IS COOLING\n")
-//                if let temp = sharedTempStruct.displayCurrentTemp {
-//                    sharedTempStruct.currentTempCool = temp
-//                }
-//            case 4:
-//                print("SYSTEM IS OFF\n")
-//            default:
-//                break
-//        }
-//        print("STORED HEATING TEMP: \(sharedTempStruct.currentTempHeat)")
-//        print("STORED COOLING TEMP: \(sharedTempStruct.currentTempCool)")
     }
+    
+//    // Update thermostat changes
+//    func networkValuesUpdate() {
+//        
+//        self.thermostat!.hvacMode = NestSDKThermostatHVACMode(rawValue: sharedTempStruct.hvacMode!)!
+//        
+//        self.dataManager.setThermostat(self.thermostat, block: { (thermostat, error) in
+//            if error != nil {
+//                print("ERROR")
+//            } else {
+//                print("SUCCESS")
+//            }
+//        })
+//    }
     
     // SET TEMP
     
