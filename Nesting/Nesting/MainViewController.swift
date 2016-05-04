@@ -146,15 +146,15 @@ class MainViewController: UIViewController {
                 if !directionValueDecrease && withinTempBounds.0 {
                     sharedTempStruct.displayCurrentTemp! += 1
                     
-//                    if sharedTempStruct.displayCurrentTemp! % 5 == 0 {
-//                        gradientView.adjustGradient("INCREASE")
-//                    }
+                    if sharedTempStruct.displayCurrentTemp! % 5 == 0 {
+                        gradientView.adjustGradient("INCREASE")
+                    }
                 } else if directionValueDecrease && withinTempBounds.1 {
                     sharedTempStruct.displayCurrentTemp! -= 1
                     
-//                    if sharedTempStruct.displayCurrentTemp! % 5 == 0 {
-//                        gradientView.adjustGradient("DECREASE")
-//                    }
+                    if sharedTempStruct.displayCurrentTemp! % 5 == 0 {
+                        gradientView.adjustGradient("DECREASE")
+                    }
                 }
             }
             // Set temperatue value
@@ -167,8 +167,10 @@ class MainViewController: UIViewController {
         // Reset valueParser when user lifts finger
             sharedValues.valueParser = 0
         
+        // Set thermostat temperature on screen
+        displayValue.text = "\(sharedTempStruct.displayCurrentTemp!)"
         
-        // Set thermostat temperature
+        // Set thermostat temperature via network to NEST
         
     }
     
@@ -183,5 +185,5 @@ class MainViewController: UIViewController {
     // Determine if temperature value is within set bounds
     func checkTempBounds() -> (Bool, Bool) {
         return ((Int(sharedTempStruct.displayCurrentTemp!) < sharedValues.kMAXTEMP), (Int(sharedTempStruct.displayCurrentTemp!) > sharedValues.kMINTEMP))
-}
+    }
 }

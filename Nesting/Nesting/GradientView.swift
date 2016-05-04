@@ -52,44 +52,37 @@ class GradientView: UIView {
         
         self.cgColor1 = cgColor1
         setNeedsDisplay()
-    }
+    } 
     
     func adjustGradient(setting: String) {
-        
-        switch(Int(sharedTempStruct.hvacMode!)) {
-            case 1:
-                switch(setting) {
-                    case "INCREASE":
-                        sharedTempStruct.rgbHeat.1 -= sharedValues.tempDifferential_1
-                        sharedTempStruct.rgbHeat.2 -= sharedValues.tempDifferential_2
-                        updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbHeat.0, green: sharedTempStruct.rgbHeat.1, blue: sharedTempStruct.rgbHeat.2))
-                        
-                    case "DECREASE":
-                        sharedTempStruct.rgbHeat.1 += sharedValues.tempDifferential_1
-                        sharedTempStruct.rgbHeat.2 += sharedValues.tempDifferential_2
-                        updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbHeat.0, green: sharedTempStruct.rgbHeat.1, blue: sharedTempStruct.rgbHeat.2))
-                        
-                    default: break
-                }
-                
-            case 2:
-                switch(setting) {
-                    case "INCREASE":
-                        sharedTempStruct.rgbCool.1 += sharedValues.tempDifferential_1
-                        sharedTempStruct.rgbCool.0 += sharedValues.tempDifferential_2
-                        updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbCool.0, green: sharedTempStruct.rgbCool.1, blue: sharedTempStruct.rgbCool.2))
-                        
-                    case "DECREASE":
-                        sharedTempStruct.rgbCool.1 -= sharedValues.tempDifferential_1
-                        sharedTempStruct.rgbCool.0 -= sharedValues.tempDifferential_2
-                        updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbCool.0, green: sharedTempStruct.rgbCool.1, blue: sharedTempStruct.rgbCool.2))
-                        
-                    default: break
-                }
-            default: break
+        if let hvacMode = sharedTempStruct.hvacMode {
+            switch(Int(hvacMode)) {
+                case 1:
+                    switch(setting) {
+                        case "INCREASE":
+                            sharedTempStruct.rgbHeat.1 -= sharedValues.tempDifferential_1
+                            sharedTempStruct.rgbHeat.2 -= sharedValues.tempDifferential_2
+                            updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbHeat.0, green: sharedTempStruct.rgbHeat.1, blue: sharedTempStruct.rgbHeat.2))
+                        case "DECREASE":
+                            sharedTempStruct.rgbHeat.1 += sharedValues.tempDifferential_1
+                            sharedTempStruct.rgbHeat.2 += sharedValues.tempDifferential_2
+                            updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbHeat.0, green: sharedTempStruct.rgbHeat.1, blue: sharedTempStruct.rgbHeat.2))
+                        default: break
+                    }
+                case 2:
+                    switch(setting) {
+                        case "INCREASE":
+                            sharedTempStruct.rgbCool.1 += sharedValues.tempDifferential_1
+                            sharedTempStruct.rgbCool.0 += sharedValues.tempDifferential_2
+                            updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbCool.0, green: sharedTempStruct.rgbCool.1, blue: sharedTempStruct.rgbCool.2))
+                        case "DECREASE":
+                            sharedTempStruct.rgbCool.1 -= sharedValues.tempDifferential_1
+                            sharedTempStruct.rgbCool.0 -= sharedValues.tempDifferential_2
+                            updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbCool.0, green: sharedTempStruct.rgbCool.1, blue: sharedTempStruct.rgbCool.2))
+                        default: break
+                    }
+                default: break
             }
+        }
     }
 }
-
-
-
