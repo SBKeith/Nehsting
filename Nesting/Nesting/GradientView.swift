@@ -12,10 +12,8 @@ class GradientView: UIView {
     
     // Singletons
     let sharedValues = ValuesSingleton.sharedValues
-    var sharedTempStruct = ValuesSingleton.temperatureSettings()
     
     let gradientLayer = CAGradientLayer()
-    let settings = NSUserDefaults.standardUserDefaults()
     
     var cgColor1: CGColor?
     var cgColor2: CGColor?
@@ -23,16 +21,19 @@ class GradientView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        cgColor1 = sharedTempStruct.cgColor1
-        cgColor2 = sharedTempStruct.cgColorNeutral
+        cgColor1 = ValuesSingleton.sharedValues.tempSettings?.cgColor1
+        cgColor2 = ValuesSingleton.sharedValues.tempSettings?.cgColorNeutral
     }
     
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
-        
+
         gradientLayer.frame = bounds
         
-        if let hvacMode = sharedTempStruct.hvacMode {
+        if let hvacMode = ValuesSingleton.sharedValues.tempSettings?.hvacMode {
+            
+            print("GOT HERE!!!!")
+            
             switch(Int(hvacMode)) {
             case 1:
                 (gradientLayer.colors = [cgColor1!, cgColor2!])
@@ -55,7 +56,11 @@ class GradientView: UIView {
     } 
     
     func adjustGradient(setting: String) {
-        if let hvacMode = sharedTempStruct.hvacMode {
+        
+        if let hvacMode = ValuesSingleton.sharedValues.tempSettings?.hvacMode {
+            
+            var sharedTempStruct = ValuesSingleton.sharedValues.tempSettings!
+            
             switch(Int(hvacMode)) {
                 case 1:
                     switch(setting) {

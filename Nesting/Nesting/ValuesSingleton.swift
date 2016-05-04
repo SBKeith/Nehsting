@@ -12,7 +12,10 @@ import UIKit
 class ValuesSingleton {
     
     static let sharedValues = ValuesSingleton()
-       
+    
+    var tempSettings: temperatureSettings?
+    
+    
     // MARK: - DATA STRUCTS
     
     struct data {
@@ -29,15 +32,11 @@ class ValuesSingleton {
         let mainButtonArray = [UIImage(named: "heatButton"),
                                UIImage(named: "coolButton"),
                                UIImage(named: "offButton")]
-        
-        var index: Int?
     }
     
     struct temperatureSettings {
-        var hvacMode: UInt?
-//        var currentTempHeat: UInt?
-//        var currentTempCool: UInt?
-        var displayCurrentTemp: UInt?
+        var hvacMode = UInt(4)
+        var displayCurrentTemp = UInt(75)
         
         // GRADIENT VALUES
         

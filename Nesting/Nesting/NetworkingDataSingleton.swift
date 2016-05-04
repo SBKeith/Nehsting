@@ -103,35 +103,9 @@ class NetworkingDataSingleton {
     func getAndLocallySetThermostatTemperature() {
         
         // Set displayTemp
-        self.sharedTempStruct.displayCurrentTemp = self.thermostat?.targetTemperatureF
+        self.sharedTempStruct.displayCurrentTemp = (self.thermostat?.targetTemperatureF)!
         
         // Set hvacMode
-        self.sharedTempStruct.hvacMode = self.thermostat?.hvacMode.rawValue
+        self.sharedTempStruct.hvacMode = (self.thermostat?.hvacMode.rawValue)!
     }
-    
-//    // Update thermostat changes
-//    func networkValuesUpdate() {
-//        
-//        self.thermostat!.hvacMode = NestSDKThermostatHVACMode(rawValue: sharedTempStruct.hvacMode!)!
-//        
-//        self.dataManager.setThermostat(self.thermostat, block: { (thermostat, error) in
-//            if error != nil {
-//                print("ERROR")
-//            } else {
-//                print("SUCCESS")
-//            }
-//        })
-//    }
-    
-    // SET TEMP
-    
-//        self.thermostat?.targetTemperatureF = newTemp
-//        
-//        dataManager.setThermostat(self.thermostat, block: { thermostat, error in
-//            if error != nil {
-//                print("ERROR")
-//            } else {
-//                print("SUCCESS!")
-//            }
-//        })
 }

@@ -18,17 +18,15 @@ class MainViewController: UIViewController {
     // Singleton Values
     
     // USED
-    var sharedButtonImages = ValuesSingleton.mainButtonStruct()
-    var sharedTempStruct = ValuesSingleton.temperatureSettings()
-    
-    // NOT USED
     let sharedValues = ValuesSingleton.sharedValues
+    
+    var sharedButtonImages = ValuesSingleton.mainButtonStruct()
+    
     var networkDataSingleton = NetworkingDataSingleton.sharedDataManager
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        displayValuesUpdate()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -48,9 +46,11 @@ class MainViewController: UIViewController {
     // Update display values
     func displayValuesUpdate() {
         
+        
+        
         NetworkingDataSingleton.sharedDataManager.observeStructures( { (temp, hvacMode) in
-            self.sharedTempStruct.hvacMode = hvacMode
-            self.sharedTempStruct.displayCurrentTemp = temp
+            self.sharedValues.tempSettings?.hvacMode = hvacMode!
+            self.sharedValues.tempSettings?.displayCurrentTemp = temp!
             self.setMainButton()
             self.setDisplayTemp()
         })
@@ -58,14 +58,20 @@ class MainViewController: UIViewController {
     
     // Set image for main button
     func setMainButton() {
-
-        if let hvacMode = self.sharedTempStruct.hvacMode {
+        if let hvacMode = ValuesSingleton.sharedValues.tempSettings?.hvacMode {
+            
+            let sharedTempStruct = ValuesSingleton.sharedValues.tempSettings!
+            
             switch(Int(hvacMode)) {
-                case 1:
+                case 1: // HEAT
                     mainButton.setBackgroundImage(sharedButtonImages.mainButtonArray[0], forState: .Normal)
-                case 2:
+                    // Set Gradient
+                    gradientView.updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbHeat.0, green: sharedTempStruct.rgbHeat.1, blue: sharedTempStruct.rgbHeat.2))
+                case 2: // COOL
                     mainButton.setBackgroundImage(sharedButtonImages.mainButtonArray[1], forState: .Normal)
-                case 4:
+                    gradientView.updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbCool.0, green: sharedTempStruct.rgbCool.1, blue: sharedTempStruct.rgbCool.2))
+
+                case 4: // OFF
                     mainButton.setBackgroundImage(sharedButtonImages.mainButtonArray[2], forState: .Normal)
                 default:
                     break
@@ -76,8 +82,11 @@ class MainViewController: UIViewController {
     // Set display temperature
     func setDisplayTemp() {
         
-        if let displayTemp = self.sharedTempStruct.displayCurrentTemp {
-            switch(Int(self.sharedTempStruct.hvacMode!)) {
+        if let displayTemp = ValuesSingleton.sharedValues.tempSettings?.displayCurrentTemp {
+            
+            let sharedTempStruct = ValuesSingleton.sharedValues.tempSettings!
+            
+            switch(sharedTempStruct.hvacMode) {
                 case 1, 2:
                     displayValue.text = "\(displayTemp)"
                 case 4:
@@ -91,7 +100,9 @@ class MainViewController: UIViewController {
     // Update thermostat changes
     func networkValuesUpdate() {
         
-        networkDataSingleton.thermostat!.hvacMode = NestSDKThermostatHVACMode(rawValue: sharedTempStruct.hvacMode!)!
+        let sharedTempStruct = ValuesSingleton.sharedValues.tempSettings!
+        
+        networkDataSingleton.thermostat!.hvacMode = NestSDKThermostatHVACMode(rawValue: sharedTempStruct.hvacMode)!
         
         networkDataSingleton.dataManager.setThermostat(networkDataSingleton.thermostat, block: { (thermostat, error) in
             if error != nil {
@@ -108,7 +119,10 @@ class MainViewController: UIViewController {
     @IBAction func mainButtonTapped(sender: UIButton) {
         
         // Set hvacMode
-        if let hvacMode = sharedTempStruct.hvacMode {
+        if let hvacMode = ValuesSingleton.sharedValues.tempSettings?.hvacMode {
+            
+            var sharedTempStruct = ValuesSingleton.sharedValues.tempSettings!
+            
             switch(hvacMode) {
                 case 1:
                     sharedTempStruct.hvacMode = 2
@@ -142,33 +156,37 @@ class MainViewController: UIViewController {
             // Check for temperature limits
             let withinTempBounds = checkTempBounds()
             
+            var sharedTempStruct = ValuesSingleton.sharedValues.tempSettings!
+            
             if sharedValues.valueParser % 5 == 0 {
                 if !directionValueDecrease && withinTempBounds.0 {
-                    sharedTempStruct.displayCurrentTemp! += 1
+                    sharedTempStruct.displayCurrentTemp += 1
                     
-                    if sharedTempStruct.displayCurrentTemp! % 5 == 0 {
+                    if sharedTempStruct.displayCurrentTemp % 5 == 0 {
                         gradientView.adjustGradient("INCREASE")
                     }
                 } else if directionValueDecrease && withinTempBounds.1 {
-                    sharedTempStruct.displayCurrentTemp! -= 1
+                    sharedTempStruct.displayCurrentTemp -= 1
                     
-                    if sharedTempStruct.displayCurrentTemp! % 5 == 0 {
+                    if sharedTempStruct.displayCurrentTemp % 5 == 0 {
                         gradientView.adjustGradient("DECREASE")
                     }
                 }
             }
             // Set temperatue value
-            displayValue.text = "\(sharedTempStruct.displayCurrentTemp!)"
+            displayValue.text = "\(sharedTempStruct.displayCurrentTemp)"
         }
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
+        let sharedTempStruct = ValuesSingleton.sharedValues.tempSettings!
+        
         // Reset valueParser when user lifts finger
             sharedValues.valueParser = 0
         
         // Set thermostat temperature on screen
-        displayValue.text = "\(sharedTempStruct.displayCurrentTemp!)"
+        displayValue.text = "\(sharedTempStruct.displayCurrentTemp)"
         
         // Set thermostat temperature via network to NEST
         
@@ -184,6 +202,9 @@ class MainViewController: UIViewController {
     // MARK: HELPER METHODS
     // Determine if temperature value is within set bounds
     func checkTempBounds() -> (Bool, Bool) {
-        return ((Int(sharedTempStruct.displayCurrentTemp!) < sharedValues.kMAXTEMP), (Int(sharedTempStruct.displayCurrentTemp!) > sharedValues.kMINTEMP))
+        
+        let sharedTempStruct = ValuesSingleton.sharedValues.tempSettings!
+        
+        return ((Int(sharedTempStruct.displayCurrentTemp) < sharedValues.kMAXTEMP), (Int(sharedTempStruct.displayCurrentTemp) > sharedValues.kMINTEMP))
     }
 }
