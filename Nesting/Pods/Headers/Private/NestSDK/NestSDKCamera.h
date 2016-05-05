@@ -1,0 +1,1 @@
+../../../NestSDK/NestSDK/NestSDK/NestSDKCamera.h

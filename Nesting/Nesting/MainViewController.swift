@@ -7,62 +7,104 @@
 //
 
 import UIKit
+import NestSDK
 
 class MainViewController: UIViewController {
     
     @IBOutlet weak var displayValue: UILabel!
     @IBOutlet weak var gradientView: GradientView!
-    @IBOutlet weak var segmentedMenuBar: UISegmentedControl!
+    @IBOutlet weak var mainButton: UIButton!
     
-    let sharedValues = Values.sharedValues
-    var sharedTempStruct = Values.sharedTempStruct
+    // Singleton Values
+    var sharedDataManager = SharedDataSingleton.sharedDataManager
+    var sharedNetworkManager = NetworkingDataSingleton.sharedNetworkManager
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
         
-        // Track pList for NSUserDefaults
-//                let path = NSSearchPathForDirectoriesInDomains(.LibraryDirectory, .UserDomainMask, true)
-//                let folder = path[0]
-//                NSLog("Your NSUserDefaults are stored in this folder: \(folder)/preferences")
-        
-        setStructValues()
-        setSegmentedMenuBarValues()
-    
-        // Set initial display value
-        displayValue.text = "\(sharedTempStruct.displayCurrentTemp!)"
+        super.viewWillAppear(animated)
+        displayValuesUpdate()
     }
     
-    // MARK: -SET INITIAL VALUES
-    // Set struct and NSUserDefault initial values
-    func setStructValues() {
+    override func viewWillDisappear(animated: Bool) {
         
-        // Initialize singleton values in struct
-        sharedTempStruct.settingTitle = .heat
-        sharedTempStruct.power = .on
-        sharedTempStruct.currentTempHeat = 75
-        sharedTempStruct.currentTempCool = 75
+        super.viewWillDisappear(animated)
         
-        // Initialize NSUserDefault values
-        sharedValues.settings.setObject(sharedTempStruct.settingTitle?.rawValue, forKey: "temperature")
-        sharedValues.settings.setObject(sharedTempStruct.power?.rawValue, forKey: "power")
-        sharedValues.settings.setInteger(sharedTempStruct.currentTempHeat!, forKey: "tempHeat")
-        sharedValues.settings.setInteger(sharedTempStruct.currentTempCool!, forKey: "tempCool")
-        sharedValues.settings.synchronize()
+        sharedNetworkManager.removeObservers()
+    }
+    
+    // MARK: -SET VALUES
+    
+    // Update display values
+    func displayValuesUpdate() {
+
+        sharedNetworkManager.observeStructures( { (temp, hvacMode) in
+            
+            if let hvacMode = hvacMode, temp = temp {
+                self.sharedDataManager.hvacMode = hvacMode
+                self.sharedDataManager.temperature = temp
+                self.setMainButton()
+                self.setDisplayTemp()
+            }
+        })
+    }
+    
+    // Set image for main button
+    func setMainButton() {
         
-        // Set initial temperature value to be shown on screen
-        if sharedValues.settings.stringForKey("temperature") == "Heat" {
-            sharedTempStruct.displayCurrentTemp = sharedValues.settings.integerForKey("tempHeat")
-        } else {
-            sharedTempStruct.displayCurrentTemp = sharedValues.settings.integerForKey("tempCool")
+        if let hvacMode: UInt = sharedDataManager.hvacMode {
+            switch(Int(hvacMode)) {
+                case 1: // HEAT
+                    mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[0], forState: .Normal)
+                    // Set Gradient
+                    gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbHeat.0, green: sharedDataManager.rgbHeat.1, blue: sharedDataManager.rgbHeat.2))
+                case 2: // COOL
+                    mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[1], forState: .Normal)
+                    gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbCool.0, green: sharedDataManager.rgbCool.1, blue: sharedDataManager.rgbCool.2))
+
+                case 4: // OFF
+                    mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[2], forState: .Normal)
+                    gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbOff.0, green: sharedDataManager.rgbOff.1, blue: sharedDataManager.rgbOff.2))
+                default:
+                    break
+            }
+        }
+    }
+
+    // Set display temperature
+    func setDisplayTemp() {
+        
+        if let displayTemp: UInt =  sharedDataManager.temperature {
+            switch(sharedDataManager.hvacMode) {
+                case 1, 2:
+                    displayValue.text = "\(displayTemp)"
+                case 4:
+                    displayValue.text = ""
+                default:
+                    break
+            }
         }
     }
     
-    // Set Segmented Bar Values
-    func setSegmentedMenuBarValues() {
+    // MARK: USER INTERACTION FUNCTIONS
+    
+    // Main button tapped
+    @IBAction func mainButtonTapped(sender: UIButton) {
         
-        segmentedMenuBar.setTitle("ON", forSegmentAtIndex: 0)
-        segmentedMenuBar.setTitle("HEAT", forSegmentAtIndex: 1)
-        segmentedMenuBar.setTitle("HISTORY", forSegmentAtIndex: 2)
+        // Set hvacMode
+        if let hvacMode: UInt =  sharedDataManager.hvacMode {
+            switch(hvacMode) {
+                case 1:
+                    sharedDataManager.hvacMode = 2
+                case 2:
+                    sharedDataManager.hvacMode = 4
+                case 4:
+                    sharedDataManager.hvacMode = 1
+                default:
+                    break
+            }
+            sharedNetworkManager.networkHVACUpdate()
+            displayValuesUpdate()
+        }
     }
     
     // MARK: USER TOUCH INPUT / DRAG DETECTION
@@ -70,46 +112,53 @@ class MainViewController: UIViewController {
     // Check for finger dragging input
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
-        if let theTouch = touches.first {
-            let touchLocation = theTouch.locationInView(self.view)
-            let previousTouchLocation = theTouch.previousLocationInView(self.view)
-            
-            // ValueParser allows for Y coordinates to become manageable values, which simplifies data manipulation
-            sharedValues.valueParser += 1
-            
-            // Check for touch-drag direction
-            let directionValueDecrease = checkTouchDirection(touchLocation, previousTouch: previousTouchLocation)
-            
-            // Check for temperature limits
-            let withinTempBounds = checkTempBounds()
-            
-            if sharedValues.valueParser % 5 == 0 {
-                if !directionValueDecrease && withinTempBounds.0 {
-                    sharedTempStruct.displayCurrentTemp! += 1
-                    
-                    if sharedTempStruct.displayCurrentTemp! % 5 == 0 {
-                        gradientView.adjustGradient("INCREASE")
-                    }
-                } else if directionValueDecrease && withinTempBounds.1 {
-                    sharedTempStruct.displayCurrentTemp! -= 1
-                    
-                    if sharedTempStruct.displayCurrentTemp! % 5 == 0 {
-                        gradientView.adjustGradient("DECREASE")
+        if sharedDataManager.hvacMode != 4 {    // Check that system is NOT off
+            if let theTouch = touches.first {
+                let touchLocation = theTouch.locationInView(self.view)
+                let previousTouchLocation = theTouch.previousLocationInView(self.view)
+
+                // ValueParser allows for Y coordinates to become manageable values, which simplifies data manipulation
+                sharedDataManager.valueParser += 1
+                
+                // Check for touch-drag direction
+                let directionValueDecrease = checkTouchDirection(touchLocation, previousTouch: previousTouchLocation)
+                
+                // Check for temperature limits
+                let withinTempBounds = checkTempBounds()
+                
+                if sharedDataManager.valueParser % 5 == 0 {
+                    if !directionValueDecrease && withinTempBounds.0 {
+                        sharedDataManager.temperature += 1
+                        
+                        if sharedDataManager.temperature % 5 == 0 {
+                            gradientView.adjustGradient("INCREASE")
+                        }
+                    } else if directionValueDecrease && withinTempBounds.1 {
+                        sharedDataManager.temperature -= 1
+                        
+                        if sharedDataManager.temperature % 5 == 0 {
+                            gradientView.adjustGradient("DECREASE")
+                        }
                     }
                 }
+                // Set temperatue value
+                displayValue.text = "\(sharedDataManager.temperature)"
             }
-            // Set temperatue value
-            displayValue.text = "\(sharedTempStruct.displayCurrentTemp!)"
         }
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         // Reset valueParser when user lifts finger
-        sharedValues.valueParser = 0
+            sharedDataManager.valueParser = 0
         
-        // Set NSUserDefaults for temperature value changes
-        setNSUserDefaults()
+        if sharedDataManager.hvacMode != 4 {    // Check that system is NOT off
+            // Set thermostat temperature on screen
+            displayValue.text = "\(sharedDataManager.temperature)"
+            
+            // Set thermostat temperature via network to NEST
+            sharedNetworkManager.networkTemperatureUpdate()
+        }
     }
     
     // Determine finger drag direction (up or down)
@@ -119,79 +168,10 @@ class MainViewController: UIViewController {
         return currentTouch.y > previousTouch.y
     }
     
-    // MARK: SEGMENTED BAR TOUCH RECOGNITION AND SETTINGS
-    
-    @IBAction func segmentBarTouched(sender: UISegmentedControl) {
-        
-        getSegmentedMenuBarTouch()
-    }
-    
-    // Get user input from segmented menu bar
-    func getSegmentedMenuBarTouch() {
-        
-        let selectedIndex = segmentedMenuBar.selectedSegmentIndex
-        
-        switch(selectedIndex) {
-            case 0:
-                // Toggle Segmented Menu Bar Power Value
-                segmentedMenuBar.titleForSegmentAtIndex(0) == "ON" ?
-                    segmentedMenuBar.setTitle("OFF", forSegmentAtIndex: 0) : segmentedMenuBar.setTitle("ON", forSegmentAtIndex: 0)
-                
-                // Set NSUserDefaults ON or OFF
-                if segmentedMenuBar.titleForSegmentAtIndex(0) == "ON" {
-                    sharedTempStruct.power = .on
-                } else {
-                    sharedTempStruct.power = .off
-                }
-                sharedValues.settings.setValue(sharedTempStruct.power?.rawValue, forKey: "power")
-                
-                
-            case 1:
-                // Toggle Segmented Menu Bar Temperature Setting
-                if segmentedMenuBar.titleForSegmentAtIndex(1) == "COOL" {
-                    segmentedMenuBar.setTitle("HEAT", forSegmentAtIndex: 1)
-                    sharedTempStruct.settingTitle = .heat
-                    sharedTempStruct.displayCurrentTemp! = sharedValues.settings.integerForKey("tempHeat")
-                    
-                    // Set Gradient
-                    gradientView.updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbHeat.0, green: sharedTempStruct.rgbHeat.1, blue: sharedTempStruct.rgbHeat.2))
-                } else {
-                    segmentedMenuBar.setTitle("COOL", forSegmentAtIndex: 1)
-                    sharedTempStruct.settingTitle = .cool
-                    sharedTempStruct.displayCurrentTemp = sharedValues.settings.integerForKey("tempCool")
-                    
-                    // Set Gradient
-                    gradientView.updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbCool.0, green: sharedTempStruct.rgbCool.1, blue: sharedTempStruct.rgbCool.2))
-                }
-                
-                sharedValues.settings.setValue(sharedTempStruct.settingTitle!.rawValue, forKey: "temperature")
-                sharedValues.settings.synchronize()
-                
-                displayValue.text = "\(sharedTempStruct.displayCurrentTemp!)"
-                
-            case 2:
-                let historyVC = UIStoryboard(name: "History", bundle: nil).instantiateViewControllerWithIdentifier("HistoryVC_ID")
-                presentViewController(historyVC, animated: true, completion: nil)
-                
-            default: break
-            }
-    }
-    
     // MARK: HELPER METHODS
-    
-    func setNSUserDefaults() {
-        
-        // Set temperatue value
-        if sharedValues.settings.stringForKey("temperature") == "Heat" {
-            sharedValues.settings.setInteger(sharedTempStruct.displayCurrentTemp!, forKey: "tempHeat")
-        } else {
-            sharedValues.settings.setInteger(sharedTempStruct.displayCurrentTemp!, forKey: "tempCool")
-        }
-        sharedValues.settings.synchronize()
-    }
-    
     // Determine if temperature value is within set bounds
     func checkTempBounds() -> (Bool, Bool) {
-        return ((sharedTempStruct.displayCurrentTemp! < sharedValues.kMAXTEMP), (sharedTempStruct.displayCurrentTemp! > sharedValues.kMINTEMP))
-    }    
+        
+        return ((Int(sharedDataManager.temperature) < sharedDataManager.kMAXTEMP), (Int(sharedDataManager.temperature) > sharedDataManager.kMINTEMP))
+    }
 }
