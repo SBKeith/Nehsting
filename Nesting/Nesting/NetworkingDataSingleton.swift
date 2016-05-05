@@ -12,17 +12,14 @@ import UIKit
 
 class NetworkingDataSingleton {
     
-    // MARK: SET VARIABLES
-    
     // Set singleton for class
-    static let sharedDataManager = NetworkingDataSingleton()
+    static let sharedNetworkManager = NetworkingDataSingleton()
     
-    // Values Singletons
-    let sharedValues = ValuesSingleton.sharedValues
-    var sharedTempStruct = ValuesSingleton.temperatureSettings()
+    // Shared Data Singleton
+    let sharedDataManager = SharedDataSingleton.sharedDataManager
     
     // Data and structures variables
-    var dataManager: NestSDKDataManager = NestSDKDataManager()
+    var dataManager = NestSDKDataManager()
     var deviceObserverHandles: Array<NestSDKObserverHandle> = []
     var structuresObserverHandle: NestSDKObserverHandle = 0
     
@@ -30,8 +27,9 @@ class NetworkingDataSingleton {
     var thermostat: NestSDKThermostat?
     
     // MARK: STRUCTURES / THERMOSTAT FUNCTIONS
-    
-    // Find Structure(s)
+
+/////////////////////////////////////////////////////////////////////////////////////
+////// Find Structure(s)
     func observeStructures(tempClosure: (temp: UInt?, hvacMode: UInt?) -> Void) {
         
         // Clean up previous observers
@@ -55,8 +53,10 @@ class NetworkingDataSingleton {
             tempClosure(temp: nil, hvacMode: nil)
         })
     }
+/////////////////////////////////////////////////////////////////////////////////////
     
-    // Observe Thermostat(s)
+/////////////////////////////////////////////////////////////////////////////////////
+////// Observe Thermostat(s)
     func observeThermostatsWithinStructure(structure: NestSDKStructure, tempHandler: (temp: UInt?, hvacMode: UInt?) -> Void) {
         for thermostatId in structure.thermostats as! [String] {
             
@@ -71,15 +71,16 @@ class NetworkingDataSingleton {
                     self.thermostat = thermostat
                     self.getAndLocallySetThermostatTemperature()
                     
-                    tempHandler(temp: self.sharedTempStruct.displayCurrentTemp, hvacMode: self.sharedTempStruct.hvacMode)
-                    
+                    tempHandler(temp: self.sharedDataManager.temperature, hvacMode: self.sharedDataManager.hvacMode)
                 }
             })
             deviceObserverHandles.append(handle)
         }
     }
-    
-    // Remove observers functions
+/////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////
+////// Remove observers functions
     func removeObservers() {
         removeDevicesObservers();
         removeStructuresObservers();
@@ -89,13 +90,13 @@ class NetworkingDataSingleton {
         for (_, handle) in deviceObserverHandles.enumerate() {
             dataManager.removeObserverWithHandle(handle);
         }
-        
         deviceObserverHandles.removeAll()
     }
     
     func removeStructuresObservers() {
         dataManager.removeObserverWithHandle(structuresObserverHandle)
     }
+/////////////////////////////////////////////////////////////////////////////////////
     
     // MARK: HELPER FUNCTIONS
     
@@ -103,9 +104,37 @@ class NetworkingDataSingleton {
     func getAndLocallySetThermostatTemperature() {
         
         // Set displayTemp
-        self.sharedTempStruct.displayCurrentTemp = (self.thermostat?.targetTemperatureF)!
+        self.sharedDataManager.temperature = (self.thermostat?.targetTemperatureF)!
         
         // Set hvacMode
-        self.sharedTempStruct.hvacMode = (self.thermostat?.hvacMode.rawValue)!
+        self.sharedDataManager.hvacMode = (self.thermostat?.hvacMode.rawValue)!
+    }
+    
+    // Update thermostat HVAC
+    func networkHVACUpdate() {
+        
+        self.thermostat?.hvacMode = NestSDKThermostatHVACMode(rawValue: sharedDataManager.hvacMode)!
+        
+        self.dataManager.setThermostat(self.thermostat, block: { (thermostat, error) in
+            if error != nil {
+                print("ERROR")
+            } else {
+                print("SUCCESS")
+            }
+        })
+    }
+    
+    // Update thermostat temperature
+    func networkTemperatureUpdate() {
+        
+        self.thermostat?.targetTemperatureF = sharedDataManager.temperature
+        
+        self.dataManager.setThermostat(self.thermostat, block: { (thermostat, error) in
+            if error != nil {
+                print("ERROR")
+            } else {
+                print("SUCCESS")
+            }
+        })
     }
 }

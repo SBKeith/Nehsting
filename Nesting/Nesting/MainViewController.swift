@@ -16,18 +16,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mainButton: UIButton!
     
     // Singleton Values
-    
-    // USED
-    let sharedValues = ValuesSingleton.sharedValues
-    
-    var sharedButtonImages = ValuesSingleton.mainButtonStruct()
-    
-    var networkDataSingleton = NetworkingDataSingleton.sharedDataManager
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-    }
+    var sharedDataManager = SharedDataSingleton.sharedDataManager
+    var sharedNetworkManager = NetworkingDataSingleton.sharedNetworkManager
     
     override func viewWillAppear(animated: Bool) {
         
@@ -38,55 +28,53 @@ class MainViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         
         super.viewWillDisappear(animated)
-        NetworkingDataSingleton.sharedDataManager.removeObservers()
+        
+        sharedNetworkManager.removeObservers()
     }
     
     // MARK: -SET VALUES
     
     // Update display values
     func displayValuesUpdate() {
-        
-        
-        
-        NetworkingDataSingleton.sharedDataManager.observeStructures( { (temp, hvacMode) in
-            self.sharedValues.tempSettings?.hvacMode = hvacMode!
-            self.sharedValues.tempSettings?.displayCurrentTemp = temp!
-            self.setMainButton()
-            self.setDisplayTemp()
+
+        sharedNetworkManager.observeStructures( { (temp, hvacMode) in
+            
+            if let hvacMode = hvacMode, temp = temp {
+                self.sharedDataManager.hvacMode = hvacMode
+                self.sharedDataManager.temperature = temp
+                self.setMainButton()
+                self.setDisplayTemp()
+            }
         })
     }
     
     // Set image for main button
     func setMainButton() {
-        if let hvacMode = ValuesSingleton.sharedValues.tempSettings?.hvacMode {
-            
-            let sharedTempStruct = ValuesSingleton.sharedValues.tempSettings!
-            
+        
+        if let hvacMode: UInt = sharedDataManager.hvacMode {
             switch(Int(hvacMode)) {
                 case 1: // HEAT
-                    mainButton.setBackgroundImage(sharedButtonImages.mainButtonArray[0], forState: .Normal)
+                    mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[0], forState: .Normal)
                     // Set Gradient
-                    gradientView.updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbHeat.0, green: sharedTempStruct.rgbHeat.1, blue: sharedTempStruct.rgbHeat.2))
+                    gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbHeat.0, green: sharedDataManager.rgbHeat.1, blue: sharedDataManager.rgbHeat.2))
                 case 2: // COOL
-                    mainButton.setBackgroundImage(sharedButtonImages.mainButtonArray[1], forState: .Normal)
-                    gradientView.updateGradientColor(sharedTempStruct.gradientValue(sharedTempStruct.rgbCool.0, green: sharedTempStruct.rgbCool.1, blue: sharedTempStruct.rgbCool.2))
+                    mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[1], forState: .Normal)
+                    gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbCool.0, green: sharedDataManager.rgbCool.1, blue: sharedDataManager.rgbCool.2))
 
                 case 4: // OFF
-                    mainButton.setBackgroundImage(sharedButtonImages.mainButtonArray[2], forState: .Normal)
+                    mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[2], forState: .Normal)
+                    gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbOff.0, green: sharedDataManager.rgbOff.1, blue: sharedDataManager.rgbOff.2))
                 default:
                     break
             }
         }
     }
-    
+
     // Set display temperature
     func setDisplayTemp() {
         
-        if let displayTemp = ValuesSingleton.sharedValues.tempSettings?.displayCurrentTemp {
-            
-            let sharedTempStruct = ValuesSingleton.sharedValues.tempSettings!
-            
-            switch(sharedTempStruct.hvacMode) {
+        if let displayTemp: UInt =  sharedDataManager.temperature {
+            switch(sharedDataManager.hvacMode) {
                 case 1, 2:
                     displayValue.text = "\(displayTemp)"
                 case 4:
@@ -97,43 +85,24 @@ class MainViewController: UIViewController {
         }
     }
     
-    // Update thermostat changes
-    func networkValuesUpdate() {
-        
-        let sharedTempStruct = ValuesSingleton.sharedValues.tempSettings!
-        
-        networkDataSingleton.thermostat!.hvacMode = NestSDKThermostatHVACMode(rawValue: sharedTempStruct.hvacMode)!
-        
-        networkDataSingleton.dataManager.setThermostat(networkDataSingleton.thermostat, block: { (thermostat, error) in
-            if error != nil {
-                print("ERROR")
-            } else {
-                print("SUCCESS")
-            }
-        })
-    }
-    
     // MARK: USER INTERACTION FUNCTIONS
     
     // Main button tapped
     @IBAction func mainButtonTapped(sender: UIButton) {
         
         // Set hvacMode
-        if let hvacMode = ValuesSingleton.sharedValues.tempSettings?.hvacMode {
-            
-            var sharedTempStruct = ValuesSingleton.sharedValues.tempSettings!
-            
+        if let hvacMode: UInt =  sharedDataManager.hvacMode {
             switch(hvacMode) {
                 case 1:
-                    sharedTempStruct.hvacMode = 2
+                    sharedDataManager.hvacMode = 2
                 case 2:
-                    sharedTempStruct.hvacMode = 4
+                    sharedDataManager.hvacMode = 4
                 case 4:
-                    sharedTempStruct.hvacMode = 1
+                    sharedDataManager.hvacMode = 1
                 default:
                     break
             }
-            networkValuesUpdate()
+            sharedNetworkManager.networkHVACUpdate()
             displayValuesUpdate()
         }
     }
@@ -143,53 +112,53 @@ class MainViewController: UIViewController {
     // Check for finger dragging input
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
-        if let theTouch = touches.first {
-            let touchLocation = theTouch.locationInView(self.view)
-            let previousTouchLocation = theTouch.previousLocationInView(self.view)
+        if sharedDataManager.hvacMode != 4 {    // Check that system is NOT off
+            if let theTouch = touches.first {
+                let touchLocation = theTouch.locationInView(self.view)
+                let previousTouchLocation = theTouch.previousLocationInView(self.view)
 
-            // ValueParser allows for Y coordinates to become manageable values, which simplifies data manipulation
-            sharedValues.valueParser += 1
-            
-            // Check for touch-drag direction
-            let directionValueDecrease = checkTouchDirection(touchLocation, previousTouch: previousTouchLocation)
-            
-            // Check for temperature limits
-            let withinTempBounds = checkTempBounds()
-            
-            var sharedTempStruct = ValuesSingleton.sharedValues.tempSettings!
-            
-            if sharedValues.valueParser % 5 == 0 {
-                if !directionValueDecrease && withinTempBounds.0 {
-                    sharedTempStruct.displayCurrentTemp += 1
-                    
-                    if sharedTempStruct.displayCurrentTemp % 5 == 0 {
-                        gradientView.adjustGradient("INCREASE")
-                    }
-                } else if directionValueDecrease && withinTempBounds.1 {
-                    sharedTempStruct.displayCurrentTemp -= 1
-                    
-                    if sharedTempStruct.displayCurrentTemp % 5 == 0 {
-                        gradientView.adjustGradient("DECREASE")
+                // ValueParser allows for Y coordinates to become manageable values, which simplifies data manipulation
+                sharedDataManager.valueParser += 1
+                
+                // Check for touch-drag direction
+                let directionValueDecrease = checkTouchDirection(touchLocation, previousTouch: previousTouchLocation)
+                
+                // Check for temperature limits
+                let withinTempBounds = checkTempBounds()
+                
+                if sharedDataManager.valueParser % 5 == 0 {
+                    if !directionValueDecrease && withinTempBounds.0 {
+                        sharedDataManager.temperature += 1
+                        
+                        if sharedDataManager.temperature % 5 == 0 {
+                            gradientView.adjustGradient("INCREASE")
+                        }
+                    } else if directionValueDecrease && withinTempBounds.1 {
+                        sharedDataManager.temperature -= 1
+                        
+                        if sharedDataManager.temperature % 5 == 0 {
+                            gradientView.adjustGradient("DECREASE")
+                        }
                     }
                 }
+                // Set temperatue value
+                displayValue.text = "\(sharedDataManager.temperature)"
             }
-            // Set temperatue value
-            displayValue.text = "\(sharedTempStruct.displayCurrentTemp)"
         }
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
-        let sharedTempStruct = ValuesSingleton.sharedValues.tempSettings!
-        
         // Reset valueParser when user lifts finger
-            sharedValues.valueParser = 0
+            sharedDataManager.valueParser = 0
         
-        // Set thermostat temperature on screen
-        displayValue.text = "\(sharedTempStruct.displayCurrentTemp)"
-        
-        // Set thermostat temperature via network to NEST
-        
+        if sharedDataManager.hvacMode != 4 {    // Check that system is NOT off
+            // Set thermostat temperature on screen
+            displayValue.text = "\(sharedDataManager.temperature)"
+            
+            // Set thermostat temperature via network to NEST
+            sharedNetworkManager.networkTemperatureUpdate()
+        }
     }
     
     // Determine finger drag direction (up or down)
@@ -203,8 +172,6 @@ class MainViewController: UIViewController {
     // Determine if temperature value is within set bounds
     func checkTempBounds() -> (Bool, Bool) {
         
-        let sharedTempStruct = ValuesSingleton.sharedValues.tempSettings!
-        
-        return ((Int(sharedTempStruct.displayCurrentTemp) < sharedValues.kMAXTEMP), (Int(sharedTempStruct.displayCurrentTemp) > sharedValues.kMINTEMP))
+        return ((Int(sharedDataManager.temperature) < sharedDataManager.kMAXTEMP), (Int(sharedDataManager.temperature) > sharedDataManager.kMINTEMP))
     }
 }
