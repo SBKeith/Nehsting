@@ -10,24 +10,28 @@ import Foundation
 import NestSDK
 import UIKit
 
-
-typealias NetworkClosure = (error: String) -> Void
-
-
 class NetworkingDataSingleton {
     
-    static let sharedDataManager = NetworkingDataSingleton()
+    // Set singleton for class
+    static let sharedNetworkManager = NetworkingDataSingleton()
     
-    var dataManager: NestSDKDataManager = NestSDKDataManager()
+    // Shared Data Singleton
+    let sharedDataManager = SharedDataSingleton.sharedDataManager
+    
+    // Data and structures variables
+    var dataManager = NestSDKDataManager()
     var deviceObserverHandles: Array<NestSDKObserverHandle> = []
     var structuresObserverHandle: NestSDKObserverHandle = 0
-
-    var targetTemp: UInt?
+    
+    // Thermostat Values
     var thermostat: NestSDKThermostat?
     
-    var sharedStructure: NestSDKStructure?
-    
-    func observeStructures(tempClosure: (temp: UInt?) -> Void) {
+    // MARK: STRUCTURES / THERMOSTAT FUNCTIONS
+
+/////////////////////////////////////////////////////////////////////////////////////
+////// Find Structure(s)
+    func observeStructures(tempClosure: (temp: UInt?, hvacMode: UInt?) -> Void) {
+        
         // Clean up previous observers
         removeObservers()
         
@@ -41,56 +45,42 @@ class NetworkingDataSingleton {
             // Iterate through all structures and set observers for all devices
             for structure in structuresArray as! [NestSDKStructure] {
                 
-                self.observeThermostatsWithinStructure(structure, tempHandler: { temp in
-                    tempClosure(temp: temp)
+                self.observeThermostatsWithinStructure(structure, tempHandler: { (temp, hvacMode) in
+                    tempClosure(temp: temp, hvacMode: hvacMode)
                 })
-                
-                print("Structure: \(structure.name)")
+//                print("Structure: \(structure.name)")
             }
-            
-            tempClosure(temp: nil)
+            tempClosure(temp: nil, hvacMode: nil)
         })
     }
+/////////////////////////////////////////////////////////////////////////////////////
     
-    func observeThermostatsWithinStructure(structure: NestSDKStructure, tempHandler: (temp: UInt?) -> Void) {
+/////////////////////////////////////////////////////////////////////////////////////
+////// Observe Thermostat(s)
+    func observeThermostatsWithinStructure(structure: NestSDKStructure, tempHandler: (temp: UInt?, hvacMode: UInt?) -> Void) {
         for thermostatId in structure.thermostats as! [String] {
+            
             let handle = dataManager.observeThermostatWithId(thermostatId, block: {
                 thermostat, error in
                 
                 if (error != nil) {
                     print("Error observing thermostat")
-                    
-                    tempHandler(temp: nil)
-                    
+                    tempHandler(temp: nil, hvacMode: nil)
                 } else {
                     
                     self.thermostat = thermostat
+                    self.getAndLocallySetThermostatTemperature()
                     
-                    self.targetTemp = thermostat.targetTemperatureF
-                    
-                    tempHandler(temp: self.targetTemp)
-                    
-                    print("Structure Location: \(self.thermostat!.name)")
+                    tempHandler(temp: self.sharedDataManager.temperature, hvacMode: self.sharedDataManager.hvacMode)
                 }
             })
-            
             deviceObserverHandles.append(handle)
         }
     }
-    
-    func setThermostatTemperature(newTemp: UInt) {
-        
-        self.thermostat?.targetTemperatureF = newTemp
-        
-        dataManager.setThermostat(self.thermostat, block: { thermostat, error in
-            if error != nil {
-                print("ERROR")
-            } else {
-                print("SUCCESS!")
-            }
-        })
-    }
+/////////////////////////////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////////////////////////////
+////// Remove observers functions
     func removeObservers() {
         removeDevicesObservers();
         removeStructuresObservers();
@@ -100,11 +90,51 @@ class NetworkingDataSingleton {
         for (_, handle) in deviceObserverHandles.enumerate() {
             dataManager.removeObserverWithHandle(handle);
         }
-        
         deviceObserverHandles.removeAll()
     }
     
     func removeStructuresObservers() {
         dataManager.removeObserverWithHandle(structuresObserverHandle)
+    }
+/////////////////////////////////////////////////////////////////////////////////////
+    
+    // MARK: HELPER FUNCTIONS
+    
+    // Get thermostat data and set it
+    func getAndLocallySetThermostatTemperature() {
+        
+        // Set displayTemp
+        self.sharedDataManager.temperature = (self.thermostat?.targetTemperatureF)!
+        
+        // Set hvacMode
+        self.sharedDataManager.hvacMode = (self.thermostat?.hvacMode.rawValue)!
+    }
+    
+    // Update thermostat HVAC
+    func networkHVACUpdate() {
+        
+        self.thermostat?.hvacMode = NestSDKThermostatHVACMode(rawValue: sharedDataManager.hvacMode)!
+        
+        self.dataManager.setThermostat(self.thermostat, block: { (thermostat, error) in
+            if error != nil {
+                print("ERROR")
+            } else {
+                print("SUCCESS")
+            }
+        })
+    }
+    
+    // Update thermostat temperature
+    func networkTemperatureUpdate() {
+        
+        self.thermostat?.targetTemperatureF = sharedDataManager.temperature
+        
+        self.dataManager.setThermostat(self.thermostat, block: { (thermostat, error) in
+            if error != nil {
+                print("ERROR")
+            } else {
+                print("SUCCESS")
+            }
+        })
     }
 }
