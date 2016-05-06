@@ -54,15 +54,24 @@ class MainViewController: UIViewController {
         if let hvacMode: UInt = sharedDataManager.hvacMode {
             switch(Int(hvacMode)) {
                 case 1: // HEAT
+                    // Set Image Values
                     mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[0], forState: .Normal)
+                    mainButton.setTitle("HEAT", forState: .Normal)
                     // Set Gradient
                     gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbHeat.0, green: sharedDataManager.rgbHeat.1, blue: sharedDataManager.rgbHeat.2))
                 case 2: // COOL
+                    // Set Image Values
                     mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[1], forState: .Normal)
+                    mainButton.setTitle("COOL", forState: .Normal)
+                    // Set Gradient
                     gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbCool.0, green: sharedDataManager.rgbCool.1, blue: sharedDataManager.rgbCool.2))
 
                 case 4: // OFF
+                    // Set Image Values
                     mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[2], forState: .Normal)
+                    mainButton.setTitle("OFF", forState: .Normal)
+                    
+                    // Set Gradient
                     gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbOff.0, green: sharedDataManager.rgbOff.1, blue: sharedDataManager.rgbOff.2))
                 default:
                     break
