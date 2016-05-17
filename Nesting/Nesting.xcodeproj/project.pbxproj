@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		46960C2E4E839CCEEEA5DF3D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABB2C568D2D02EC10069AAF /* Pods.framework */; };
 		470C4DF11CC9877500CDDFF5 /* NetworkingDataSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C4DF01CC9877500CDDFF5 /* NetworkingDataSingleton.swift */; };
+		471BE25B1CEBB54700EB8380 /* Logout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 471BE25A1CEBB54700EB8380 /* Logout.storyboard */; };
 		472EC22F1CB82EBA00D7CC9F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472EC22E1CB82EBA00D7CC9F /* GradientView.swift */; };
 		473DC8751CAC5032000E6B8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8741CAC5032000E6B8B /* AppDelegate.swift */; };
 		473DC8771CAC5032000E6B8B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8761CAC5032000E6B8B /* MainViewController.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		470C4DF01CC9877500CDDFF5 /* NetworkingDataSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingDataSingleton.swift; sourceTree = "<group>"; };
+		471BE25A1CEBB54700EB8380 /* Logout.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Logout.storyboard; sourceTree = "<group>"; };
 		472EC22E1CB82EBA00D7CC9F /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		473DC8711CAC5032000E6B8B /* Nesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		473DC8741CAC5032000E6B8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			children = (
 				D8BF0ACC1CC8C11C001CA91D /* SignIn.storyboard */,
 				473DC8781CAC5032000E6B8B /* Main.storyboard */,
+				471BE25A1CEBB54700EB8380 /* Logout.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				473DC87F1CAC5032000E6B8B /* Assets.xcassets in Resources */,
 				D8BF0ACD1CC8C11C001CA91D /* SignIn.storyboard in Resources */,
 				473DC87A1CAC5032000E6B8B /* Main.storyboard in Resources */,
+				471BE25B1CEBB54700EB8380 /* Logout.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
