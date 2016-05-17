@@ -59,13 +59,14 @@ class MainViewController: UIViewController {
                     mainButton.setTitle("HEAT", forState: .Normal)
                     // Set Gradient
                     gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbHeat.0, green: sharedDataManager.rgbHeat.1, blue: sharedDataManager.rgbHeat.2))
+                
                 case 2: // COOL
                     // Set Image Values
                     mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[1], forState: .Normal)
                     mainButton.setTitle("COOL", forState: .Normal)
                     // Set Gradient
                     gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbCool.0, green: sharedDataManager.rgbCool.1, blue: sharedDataManager.rgbCool.2))
-
+                
                 case 4: // OFF
                     // Set Image Values
                     mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[2], forState: .Normal)
