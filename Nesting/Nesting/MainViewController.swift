@@ -22,6 +22,8 @@ class MainViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(launchAlertViewServerError), name: "displayErrorAlert", object: nil)
         displayValuesUpdate()
     }
     
@@ -29,7 +31,9 @@ class MainViewController: UIViewController {
         
         super.viewWillDisappear(animated)
         
+        // Remove observers
         sharedNetworkManager.removeObservers()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     // MARK: -SET VALUES
@@ -183,5 +187,12 @@ class MainViewController: UIViewController {
     func checkTempBounds() -> (Bool, Bool) {
         
         return ((Int(sharedDataManager.temperature) < sharedDataManager.kMAXTEMP), (Int(sharedDataManager.temperature) > sharedDataManager.kMINTEMP))
+    }
+    
+    func launchAlertViewServerError(notification: NSNotification) {
+        
+        let alertView = UIAlertController(title: "Server Error", message: "Nest server has blocked your request, due to too many calls.  Please try again after a few minutes.", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        presentViewController(alertView, animated: true, completion: nil)
     }
 }

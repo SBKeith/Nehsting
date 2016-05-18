@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ekK-Kx-kHb">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Loading Screen View Controller-->
+        <scene sceneID="TIH-lm-L6x">
+            <objects>
+                <viewController storyboardIdentifier="Loading" id="ekK-Kx-kHb" customClass="LoadingScreenViewController" customModule="Nesting" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ruG-Bq-U7X"/>
+                        <viewControllerLayoutGuide type="bottom" id="JjN-kX-ob8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Blg-rB-9r4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadingScreen" translatesAutoresizingMaskIntoConstraints="NO" id="LW5-By-BcN">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UJa-HQ-YIm">
+                                <rect key="frame" x="273" y="272" width="55" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="LAx-7C-WxU"/>
+                                    <constraint firstAttribute="height" constant="55" id="koF-Gd-UhE"/>
+                                </constraints>
+                                <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="LW5-By-BcN" secondAttribute="trailing" id="3Cz-19-4wT"/>
+                            <constraint firstItem="JjN-kX-ob8" firstAttribute="top" secondItem="LW5-By-BcN" secondAttribute="bottom" id="IyU-cQ-vIS"/>
+                            <constraint firstItem="LW5-By-BcN" firstAttribute="top" secondItem="ruG-Bq-U7X" secondAttribute="bottom" id="Uvc-PP-nnc"/>
+                            <constraint firstItem="UJa-HQ-YIm" firstAttribute="centerX" secondItem="Blg-rB-9r4" secondAttribute="centerX" id="VKK-C0-5IE"/>
+                            <constraint firstItem="LW5-By-BcN" firstAttribute="leading" secondItem="Blg-rB-9r4" secondAttribute="leading" id="eah-z9-WhW"/>
+                            <constraint firstItem="UJa-HQ-YIm" firstAttribute="centerY" secondItem="Blg-rB-9r4" secondAttribute="centerY" id="ufB-2e-X6t"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loadingSpinner" destination="UJa-HQ-YIm" id="jXd-t3-86I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TB3-OF-7OF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="534" y="112"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="loadingScreen" width="768" height="1024"/>
+    </resources>
+</document>

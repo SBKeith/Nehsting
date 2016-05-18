@@ -1,7 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jNi-QI-qPG">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Logout View Controller-->
+        <scene sceneID="l5t-E8-WHg">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" id="jNi-QI-qPG" customClass="LogoutViewController" customModule="Nesting" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bwg-J1-Scj"/>
+                        <viewControllerLayoutGuide type="bottom" id="SRx-80-cgL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dSV-L8-tcl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QwZ-om-CSg">
+                                <rect key="frame" x="269" y="285" width="62" height="30"/>
+                                <state key="normal" title="LOGOUT"/>
+                                <connections>
+                                    <action selector="logoutButtonTapped:" destination="jNi-QI-qPG" eventType="touchUpInside" id="Sby-xB-6c8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nm-2X-dnL">
+                                <rect key="frame" x="20" y="20" width="46" height="30"/>
+                                <state key="normal" title="DONE"/>
+                                <connections>
+                                    <action selector="doneButtonTapped:" destination="jNi-QI-qPG" eventType="touchUpInside" id="Kaa-8b-Rhz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QwZ-om-CSg" firstAttribute="centerY" secondItem="dSV-L8-tcl" secondAttribute="centerY" id="fQD-jM-i5b"/>
+                            <constraint firstItem="QwZ-om-CSg" firstAttribute="centerX" secondItem="dSV-L8-tcl" secondAttribute="centerX" id="kyG-4T-CrQ"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="ArY-pF-v7b"/>
+                    </toolbarItems>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vNb-of-Fik" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="482" y="309"/>
+        </scene>
+    </scenes>
 </document>

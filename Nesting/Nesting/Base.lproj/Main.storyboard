@@ -5,6 +5,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
+        <!--Logout-->
+        <scene sceneID="RBM-3g-qxZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Logout" id="MkX-0T-VMe" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MtR-Ns-vlD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="493" y="-286"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -21,17 +29,23 @@
                                 <rect key="frame" x="0.0" y="-20" width="600" height="620"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="262-Gm-NrW">
+                                <rect key="frame" x="20" y="8" width="22" height="22"/>
+                                <connections>
+                                    <segue destination="MkX-0T-VMe" kind="presentation" modalTransitionStyle="crossDissolve" id="3I7-i7-ZF5"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyc-aC-BMm">
-                                <rect key="frame" x="258.5" y="509" width="83" height="83"/>
+                                <rect key="frame" x="258" y="509" width="83" height="83"/>
                                 <state key="normal" backgroundImage="offButton"/>
                                 <connections>
                                     <action selector="mainButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hWO-SR-VUV"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAV-s7-W6F">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAV-s7-W6F">
                                 <rect key="frame" x="300" y="300" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="150"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.74950520833333334" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -39,10 +53,12 @@
                             <constraint firstItem="uAV-s7-W6F" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6QQ-uz-TfS"/>
                             <constraint firstItem="uAV-s7-W6F" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8Fs-DO-oHK"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Wyc-aC-BMm" secondAttribute="bottom" constant="8" symbolic="YES" id="Bvs-Im-KXd"/>
+                            <constraint firstItem="262-Gm-NrW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="S63-Pb-n8f"/>
                             <constraint firstAttribute="trailing" secondItem="TLd-7T-zH6" secondAttribute="trailing" id="Xt2-Vq-ljt"/>
                             <constraint firstItem="TLd-7T-zH6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="cPh-UA-KLt"/>
                             <constraint firstItem="Wyc-aC-BMm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iGa-XM-so8"/>
                             <constraint firstItem="TLd-7T-zH6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lrM-jT-irf"/>
+                            <constraint firstItem="262-Gm-NrW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="may-zq-UJA"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="TLd-7T-zH6" secondAttribute="bottom" id="zh0-GG-ktC"/>
                         </constraints>
                     </view>
