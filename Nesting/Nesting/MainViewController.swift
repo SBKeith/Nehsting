@@ -9,21 +9,32 @@
 import UIKit
 import NestSDK
 
+let indicator: UIActivityIndicatorView = UIActivityIndicatorView (activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+
 class MainViewController: UIViewController {
     
     @IBOutlet weak var displayValue: UILabel!
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var mainButton: UIButton!
-    
+
+    let container: UIView = UIView()
+    let loadingView: UIView = UIView()
+
     // Singleton Values
     var sharedDataManager = SharedDataSingleton.sharedDataManager
     var sharedNetworkManager = NetworkingDataSingleton.sharedNetworkManager
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        showLoadingScreen(self.view)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(launchAlertViewServerError), name: "displayErrorAlert", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(hideLoadingScreen), name: "hideLoadingScreen", object: nil)
         displayValuesUpdate()
     }
     
@@ -36,13 +47,59 @@ class MainViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    // MARK: -HELPER METHODS
+    
+    // Show loading screen function
+    func showLoadingScreen(uiView: UIView) {
+        
+        // Add background
+        container.frame = uiView.frame
+        container.center = uiView.center
+        container.backgroundColor = UIColor.whiteColor()
+        uiView.addSubview(container)
+        
+        // Add transparent box overlay
+        loadingView.frame = CGRectMake(0, 0, 150, 150)
+        loadingView.center = uiView.center
+        loadingView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.7)
+        loadingView.clipsToBounds = true
+        loadingView.layer.cornerRadius = 10
+        
+        let label = UILabel(frame: CGRectMake(0, 0, 125, 20))
+//        label.textAlignment = NSTextAlignment.Center
+        label.text = "Connecting to Server..."
+        label.adjustsFontSizeToFitWidth = true
+        loadingView.addSubview(label)
+        
+        container.addSubview(loadingView)
+        
+        // Add spinner animation
+        indicator.center = self.view.center
+        uiView.addSubview(indicator)
+        indicator.startAnimating()
+    }
+    
+    // Fade out of loading screen function
+    func hideLoadingScreen(notification: NSNotification) {
+        
+        UIView.animateWithDuration(1.5, animations: {
+            indicator.alpha = 0
+            self.loadingView.alpha = 0
+            self.container.alpha = 0
+        }) { complete in
+            indicator.stopAnimating()
+            indicator.hidden = true
+            self.container.hidden = true
+            self.loadingView.hidden = true
+        }
+    }
+    
     // MARK: -SET VALUES
     
     // Update display values
     func displayValuesUpdate() {
 
         sharedNetworkManager.observeStructures( { (temp, hvacMode) in
-            
             if let hvacMode = hvacMode, temp = temp {
                 self.sharedDataManager.hvacMode = hvacMode
                 self.sharedDataManager.temperature = temp
@@ -196,3 +253,4 @@ class MainViewController: UIViewController {
         presentViewController(alertView, animated: true, completion: nil)
     }
 }
+

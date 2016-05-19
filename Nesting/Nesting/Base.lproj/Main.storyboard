@@ -76,8 +76,53 @@
             </objects>
             <point key="canvasLocation" x="39" y="0.0"/>
         </scene>
+        <!--Loading Screen View Controller-->
+        <scene sceneID="0go-p4-WRa">
+            <objects>
+                <viewController id="C61-I8-b5E" customClass="LoadingScreenViewController" customModule="Nesting" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rLT-Gu-lRZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hlj-At-Qfq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4fY-0y-YEI">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadingScreen" translatesAutoresizingMaskIntoConstraints="NO" id="EW3-sj-E9Y">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="kIn-uU-TaU">
+                                <rect key="frame" x="273" y="273" width="55" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="CTZ-45-HPw"/>
+                                    <constraint firstAttribute="height" constant="55" id="bvA-k8-eKW"/>
+                                </constraints>
+                                <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="EW3-sj-E9Y" secondAttribute="trailing" id="4Gn-Ji-hsl"/>
+                            <constraint firstItem="Hlj-At-Qfq" firstAttribute="top" secondItem="EW3-sj-E9Y" secondAttribute="bottom" id="6xD-AZ-Bzd"/>
+                            <constraint firstItem="EW3-sj-E9Y" firstAttribute="leading" secondItem="4fY-0y-YEI" secondAttribute="leading" id="CkN-dA-cjf"/>
+                            <constraint firstItem="kIn-uU-TaU" firstAttribute="centerX" secondItem="4fY-0y-YEI" secondAttribute="centerX" id="K8X-zt-O60"/>
+                            <constraint firstItem="EW3-sj-E9Y" firstAttribute="leading" secondItem="4fY-0y-YEI" secondAttribute="leading" id="lQo-G3-Xdf"/>
+                            <constraint firstItem="kIn-uU-TaU" firstAttribute="centerY" secondItem="4fY-0y-YEI" secondAttribute="centerY" id="nok-ct-077"/>
+                            <constraint firstItem="EW3-sj-E9Y" firstAttribute="top" secondItem="rLT-Gu-lRZ" secondAttribute="bottom" id="xRK-2v-7dg"/>
+                            <constraint firstAttribute="trailing" secondItem="EW3-sj-E9Y" secondAttribute="trailing" id="zJN-RQ-8NK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loadingSpinner" destination="kIn-uU-TaU" id="idI-zV-MJg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S7M-TR-rXD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="863" y="10"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="loadingScreen" width="768" height="1024"/>
         <image name="offButton" width="83" height="83"/>
     </resources>
 </document>

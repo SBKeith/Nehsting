@@ -42,14 +42,13 @@ class NetworkingDataSingleton {
             // Structure may change while observing, so remove all current device observers and then set all new ones
             self.removeDevicesObservers()
             
-            
+
             // Iterate through all structures and set observers for all devices
             for structure in structuresArray as! [NestSDKStructure] {
                 
-                
                 self.observeThermostatsWithinStructure(structure, tempHandler: { (temp, hvacMode) in
                     tempClosure(temp: temp, hvacMode: hvacMode)
-                    
+                    NSNotificationCenter.defaultCenter().postNotificationName("hideLoadingScreen", object: nil)
                 })
 //                print("Structure: \(structure.name)")
             }
@@ -62,12 +61,10 @@ class NetworkingDataSingleton {
 ////// Observe Thermostat(s)
     func observeThermostatsWithinStructure(structure: NestSDKStructure, tempHandler: (temp: UInt?, hvacMode: UInt?) -> Void) {
         
-        NSNotificationCenter.defaultCenter().postNotificationName("hideLoadingScreen", object: nil)
-        
         print("GOT HERE")
 
-        
         for thermostatId in structure.thermostats as! [String] {
+            
             
             let handle = dataManager.observeThermostatWithId(thermostatId, block: {
                 thermostat, error in
@@ -76,7 +73,6 @@ class NetworkingDataSingleton {
                     print("Error observing thermostat")
                     tempHandler(temp: nil, hvacMode: nil)
                 } else {
-                    
                     self.thermostat = thermostat
                     self.getAndLocallySetThermostatTemperature()
                     

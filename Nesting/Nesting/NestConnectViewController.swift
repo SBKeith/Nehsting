@@ -28,10 +28,9 @@ class NestConnectViewController: UIViewController {
             sharedNetworkManager.observeStructures( { temp in
             })
             
-//            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Main") as! MainViewController
-//            presentViewController(vc, animated: true, completion: nil)
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Main") as! MainViewController
+            presentViewController(vc, animated: true, completion: nil)
             
-            displayLoadingScreen()
         }
     }
     
@@ -58,11 +57,5 @@ class NestConnectViewController: UIViewController {
                 print("Authorized!")
             }
         })
-    }
-    
-    func displayLoadingScreen() {
-        
-        let vc = UIStoryboard(name: "LoadingScreen", bundle: nil).instantiateViewControllerWithIdentifier("Loading") as! LoadingScreenViewController
-        presentViewController(vc, animated: true, completion: nil)
     }
 }

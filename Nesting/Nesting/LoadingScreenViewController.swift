@@ -16,25 +16,15 @@ class LoadingScreenViewController: UIViewController {
         
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(hideLoadingScreen), name: "hideLoadingScreen", object: nil)
-        
-        loadingSpinner.startAnimating()
     }
     
     override func viewWillDisappear(animated: Bool) {
         
         super.viewWillDisappear(animated)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-        
         loadingSpinner.stopAnimating()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    func hideLoadingScreen(notification: NSNotification) {
-        
-        dismissViewControllerAnimated(true, completion: nil)
-        
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Main") as! MainViewController
-        presentViewController(vc, animated: true, completion: nil)
-    }
+    
 }
