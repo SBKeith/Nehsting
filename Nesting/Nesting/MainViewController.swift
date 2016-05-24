@@ -55,7 +55,7 @@ class MainViewController: UIViewController {
         // Add background
         container.frame = uiView.frame
         container.center = uiView.center
-        container.backgroundColor = UIColor.whiteColor()
+        container.addSubview(UIImageView(image: UIImage(named: "loadingScreen")))
         uiView.addSubview(container)
         
         // Add transparent box overlay
@@ -66,10 +66,11 @@ class MainViewController: UIViewController {
         loadingView.layer.cornerRadius = 10
         
         let label = UILabel(frame: CGRectMake(0, 0, 125, 20))
-//        label.textAlignment = NSTextAlignment.Center
         label.text = "Connecting to Server..."
         label.adjustsFontSizeToFitWidth = true
+        label.textColor = UIColor.whiteColor()
         loadingView.addSubview(label)
+        label.center = CGPointMake(loadingView.frame.size.width / 2, 20)
         
         container.addSubview(loadingView)
         

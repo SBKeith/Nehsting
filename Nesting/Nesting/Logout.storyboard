@@ -31,21 +31,33 @@
                                     <action selector="doneButtonTapped:" destination="jNi-QI-qPG" eventType="touchUpInside" id="Kaa-8b-Rhz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFq-vB-QFj" userLabel="Home / Away Button">
+                                <rect key="frame" x="277" y="323" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="homeOrAwayButtonTapped:" destination="jNi-QI-qPG" eventType="touchUpInside" id="AAz-Sa-GEU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="dFq-vB-QFj" firstAttribute="centerX" secondItem="dSV-L8-tcl" secondAttribute="centerX" id="Xlf-qO-jiM"/>
                             <constraint firstItem="QwZ-om-CSg" firstAttribute="centerY" secondItem="dSV-L8-tcl" secondAttribute="centerY" id="fQD-jM-i5b"/>
                             <constraint firstItem="QwZ-om-CSg" firstAttribute="centerX" secondItem="dSV-L8-tcl" secondAttribute="centerX" id="kyG-4T-CrQ"/>
+                            <constraint firstItem="dFq-vB-QFj" firstAttribute="top" secondItem="QwZ-om-CSg" secondAttribute="bottom" constant="8" id="o2Q-Ly-98u"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems>
                         <barButtonItem title="Item" id="ArY-pF-v7b"/>
                     </toolbarItems>
+                    <connections>
+                        <outlet property="homeOrAwayButton" destination="dFq-vB-QFj" id="Yar-Ts-Rf0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vNb-of-Fik" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="482" y="309"/>
+            <point key="canvasLocation" x="468" y="497"/>
         </scene>
     </scenes>
 </document>

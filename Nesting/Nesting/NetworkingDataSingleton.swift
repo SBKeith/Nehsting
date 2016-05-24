@@ -26,6 +26,9 @@ class NetworkingDataSingleton {
     // Thermostat Values
     var thermostat: NestSDKThermostat?
     
+    // Structure Values
+    var structureID: NestSDKStructure?
+    
     // MARK: STRUCTURES / THERMOSTAT FUNCTIONS
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -46,6 +49,9 @@ class NetworkingDataSingleton {
             // Iterate through all structures and set observers for all devices
             for structure in structuresArray as! [NestSDKStructure] {
                 
+                self.structureID = structure
+                self.getAndLocallySetStructure()
+                
                 self.observeThermostatsWithinStructure(structure, tempHandler: { (temp, hvacMode) in
                     tempClosure(temp: temp, hvacMode: hvacMode)
                     NSNotificationCenter.defaultCenter().postNotificationName("hideLoadingScreen", object: nil)
@@ -61,8 +67,6 @@ class NetworkingDataSingleton {
 ////// Observe Thermostat(s)
     func observeThermostatsWithinStructure(structure: NestSDKStructure, tempHandler: (temp: UInt?, hvacMode: UInt?) -> Void) {
         
-        print("GOT HERE")
-
         for thermostatId in structure.thermostats as! [String] {
             
             
@@ -115,6 +119,11 @@ class NetworkingDataSingleton {
         self.sharedDataManager.hvacMode = (self.thermostat?.hvacMode.rawValue)!
     }
     
+    func getAndLocallySetStructure() {
+        
+        self.sharedDataManager.homeOrAwayStatus = (self.structureID?.away.rawValue)!
+    }
+    
     // Update thermostat HVAC
     func networkHVACUpdate() {
         
@@ -136,6 +145,23 @@ class NetworkingDataSingleton {
         
         self.thermostat?.targetTemperatureF = sharedDataManager.temperature
         self.dataManager.setThermostat(self.thermostat, block: { (thermostat, error) in
+            
+            let errorResult = error != nil ? "ERROR" : "SUCCESS"
+            
+            if errorResult == "ERROR" {
+                NSNotificationCenter.defaultCenter().postNotificationName("displayErrorAlert", object: nil)
+            }
+        })
+    }
+    
+    // Update structure status
+    func structureHomeOrAwayStatusUpdate() {
+        
+        self.structureID?.away = NestSDKStructureAwayState(rawValue: sharedDataManager.homeOrAwayStatus!)!
+        
+        print(self.structureID!.away.rawValue)
+        
+        self.dataManager.setStructure(self.structureID, block: { (structure, error) in
             
             let errorResult = error != nil ? "ERROR" : "SUCCESS"
             
