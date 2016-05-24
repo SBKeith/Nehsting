@@ -158,9 +158,6 @@ class NetworkingDataSingleton {
     func structureHomeOrAwayStatusUpdate() {
         
         self.structureID?.away = NestSDKStructureAwayState(rawValue: sharedDataManager.homeOrAwayStatus!)!
-        
-        print(self.structureID!.away.rawValue)
-        
         self.dataManager.setStructure(self.structureID, block: { (structure, error) in
             
             let errorResult = error != nil ? "ERROR" : "SUCCESS"
@@ -170,6 +167,4 @@ class NetworkingDataSingleton {
             }
         })
     }
-    
-    
 }
