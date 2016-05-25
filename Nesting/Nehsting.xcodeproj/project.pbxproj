@@ -19,7 +19,6 @@
 		473DC87A1CAC5032000E6B8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 473DC8781CAC5032000E6B8B /* Main.storyboard */; };
 		473DC87D1CAC5032000E6B8B /* Nesting.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 473DC87B1CAC5032000E6B8B /* Nesting.xcdatamodeld */; };
 		473DC87F1CAC5032000E6B8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 473DC87E1CAC5032000E6B8B /* Assets.xcassets */; };
-		473DC8821CAC5032000E6B8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 473DC8801CAC5032000E6B8B /* LaunchScreen.storyboard */; };
 		473DC88D1CAC5032000E6B8B /* NestingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC88C1CAC5032000E6B8B /* NestingTests.swift */; };
 		473DC8981CAC5032000E6B8B /* NestingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8971CAC5032000E6B8B /* NestingUITests.swift */; };
 		473DC8B81CAC8D19000E6B8B /* SharedDataSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473DC8B71CAC8D19000E6B8B /* SharedDataSingleton.swift */; };
@@ -51,13 +50,12 @@
 		471BE25E1CECD75100EB8380 /* launchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = launchScreen.xib; sourceTree = "<group>"; };
 		471BE2621CED18E400EB8380 /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
 		472EC22E1CB82EBA00D7CC9F /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		473DC8711CAC5032000E6B8B /* Nesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		473DC8711CAC5032000E6B8B /* Nehsting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nehsting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		473DC8741CAC5032000E6B8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		473DC8761CAC5032000E6B8B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		473DC8791CAC5032000E6B8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		473DC87C1CAC5032000E6B8B /* Nesting.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Nesting.xcdatamodel; sourceTree = "<group>"; };
 		473DC87E1CAC5032000E6B8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		473DC8811CAC5032000E6B8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		473DC8831CAC5032000E6B8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		473DC8881CAC5032000E6B8B /* NestingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NestingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		473DC88C1CAC5032000E6B8B /* NestingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestingTests.swift; sourceTree = "<group>"; };
@@ -69,6 +67,9 @@
 		6ABB2C568D2D02EC10069AAF /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32F4A006F1EC2289F804244 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B7F77959087765B3A34B16F3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D81E73F91CF599AC00F57B02 /* JSONModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSONModel.framework; path = "Pods/../build/Release-iphoneos/JSONModel.framework"; sourceTree = "<group>"; };
+		D81E73FA1CF599AC00F57B02 /* NestSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NestSDK.framework; path = "Pods/../build/Release-iphoneos/NestSDK.framework"; sourceTree = "<group>"; };
+		D81E73FB1CF599AC00F57B02 /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = "Pods/../build/Release-iphoneos/SSKeychain.framework"; sourceTree = "<group>"; };
 		D8BF0ACC1CC8C11C001CA91D /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		D8BF0ACE1CC8C2A1001CA91D /* NestConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestConnectViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,7 +123,7 @@
 		473DC8721CAC5032000E6B8B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				473DC8711CAC5032000E6B8B /* Nesting.app */,
+				473DC8711CAC5032000E6B8B /* Nehsting.app */,
 				473DC8881CAC5032000E6B8B /* NestingTests.xctest */,
 				473DC8931CAC5032000E6B8B /* NestingUITests.xctest */,
 			);
@@ -166,7 +167,6 @@
 				473DC8741CAC5032000E6B8B /* AppDelegate.swift */,
 				473DC8831CAC5032000E6B8B /* Info.plist */,
 				473DC87B1CAC5032000E6B8B /* Nesting.xcdatamodeld */,
-				473DC8801CAC5032000E6B8B /* LaunchScreen.storyboard */,
 				471BE25E1CECD75100EB8380 /* launchScreen.xib */,
 			);
 			name = Support;
@@ -214,6 +214,9 @@
 		D73D53CAEDA5EADAE7B0A93E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D81E73F91CF599AC00F57B02 /* JSONModel.framework */,
+				D81E73FA1CF599AC00F57B02 /* NestSDK.framework */,
+				D81E73FB1CF599AC00F57B02 /* SSKeychain.framework */,
 				6ABB2C568D2D02EC10069AAF /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -239,7 +242,7 @@
 			);
 			name = Nehsting;
 			productName = Nesting;
-			productReference = 473DC8711CAC5032000E6B8B /* Nesting.app */;
+			productReference = 473DC8711CAC5032000E6B8B /* Nehsting.app */;
 			productType = "com.apple.product-type.application";
 		};
 		473DC8871CAC5032000E6B8B /* NestingTests */ = {
@@ -328,7 +331,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				471BE25F1CECD75100EB8380 /* launchScreen.xib in Resources */,
-				473DC8821CAC5032000E6B8B /* LaunchScreen.storyboard in Resources */,
 				473DC87F1CAC5032000E6B8B /* Assets.xcassets in Resources */,
 				D8BF0ACD1CC8C11C001CA91D /* SignIn.storyboard in Resources */,
 				473DC87A1CAC5032000E6B8B /* Main.storyboard in Resources */,
@@ -457,14 +459,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		473DC8801CAC5032000E6B8B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				473DC8811CAC5032000E6B8B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -556,10 +550,14 @@
 			baseConfigurationReference = B7F77959087765B3A34B16F3 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Keith Kowalski (L5YJU4WM22)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
+				);
 				INFOPLIST_FILE = Nesting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kkowalski.Nehsting;
@@ -574,10 +572,14 @@
 			baseConfigurationReference = B7F77959087765B3A34B16F3 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Keith Kowalski (L5YJU4WM22)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
+				);
 				INFOPLIST_FILE = Nesting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kkowalski.Nehsting;
