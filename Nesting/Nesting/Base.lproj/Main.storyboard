@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Logout-->
@@ -32,7 +33,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="262-Gm-NrW">
                                 <rect key="frame" x="20" y="8" width="22" height="22"/>
                                 <connections>
-                                    <segue destination="MkX-0T-VMe" kind="presentation" modalTransitionStyle="crossDissolve" id="3I7-i7-ZF5"/>
+                                    <segue destination="MkX-0T-VMe" kind="presentation" identifier="kSettingsID" modalTransitionStyle="crossDissolve" id="3I7-i7-ZF5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyc-aC-BMm">
@@ -48,19 +49,34 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.74950520833333334" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-leaf" translatesAutoresizingMaskIntoConstraints="NO" id="c8O-RF-VP0">
+                                <rect key="frame" x="270" y="232" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Whh-e3-vTv"/>
+                                    <constraint firstAttribute="height" constant="60" id="eml-In-Pq8"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="uAV-s7-W6F" firstAttribute="top" secondItem="c8O-RF-VP0" secondAttribute="bottom" constant="8" symbolic="YES" id="039-6D-CQ1"/>
                             <constraint firstItem="uAV-s7-W6F" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6QQ-uz-TfS"/>
                             <constraint firstItem="uAV-s7-W6F" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8Fs-DO-oHK"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Wyc-aC-BMm" secondAttribute="bottom" constant="8" symbolic="YES" id="Bvs-Im-KXd"/>
+                            <constraint firstItem="c8O-RF-VP0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.6" id="MLY-pZ-pde"/>
                             <constraint firstItem="262-Gm-NrW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="S63-Pb-n8f"/>
                             <constraint firstAttribute="trailing" secondItem="TLd-7T-zH6" secondAttribute="trailing" id="Xt2-Vq-ljt"/>
                             <constraint firstItem="TLd-7T-zH6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="cPh-UA-KLt"/>
                             <constraint firstItem="Wyc-aC-BMm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iGa-XM-so8"/>
                             <constraint firstItem="TLd-7T-zH6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lrM-jT-irf"/>
                             <constraint firstItem="262-Gm-NrW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="may-zq-UJA"/>
+                            <constraint firstItem="c8O-RF-VP0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yEN-Pt-fxt"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="TLd-7T-zH6" secondAttribute="bottom" id="zh0-GG-ktC"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="MLY-pZ-pde"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="eok-IY-Csj"/>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -69,6 +85,7 @@
                     <connections>
                         <outlet property="displayValue" destination="uAV-s7-W6F" id="In3-UW-rAX"/>
                         <outlet property="gradientView" destination="TLd-7T-zH6" id="g7W-AJ-fHO"/>
+                        <outlet property="leafImageView" destination="c8O-RF-VP0" id="vhS-KW-yia"/>
                         <outlet property="mainButton" destination="Wyc-aC-BMm" id="mcU-sx-TKy"/>
                     </connections>
                 </viewController>
@@ -78,6 +95,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icon-leaf" width="292" height="317"/>
         <image name="offButton" width="83" height="83"/>
     </resources>
 </document>

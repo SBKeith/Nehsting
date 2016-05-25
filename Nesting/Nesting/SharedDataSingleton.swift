@@ -18,6 +18,7 @@ class SharedDataSingleton {
     var hvacMode: UInt = 4       // 4 == OFF
     var temperature: UInt = 75   // initial temperature
     var homeOrAwayStatus: UInt?
+    var leafHidden: Bool?
     
     // Thermostat max and min constants
     let kMAXTEMP = 90
@@ -51,6 +52,4 @@ class SharedDataSingleton {
         
         return UIColor(red: red/255, green: green/255, blue: blue/255, alpha:1.0).CGColor
     }
-
-    
 }

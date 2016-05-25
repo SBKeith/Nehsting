@@ -117,7 +117,12 @@ class NetworkingDataSingleton {
         
         // Set hvacMode
         self.sharedDataManager.hvacMode = (self.thermostat?.hvacMode.rawValue)!
+        
+        // Set leaf icon
+        self.sharedDataManager.leafHidden = (self.thermostat?.hasLeaf)!
     }
+    
+    
     
     func getAndLocallySetStructure() {
         
