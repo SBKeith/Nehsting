@@ -16,6 +16,7 @@ class NestConnectViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -29,6 +30,7 @@ class NestConnectViewController: UIViewController {
             
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Main") as! MainViewController
             presentViewController(vc, animated: true, completion: nil)
+            
         }
     }
     

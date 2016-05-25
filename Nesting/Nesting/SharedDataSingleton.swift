@@ -17,6 +17,8 @@ class SharedDataSingleton {
     // Variables and constants
     var hvacMode: UInt = 4       // 4 == OFF
     var temperature: UInt = 75   // initial temperature
+    var homeOrAwayStatus: UInt?
+    var leafHidden: Bool?
     
     // Thermostat max and min constants
     let kMAXTEMP = 90
@@ -25,7 +27,6 @@ class SharedDataSingleton {
     // Values that are responsible for increasing / decreasing gradient color values
     let tempDifferential_1: CGFloat = 10.0
     let tempDifferential_2: CGFloat = 30.0
-    
     
     // Parsed value for finger drag
     var valueParser = 0
@@ -51,6 +52,4 @@ class SharedDataSingleton {
         
         return UIColor(red: red/255, green: green/255, blue: blue/255, alpha:1.0).CGColor
     }
-
-    
 }

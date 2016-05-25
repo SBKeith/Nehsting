@@ -9,19 +9,34 @@
 import UIKit
 import NestSDK
 
+let indicator: UIActivityIndicatorView = UIActivityIndicatorView (activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+
 class MainViewController: UIViewController {
     
     @IBOutlet weak var displayValue: UILabel!
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var mainButton: UIButton!
-    
+    @IBOutlet weak var leafImageView: UIImageView!
+
+    let container: UIView = UIView()
+    let loadingView: UIView = UIView()
+
     // Singleton Values
     var sharedDataManager = SharedDataSingleton.sharedDataManager
     var sharedNetworkManager = NetworkingDataSingleton.sharedNetworkManager
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        showLoadingScreen(self.view)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
+        UIApplication.sharedApplication().statusBarStyle = .Default
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(launchAlertViewServerError), name: "displayErrorAlert", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(hideLoadingScreen), name: "hideLoadingScreen", object: nil)
         displayValuesUpdate()
     }
     
@@ -29,7 +44,57 @@ class MainViewController: UIViewController {
         
         super.viewWillDisappear(animated)
         
+        // Remove observers
         sharedNetworkManager.removeObservers()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    // MARK: -HELPER METHODS
+    
+    // Show loading screen function
+    func showLoadingScreen(uiView: UIView) {
+        
+        // Add background
+        container.frame = uiView.frame
+        container.center = uiView.center
+        container.addSubview(UIImageView(image: UIImage(named: "loadingScreen")))
+        uiView.addSubview(container)
+        
+        // Add transparent box overlay
+        loadingView.frame = CGRectMake(0, 0, 150, 150)
+        loadingView.center = uiView.center
+        loadingView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.7)
+        loadingView.clipsToBounds = true
+        loadingView.layer.cornerRadius = 10
+        
+        let label = UILabel(frame: CGRectMake(0, 0, 125, 20))
+        label.text = "Connecting to Server..."
+        label.adjustsFontSizeToFitWidth = true
+        label.textColor = UIColor.whiteColor()
+        loadingView.addSubview(label)
+        label.center = CGPointMake(loadingView.frame.size.width / 2, 20)
+        
+        container.addSubview(loadingView)
+        
+        // Add spinner animation
+        indicator.center = self.view.center
+        uiView.addSubview(indicator)
+        indicator.startAnimating()
+    }
+    
+    // Fade out of loading screen function
+    func hideLoadingScreen(notification: NSNotification) {
+        
+        UIView.animateWithDuration(1.5, animations: {
+            indicator.alpha = 0
+            self.loadingView.alpha = 0
+            self.container.alpha = 0
+        }) { complete in
+            indicator.stopAnimating()
+            indicator.hidden = true
+            self.container.hidden = true
+            self.loadingView.hidden = true
+        }
     }
     
     // MARK: -SET VALUES
@@ -38,12 +103,12 @@ class MainViewController: UIViewController {
     func displayValuesUpdate() {
 
         sharedNetworkManager.observeStructures( { (temp, hvacMode) in
-            
             if let hvacMode = hvacMode, temp = temp {
                 self.sharedDataManager.hvacMode = hvacMode
                 self.sharedDataManager.temperature = temp
                 self.setMainButton()
                 self.setDisplayTemp()
+                self.showOrHideLeafImage()
             }
         })
     }
@@ -54,15 +119,25 @@ class MainViewController: UIViewController {
         if let hvacMode: UInt = sharedDataManager.hvacMode {
             switch(Int(hvacMode)) {
                 case 1: // HEAT
+                    // Set Image Values
                     mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[0], forState: .Normal)
+                    mainButton.setTitle("HEAT", forState: .Normal)
                     // Set Gradient
                     gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbHeat.0, green: sharedDataManager.rgbHeat.1, blue: sharedDataManager.rgbHeat.2))
+                
                 case 2: // COOL
+                    // Set Image Values
                     mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[1], forState: .Normal)
+                    mainButton.setTitle("COOL", forState: .Normal)
+                    // Set Gradient
                     gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbCool.0, green: sharedDataManager.rgbCool.1, blue: sharedDataManager.rgbCool.2))
-
+                
                 case 4: // OFF
+                    // Set Image Values
                     mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[2], forState: .Normal)
+                    mainButton.setTitle("OFF", forState: .Normal)
+                    
+                    // Set Gradient
                     gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbOff.0, green: sharedDataManager.rgbOff.1, blue: sharedDataManager.rgbOff.2))
                 default:
                     break
@@ -83,6 +158,11 @@ class MainViewController: UIViewController {
                     break
             }
         }
+    }
+    
+    func showOrHideLeafImage() {
+        
+        sharedDataManager.leafHidden! == true ? (leafImageView.hidden = false) : (leafImageView.hidden = true)
     }
     
     // MARK: USER INTERACTION FUNCTIONS
@@ -174,4 +254,12 @@ class MainViewController: UIViewController {
         
         return ((Int(sharedDataManager.temperature) < sharedDataManager.kMAXTEMP), (Int(sharedDataManager.temperature) > sharedDataManager.kMINTEMP))
     }
+    
+    func launchAlertViewServerError(notification: NSNotification) {
+        
+        let alertView = UIAlertController(title: "Server Error", message: "Nest server has blocked your request, due to too many calls.  Please try again after a few minutes.", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        presentViewController(alertView, animated: true, completion: nil)
+    }
 }
+
