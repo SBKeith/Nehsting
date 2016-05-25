@@ -32,7 +32,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="262-Gm-NrW">
                                 <rect key="frame" x="20" y="8" width="22" height="22"/>
                                 <connections>
-                                    <segue destination="MkX-0T-VMe" kind="presentation" modalTransitionStyle="crossDissolve" id="3I7-i7-ZF5"/>
+                                    <segue destination="MkX-0T-VMe" kind="presentation" identifier="kSettingsID" modalTransitionStyle="crossDissolve" id="3I7-i7-ZF5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyc-aC-BMm">

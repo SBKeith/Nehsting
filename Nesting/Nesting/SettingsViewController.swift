@@ -9,13 +9,21 @@
 import UIKit
 import NestSDK
 
-class LogoutViewController: UIViewController {
+class SettingsViewController: UIViewController {
     
+    @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var homeOrAwayButton: UIButton!
     
     let sharedNetworkManager = NetworkingDataSingleton.sharedNetworkManager
     let sharedDataManager = SharedDataSingleton.sharedDataManager
 
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        backgroundView.addSubview(UIImageView(image: UIImage(named: "loadingScreen")))
+    }
+    
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
@@ -23,9 +31,10 @@ class LogoutViewController: UIViewController {
         homeOrAwayButton.setTitle("\(sharedDataManager.homeOrAwayStatus!)", forState: .Normal)
     }
     
-    @IBAction func doneButtonTapped(sender: UIButton) {
+    @IBAction func doneButtonTapped(sender: UIBarButtonItem) {
         
         dismissViewControllerAnimated(true, completion: nil)
+
     }
     
     @IBAction func logoutButtonTapped(sender: UIButton) {

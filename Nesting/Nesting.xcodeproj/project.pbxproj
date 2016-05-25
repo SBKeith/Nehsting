@@ -10,7 +10,7 @@
 		46960C2E4E839CCEEEA5DF3D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ABB2C568D2D02EC10069AAF /* Pods.framework */; };
 		470C4DF11CC9877500CDDFF5 /* NetworkingDataSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C4DF01CC9877500CDDFF5 /* NetworkingDataSingleton.swift */; };
 		471BE25B1CEBB54700EB8380 /* Logout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 471BE25A1CEBB54700EB8380 /* Logout.storyboard */; };
-		471BE25D1CEBC36900EB8380 /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE25C1CEBC36900EB8380 /* LogoutViewController.swift */; };
+		471BE25D1CEBC36900EB8380 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE25C1CEBC36900EB8380 /* SettingsViewController.swift */; };
 		471BE25F1CECD75100EB8380 /* launchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 471BE25E1CECD75100EB8380 /* launchScreen.xib */; };
 		471BE2631CED18E400EB8380 /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471BE2621CED18E400EB8380 /* LoadingScreenViewController.swift */; };
 		472EC22F1CB82EBA00D7CC9F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472EC22E1CB82EBA00D7CC9F /* GradientView.swift */; };
@@ -47,7 +47,7 @@
 /* Begin PBXFileReference section */
 		470C4DF01CC9877500CDDFF5 /* NetworkingDataSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingDataSingleton.swift; sourceTree = "<group>"; };
 		471BE25A1CEBB54700EB8380 /* Logout.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Logout.storyboard; sourceTree = "<group>"; };
-		471BE25C1CEBC36900EB8380 /* LogoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
+		471BE25C1CEBC36900EB8380 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		471BE25E1CECD75100EB8380 /* launchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = launchScreen.xib; sourceTree = "<group>"; };
 		471BE2621CED18E400EB8380 /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
 		472EC22E1CB82EBA00D7CC9F /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
@@ -187,7 +187,7 @@
 			children = (
 				D8BF0ACE1CC8C2A1001CA91D /* NestConnectViewController.swift */,
 				473DC8761CAC5032000E6B8B /* MainViewController.swift */,
-				471BE25C1CEBC36900EB8380 /* LogoutViewController.swift */,
+				471BE25C1CEBC36900EB8380 /* SettingsViewController.swift */,
 				471BE2621CED18E400EB8380 /* LoadingScreenViewController.swift */,
 			);
 			name = "View Controllers";
@@ -412,7 +412,7 @@
 				473DC8B81CAC8D19000E6B8B /* SharedDataSingleton.swift in Sources */,
 				471BE2631CED18E400EB8380 /* LoadingScreenViewController.swift in Sources */,
 				D8BF0ACF1CC8C2A1001CA91D /* NestConnectViewController.swift in Sources */,
-				471BE25D1CEBC36900EB8380 /* LogoutViewController.swift in Sources */,
+				471BE25D1CEBC36900EB8380 /* SettingsViewController.swift in Sources */,
 				472EC22F1CB82EBA00D7CC9F /* GradientView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
