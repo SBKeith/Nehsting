@@ -1,0 +1,1 @@
+../../../NestSDK/NestSDK/NestSDK/NestSDKDeviceDataModel.h
