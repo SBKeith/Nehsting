@@ -18,28 +18,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2A-aJ-zpp">
-                                <rect key="frame" x="237" y="8" width="127" height="30"/>
-                                <state key="normal" title="Connect with Nest"/>
+                                <rect key="frame" x="237" y="112" width="127" height="30"/>
+                                <state key="normal" title="Connect with Nest">
+                                    <color key="titleColor" red="0.08235294118" green="0.62745098040000002" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="connectWithNestButtonTapped:" destination="Ont-ZM-m11" eventType="touchUpInside" id="Fws-r0-g2f"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mx5-LE-fUn">
-                                <rect key="frame" x="20" y="46" width="560" height="546"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAj-lm-bSB">
+                                <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="Zmm-qf-fDG"/>
+                                    <constraint firstAttribute="height" constant="300" id="xmd-MO-MdX"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="NehstingLeaf"/>
+                                <connections>
+                                    <action selector="connectWithNestButtonTapped:" destination="Ont-ZM-m11" eventType="touchUpInside" id="SQe-aJ-Xyb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Mx5-LE-fUn" firstAttribute="top" secondItem="X2A-aJ-zpp" secondAttribute="bottom" constant="8" symbolic="YES" id="0gg-Oz-gRJ"/>
-                            <constraint firstItem="Mx5-LE-fUn" firstAttribute="leading" secondItem="Zzu-fG-ORg" secondAttribute="leading" constant="20" symbolic="YES" id="9jH-cx-dgh"/>
                             <constraint firstItem="X2A-aJ-zpp" firstAttribute="centerX" secondItem="Zzu-fG-ORg" secondAttribute="centerX" id="FVH-A4-eyP"/>
+                            <constraint firstItem="aAj-lm-bSB" firstAttribute="centerX" secondItem="Zzu-fG-ORg" secondAttribute="centerX" id="NnF-Pc-N8D"/>
                             <constraint firstItem="X2A-aJ-zpp" firstAttribute="top" secondItem="ofR-r9-i2N" secondAttribute="bottom" constant="8" symbolic="YES" id="QZz-JY-JxD"/>
-                            <constraint firstAttribute="trailing" secondItem="Mx5-LE-fUn" secondAttribute="trailing" constant="20" symbolic="YES" id="V2Y-ok-jxc"/>
-                            <constraint firstItem="vV2-U2-AfW" firstAttribute="top" secondItem="Mx5-LE-fUn" secondAttribute="bottom" constant="8" symbolic="YES" id="kID-FC-ZiP"/>
+                            <constraint firstItem="aAj-lm-bSB" firstAttribute="top" secondItem="X2A-aJ-zpp" secondAttribute="bottom" constant="8" symbolic="YES" id="QtU-lo-1MZ"/>
+                            <constraint firstItem="aAj-lm-bSB" firstAttribute="centerY" secondItem="Zzu-fG-ORg" secondAttribute="centerY" id="l3Q-1e-Xff"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="QZz-JY-JxD"/>
+                            </mask>
+                        </variation>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -50,4 +61,7 @@
             <point key="canvasLocation" x="774" y="454"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NehstingLeaf" width="512" height="512"/>
+    </resources>
 </document>

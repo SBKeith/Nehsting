@@ -16,6 +16,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var displayValue: UILabel!
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var mainButton: UIButton!
+    @IBOutlet weak var leafImageView: UIImageView!
 
     let container: UIView = UIView()
     let loadingView: UIView = UIView()
@@ -33,6 +34,7 @@ class MainViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
+        UIApplication.sharedApplication().statusBarStyle = .Default
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(launchAlertViewServerError), name: "displayErrorAlert", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(hideLoadingScreen), name: "hideLoadingScreen", object: nil)
         displayValuesUpdate()
@@ -106,6 +108,7 @@ class MainViewController: UIViewController {
                 self.sharedDataManager.temperature = temp
                 self.setMainButton()
                 self.setDisplayTemp()
+                self.showOrHideLeafImage()
             }
         })
     }
@@ -155,6 +158,11 @@ class MainViewController: UIViewController {
                     break
             }
         }
+    }
+    
+    func showOrHideLeafImage() {
+        
+        sharedDataManager.leafHidden! == true ? (leafImageView.hidden = false) : (leafImageView.hidden = true)
     }
     
     // MARK: USER INTERACTION FUNCTIONS

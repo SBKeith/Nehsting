@@ -18,6 +18,7 @@ class SharedDataSingleton {
     var hvacMode: UInt = 4       // 4 == OFF
     var temperature: UInt = 75   // initial temperature
     var homeOrAwayStatus: UInt?
+    var leafHidden: Bool?
     
     // Thermostat max and min constants
     let kMAXTEMP = 90
