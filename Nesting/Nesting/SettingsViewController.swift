@@ -27,6 +27,7 @@ class SettingsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(launchAlertViewServerError), name: "displayErrorAlert", object: nil)
         getHomeOrAwayStatusImage()
     }
     
@@ -64,5 +65,12 @@ class SettingsViewController: UIViewController {
         }
         getHomeOrAwayStatusImage()
         sharedNetworkManager.structureHomeOrAwayStatusUpdate()
+    }
+    
+    func launchAlertViewServerError(notification: NSNotification) {
+        
+        let alertView = UIAlertController(title: "Server Error", message: "Nest server has blocked your request, due to too many calls.  Please try again after a few minutes.", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        presentViewController(alertView, animated: true, completion: nil)
     }
 }

@@ -110,7 +110,7 @@
 		473DC8681CAC5032000E6B8B = {
 			isa = PBXGroup;
 			children = (
-				473DC8731CAC5032000E6B8B /* Nesting */,
+				473DC8731CAC5032000E6B8B /* Nehsting */,
 				473DC88B1CAC5032000E6B8B /* NestingTests */,
 				473DC8961CAC5032000E6B8B /* NestingUITests */,
 				473DC8721CAC5032000E6B8B /* Products */,
@@ -129,7 +129,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		473DC8731CAC5032000E6B8B /* Nesting */ = {
+		473DC8731CAC5032000E6B8B /* Nehsting */ = {
 			isa = PBXGroup;
 			children = (
 				473DC8B61CAC8D03000E6B8B /* Data */,
@@ -138,6 +138,7 @@
 				472EC2301CB8300E00D7CC9F /* Subclasses */,
 				473DC8A51CAC507E000E6B8B /* Support */,
 			);
+			name = Nehsting;
 			path = Nesting;
 			sourceTree = "<group>";
 		};
