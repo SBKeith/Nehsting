@@ -110,7 +110,7 @@
 		473DC8681CAC5032000E6B8B = {
 			isa = PBXGroup;
 			children = (
-				473DC8731CAC5032000E6B8B /* Nehsting */,
+				473DC8731CAC5032000E6B8B /* Nesting */,
 				473DC88B1CAC5032000E6B8B /* NestingTests */,
 				473DC8961CAC5032000E6B8B /* NestingUITests */,
 				473DC8721CAC5032000E6B8B /* Products */,
@@ -129,7 +129,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		473DC8731CAC5032000E6B8B /* Nehsting */ = {
+		473DC8731CAC5032000E6B8B /* Nesting */ = {
 			isa = PBXGroup;
 			children = (
 				473DC8B61CAC8D03000E6B8B /* Data */,
@@ -138,7 +138,6 @@
 				472EC2301CB8300E00D7CC9F /* Subclasses */,
 				473DC8A51CAC507E000E6B8B /* Support */,
 			);
-			name = Nehsting;
 			path = Nesting;
 			sourceTree = "<group>";
 		};
@@ -223,9 +222,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		473DC8701CAC5032000E6B8B /* Nesting */ = {
+		473DC8701CAC5032000E6B8B /* Nehsting */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 473DC89C1CAC5032000E6B8B /* Build configuration list for PBXNativeTarget "Nesting" */;
+			buildConfigurationList = 473DC89C1CAC5032000E6B8B /* Build configuration list for PBXNativeTarget "Nehsting" */;
 			buildPhases = (
 				8565E04F34164D5BECD4B1D8 /* Check Pods Manifest.lock */,
 				473DC86D1CAC5032000E6B8B /* Sources */,
@@ -238,7 +237,7 @@
 			);
 			dependencies = (
 			);
-			name = Nesting;
+			name = Nehsting;
 			productName = Nesting;
 			productReference = 473DC8711CAC5032000E6B8B /* Nesting.app */;
 			productType = "com.apple.product-type.application";
@@ -316,7 +315,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				473DC8701CAC5032000E6B8B /* Nesting */,
+				473DC8701CAC5032000E6B8B /* Nehsting */,
 				473DC8871CAC5032000E6B8B /* NestingTests */,
 				473DC8921CAC5032000E6B8B /* NestingUITests */,
 			);
@@ -439,12 +438,12 @@
 /* Begin PBXTargetDependency section */
 		473DC88A1CAC5032000E6B8B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 473DC8701CAC5032000E6B8B /* Nesting */;
+			target = 473DC8701CAC5032000E6B8B /* Nehsting */;
 			targetProxy = 473DC8891CAC5032000E6B8B /* PBXContainerItemProxy */;
 		};
 		473DC8951CAC5032000E6B8B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 473DC8701CAC5032000E6B8B /* Nesting */;
+			target = 473DC8701CAC5032000E6B8B /* Nehsting */;
 			targetProxy = 473DC8941CAC5032000E6B8B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -563,7 +562,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Nesting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kkowalski.Nesting;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kkowalski.Nehsting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -581,7 +580,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Nesting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kkowalski.Nesting;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kkowalski.Nehsting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -650,7 +649,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		473DC89C1CAC5032000E6B8B /* Build configuration list for PBXNativeTarget "Nesting" */ = {
+		473DC89C1CAC5032000E6B8B /* Build configuration list for PBXNativeTarget "Nehsting" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				473DC89D1CAC5032000E6B8B /* Debug */,
