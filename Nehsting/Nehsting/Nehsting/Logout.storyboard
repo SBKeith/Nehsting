@@ -9,7 +9,7 @@
         <!--SETTINGS-->
         <scene sceneID="l5t-E8-WHg">
             <objects>
-                <viewController title="SETTINGS" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jNi-QI-qPG" customClass="SettingsViewController" customModule="Nesting" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SETTINGS" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jNi-QI-qPG" customClass="SettingsViewController" customModule="Nehsting" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bwg-J1-Scj"/>
                         <viewControllerLayoutGuide type="bottom" id="SRx-80-cgL"/>
@@ -43,8 +43,8 @@
                                     <action selector="homeOrAwayButtonTapped:" destination="jNi-QI-qPG" eventType="touchUpInside" id="yCo-Ws-G09"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSc-Jp-77v">
-                                <rect key="frame" x="279" y="285" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSc-Jp-77v">
+                                <rect key="frame" x="300" y="285" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

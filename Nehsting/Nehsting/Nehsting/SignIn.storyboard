@@ -8,7 +8,7 @@
         <!--Nest Connect View Controller-->
         <scene sceneID="KTY-fr-gZy">
             <objects>
-                <viewController storyboardIdentifier="SignIn" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ont-ZM-m11" customClass="NestConnectViewController" customModule="Nesting" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignIn" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ont-ZM-m11" customClass="NestConnectViewController" customModule="Nehsting" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ofR-r9-i2N"/>
                         <viewControllerLayoutGuide type="bottom" id="vV2-U2-AfW"/>

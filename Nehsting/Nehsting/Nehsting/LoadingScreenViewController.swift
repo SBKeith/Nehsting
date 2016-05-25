@@ -25,6 +25,4 @@ class LoadingScreenViewController: UIViewController {
         loadingSpinner.stopAnimating()
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-    
-    
 }
