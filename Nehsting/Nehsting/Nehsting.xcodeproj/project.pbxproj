@@ -290,6 +290,7 @@
 				TargetAttributes = {
 					4786595A1CF5F9780089C977 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = L5YJU4WM22;
 					};
 					478659711CF5F9780089C977 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -557,9 +558,10 @@
 			baseConfigurationReference = 9502E5EE73AF77046FB0655F /* Pods-Nehsting.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Nehsting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.TouchTapApp.Nehsting.Nehsting;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TouchTapApp.Nehsting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -569,9 +571,10 @@
 			baseConfigurationReference = AB5C72BCCF32301120E4E033 /* Pods-Nehsting.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Nehsting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.TouchTapApp.Nehsting.Nehsting;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TouchTapApp.Nehsting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
