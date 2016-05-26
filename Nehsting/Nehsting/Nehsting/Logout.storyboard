@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kpc-eH-mfZ">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -49,17 +48,31 @@
                                 <color key="textColor" red="1" green="1" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thermostat Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaG-cA-pQg">
+                                <rect key="frame" x="202" y="63" width="196" height="27"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="WSc-Jp-77v" firstAttribute="centerX" secondItem="dSV-L8-tcl" secondAttribute="centerX" id="2bY-hm-t6V"/>
                             <constraint firstItem="dFq-vB-QFj" firstAttribute="centerY" secondItem="dSV-L8-tcl" secondAttribute="centerY" multiplier="0.8" id="HJc-ou-iYz"/>
                             <constraint firstItem="QwZ-om-CSg" firstAttribute="centerX" secondItem="dSV-L8-tcl" secondAttribute="centerX" id="IjT-g1-fHP"/>
                             <constraint firstItem="dFq-vB-QFj" firstAttribute="centerX" secondItem="dSV-L8-tcl" secondAttribute="centerX" id="MYt-gH-CIS"/>
+                            <constraint firstItem="DaG-cA-pQg" firstAttribute="centerX" secondItem="dSV-L8-tcl" secondAttribute="centerX" id="PbX-lP-Zh0"/>
                             <constraint firstItem="QwZ-om-CSg" firstAttribute="leading" secondItem="dSV-L8-tcl" secondAttribute="leading" constant="20" symbolic="YES" id="WTF-50-IoR"/>
                             <constraint firstAttribute="trailing" secondItem="QwZ-om-CSg" secondAttribute="trailing" constant="20" symbolic="YES" id="XgW-wK-hsD"/>
                             <constraint firstItem="SRx-80-cgL" firstAttribute="top" secondItem="QwZ-om-CSg" secondAttribute="bottom" constant="8" symbolic="YES" id="aCK-8d-QLr"/>
+                            <constraint firstItem="dFq-vB-QFj" firstAttribute="top" secondItem="DaG-cA-pQg" secondAttribute="bottom" multiplier="1.6" constant="8" symbolic="YES" id="pRq-jH-bgx"/>
+                            <constraint firstItem="DaG-cA-pQg" firstAttribute="top" secondItem="bwg-J1-Scj" secondAttribute="bottom" constant="8" symbolic="YES" id="phf-PE-s0x"/>
                             <constraint firstItem="WSc-Jp-77v" firstAttribute="top" secondItem="dFq-vB-QFj" secondAttribute="bottom" constant="8" symbolic="YES" id="xYm-03-BG7"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="phf-PE-s0x"/>
+                            </mask>
+                        </variation>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems>
@@ -78,6 +91,7 @@
                         <outlet property="backgroundView" destination="dSV-L8-tcl" id="r3K-DQ-h0W"/>
                         <outlet property="homeOrAwayButton" destination="dFq-vB-QFj" id="Yar-Ts-Rf0"/>
                         <outlet property="homeOrAwayLabel" destination="WSc-Jp-77v" id="GUx-Ob-PNu"/>
+                        <outlet property="thermostatNameLabel" destination="DaG-cA-pQg" id="mOL-dY-mff"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vNb-of-Fik" userLabel="First Responder" sceneMemberID="firstResponder"/>

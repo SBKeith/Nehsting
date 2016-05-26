@@ -120,6 +120,9 @@ class NetworkingDataSingleton {
         
         // Set leaf icon
         self.sharedDataManager.leafHidden = (self.thermostat?.hasLeaf)!
+        
+        // Set thermostat name
+        self.sharedDataManager.thermostatName = (self.thermostat?.name)!
     }
     
     

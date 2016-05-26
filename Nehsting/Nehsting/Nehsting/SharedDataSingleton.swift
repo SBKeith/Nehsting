@@ -19,6 +19,7 @@ class SharedDataSingleton {
     var temperature: UInt = 75   // initial temperature
     var homeOrAwayStatus: UInt?
     var leafHidden: Bool?
+    var thermostatName: String?
     
     // Thermostat max and min constants
     let kMAXTEMP = 90

@@ -14,6 +14,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var homeOrAwayButton: UIButton!
     @IBOutlet weak var homeOrAwayLabel: UILabel!
+    @IBOutlet weak var thermostatNameLabel: UILabel!
     
     let sharedNetworkManager = NetworkingDataSingleton.sharedNetworkManager
     let sharedDataManager = SharedDataSingleton.sharedDataManager
@@ -28,7 +29,15 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(launchAlertViewServerError), name: "displayErrorAlert", object: nil)
+        getThermostatName()
         getHomeOrAwayStatusImage()
+    }
+    
+    func getThermostatName() {
+        
+        if let thermostatName = sharedDataManager.thermostatName {
+            thermostatNameLabel.text = thermostatName
+        }
     }
     
     func getHomeOrAwayStatusImage() {
