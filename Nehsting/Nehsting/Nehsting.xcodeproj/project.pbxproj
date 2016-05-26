@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		17F5E288E3179350B928D5DE /* Pods_Nehsting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B3A99BCA63CDDE5EA42199 /* Pods_Nehsting.framework */; };
+		473CAC5C1CF6647000779E06 /* JSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473CAC591CF6647000779E06 /* JSONModel.framework */; };
+		473CAC5D1CF6647000779E06 /* NestSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473CAC5A1CF6647000779E06 /* NestSDK.framework */; };
+		473CAC5E1CF6647000779E06 /* SSKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473CAC5B1CF6647000779E06 /* SSKeychain.framework */; };
+		473CAC601CF6649800779E06 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473CAC5F1CF6649800779E06 /* AssetsLibrary.framework */; };
+		473CAC621CF664AE00779E06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473CAC611CF664AE00779E06 /* UIKit.framework */; };
 		4758C96F1CF6554B00BC66AE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758C9651CF6554B00BC66AE /* GradientView.swift */; };
 		4758C9701CF6554B00BC66AE /* launchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4758C9661CF6554B00BC66AE /* launchScreen.xib */; };
 		4758C9711CF6554B00BC66AE /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758C9671CF6554B00BC66AE /* LoadingScreenViewController.swift */; };
@@ -45,6 +50,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		473CAC591CF6647000779E06 /* JSONModel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSONModel.framework; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Nehsting-brruybosllwbplcycknsorwqtmdf/Build/Products/Debug-iphoneos/JSONModel/JSONModel.framework"; sourceTree = "<group>"; };
+		473CAC5A1CF6647000779E06 /* NestSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NestSDK.framework; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Nehsting-brruybosllwbplcycknsorwqtmdf/Build/Products/Debug-iphoneos/NestSDK/NestSDK.framework"; sourceTree = "<group>"; };
+		473CAC5B1CF6647000779E06 /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Nehsting-brruybosllwbplcycknsorwqtmdf/Build/Products/Debug-iphoneos/SSKeychain/SSKeychain.framework"; sourceTree = "<group>"; };
+		473CAC5F1CF6649800779E06 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		473CAC611CF664AE00779E06 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4758C9651CF6554B00BC66AE /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		4758C9661CF6554B00BC66AE /* launchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = launchScreen.xib; sourceTree = "<group>"; };
 		4758C9671CF6554B00BC66AE /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +88,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				473CAC621CF664AE00779E06 /* UIKit.framework in Frameworks */,
+				473CAC601CF6649800779E06 /* AssetsLibrary.framework in Frameworks */,
+				473CAC5C1CF6647000779E06 /* JSONModel.framework in Frameworks */,
+				473CAC5D1CF6647000779E06 /* NestSDK.framework in Frameworks */,
+				473CAC5E1CF6647000779E06 /* SSKeychain.framework in Frameworks */,
 				17F5E288E3179350B928D5DE /* Pods_Nehsting.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +117,11 @@
 		0E7A7BF622377BC783AC3E05 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				473CAC611CF664AE00779E06 /* UIKit.framework */,
+				473CAC5F1CF6649800779E06 /* AssetsLibrary.framework */,
+				473CAC591CF6647000779E06 /* JSONModel.framework */,
+				473CAC5A1CF6647000779E06 /* NestSDK.framework */,
+				473CAC5B1CF6647000779E06 /* SSKeychain.framework */,
 				C1B3A99BCA63CDDE5EA42199 /* Pods_Nehsting.framework */,
 			);
 			name = Frameworks;
