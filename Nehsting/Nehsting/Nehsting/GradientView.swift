@@ -56,27 +56,29 @@ class GradientView: UIView {
         
         if let hvacMode: UInt = sharedDataManager.hvacMode {
             switch(Int(hvacMode)) {
-                case 1:
+                case 1: // HEAT
                     switch(setting) {
                         case "INCREASE":
-                            sharedDataManager.rgbHeat.1 -= sharedDataManager.tempDifferential_1
-                            sharedDataManager.rgbHeat.2 -= sharedDataManager.tempDifferential_2
+                            sharedDataManager.rgbHeat.1 -= sharedDataManager.heatTempDifferential_1
+                            sharedDataManager.rgbHeat.2 -= sharedDataManager.heatTempDifferential_2
                             updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbHeat.0, green: sharedDataManager.rgbHeat.1, blue: sharedDataManager.rgbHeat.2))
                         case "DECREASE":
-                            sharedDataManager.rgbHeat.1 += sharedDataManager.tempDifferential_1
-                            sharedDataManager.rgbHeat.2 += sharedDataManager.tempDifferential_2
+                            sharedDataManager.rgbHeat.1 += sharedDataManager.heatTempDifferential_1
+                            sharedDataManager.rgbHeat.2 += sharedDataManager.heatTempDifferential_2
                             updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbHeat.0, green: sharedDataManager.rgbHeat.1, blue: sharedDataManager.rgbHeat.2))
                         default: break
                     }
-                case 2:
+                case 2: // COOL
                     switch(setting) {
                         case "INCREASE":
-                            sharedDataManager.rgbCool.1 += sharedDataManager.tempDifferential_1
-                            sharedDataManager.rgbCool.0 += sharedDataManager.tempDifferential_2
+                            sharedDataManager.rgbCool.2 += sharedDataManager.coolTempDifferential_3
+                            sharedDataManager.rgbCool.1 += sharedDataManager.coolTempDifferential_1
+                            sharedDataManager.rgbCool.0 += sharedDataManager.coolTempDifferential_2
                             updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbCool.0, green: sharedDataManager.rgbCool.1, blue: sharedDataManager.rgbCool.2))
                         case "DECREASE":
-                            sharedDataManager.rgbCool.1 -= sharedDataManager.tempDifferential_1
-                            sharedDataManager.rgbCool.0 -= sharedDataManager.tempDifferential_2
+                            sharedDataManager.rgbCool.2 -= sharedDataManager.coolTempDifferential_3
+                            sharedDataManager.rgbCool.1 -= sharedDataManager.coolTempDifferential_1
+                            sharedDataManager.rgbCool.0 -= sharedDataManager.coolTempDifferential_2
                             updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbCool.0, green: sharedDataManager.rgbCool.1, blue: sharedDataManager.rgbCool.2))
                         default: break
                     }

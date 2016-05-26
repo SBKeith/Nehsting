@@ -206,17 +206,17 @@ class MainViewController: UIViewController {
                 // Check for temperature limits
                 let withinTempBounds = checkTempBounds()
                 
-                if sharedDataManager.valueParser % 5 == 0 {
+                if sharedDataManager.valueParser % 10 == 0 {
                     if !directionValueDecrease && withinTempBounds.0 {
                         sharedDataManager.temperature += 1
                         
-                        if sharedDataManager.temperature % 5 == 0 {
+                        if sharedDataManager.temperature % 1 == 0 {
                             gradientView.adjustGradient("INCREASE")
                         }
                     } else if directionValueDecrease && withinTempBounds.1 {
                         sharedDataManager.temperature -= 1
                         
-                        if sharedDataManager.temperature % 5 == 0 {
+                        if sharedDataManager.temperature % 1 == 0 {
                             gradientView.adjustGradient("DECREASE")
                         }
                     }
@@ -262,4 +262,3 @@ class MainViewController: UIViewController {
         presentViewController(alertView, animated: true, completion: nil)
     }
 }
-
