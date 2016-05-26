@@ -30,8 +30,8 @@ class SharedDataSingleton {
     let coolTempDifferential_3: CGFloat = 5.0
     
     // Values that are responsible for increasing / decreasing gradient color values
-    let heatTempDifferential_1: CGFloat = 10.0
-    let heatTempDifferential_2: CGFloat = 30.0
+    let heatTempDifferential_1: CGFloat = 3.0
+    let heatTempDifferential_2: CGFloat = 3.0
     
     // Parsed value for finger drag
     var valueParser = 0
@@ -42,12 +42,12 @@ class SharedDataSingleton {
                                  UIImage(named: "offButton")]
     
     // MARK: GRADIENT VALUES
-    var rgbHeat: (CGFloat, CGFloat, CGFloat) = (255.0, 110.0, 0.0)  // initial values
+    var rgbHeat: (CGFloat, CGFloat, CGFloat) = (255.0, 135.0, 40.0)  // initial values
     var rgbCool: (CGFloat, CGFloat, CGFloat) = (25.0, 65.0, 220.0)   // initial values
     var rgbOff: (CGFloat, CGFloat, CGFloat) = (0.0, 0.0, 0.0)       // initial values
     
     // Variables for heat / cool
-    var cgColor1 = UIColor(red: 255/255, green: 113/255, blue: 0/255, alpha: 1).CGColor
+    var cgColor1 = UIColor(red: 255/255, green: 165/255, blue: 100/255, alpha: 1).CGColor
     
     // Constant 2nd gradient color
     let cgColorNeutral = UIColor(red: 238.0/255.0, green: 238.0/255.0, blue: 238.0/255.0, alpha: 1.0).CGColor
