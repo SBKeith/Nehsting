@@ -77,8 +77,8 @@ class MainViewController: UIViewController {
         container.addSubview(loadingView)
         
         // Add spinner animation
-        indicator.center = self.view.center
-        uiView.addSubview(indicator)
+        indicator.center = CGPointMake(loadingView.frame.size.width / 2, loadingView.frame.size.height / 2)
+        loadingView.addSubview(indicator)
         indicator.startAnimating()
     }
     
