@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import NestSDK
 import UIKit
 
 class NetworkingDataSingleton {

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NestSDK
 
 let indicator: UIActivityIndicatorView = UIActivityIndicatorView (activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
 

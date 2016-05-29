@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import NestSDK
 
 class SettingsViewController: UIViewController {
     

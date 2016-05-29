@@ -7,7 +7,6 @@
 //
 import UIKit
 import CoreData
-import NestSDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
