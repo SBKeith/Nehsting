@@ -53,7 +53,7 @@ class GradientView: UIView {
     } 
     
     func adjustGradient(setting: String) {
-        
+
         if let hvacMode: UInt = sharedDataManager.hvacMode {
             switch(Int(hvacMode)) {
                 case 1: // HEAT
