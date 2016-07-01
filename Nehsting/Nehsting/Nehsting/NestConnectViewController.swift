@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NestSDK
 
 class NestConnectViewController: UIViewController {
     
