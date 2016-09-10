@@ -22,8 +22,8 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-        backgroundView.addSubview(UIImageView(image: UIImage(named: "loadingScreen")))
+//        UIApplication.sharedApplication().statusBarStyle = .LightContent
+//        backgroundView.addSubview(UIImageView(image: UIImage(named: "loadingScreen")))
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -51,7 +51,10 @@ class SettingsViewController: UIViewController {
                     homeOrAwayLabel.text = "AWAY"
                 default: break
             }
-            homeOrAwayButton.setBackgroundImage(UIImage(named: imageName), forState: .Normal)
+            
+            homeOrAwayButton.setImage(UIImage(named: imageName), forState: .Normal)
+            
+//            homeOrAwayButton.setBackgroundImage(UIImage(named: imageName), forState: .Normal)
         }
     }
     

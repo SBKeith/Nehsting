@@ -123,6 +123,12 @@ class NetworkingDataSingleton {
         
         // Set thermostat name
         self.sharedDataManager.thermostatName = (self.thermostat?.name)!
+        
+        // Get current hvac status
+        self.sharedDataManager.hvacState = (self.thermostat?.hvacState)
+        
+        // Get timestamp for last interaction
+        self.sharedDataManager.timeStamp = (self.thermostat?.lastConnection)
     }
     
     

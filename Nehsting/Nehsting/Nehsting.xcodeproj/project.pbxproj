@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		473581241D837B5B00360DD8 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473581231D837B5B00360DD8 /* HistoryTableViewController.swift */; };
 		4758C96F1CF6554B00BC66AE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758C9651CF6554B00BC66AE /* GradientView.swift */; };
 		4758C9711CF6554B00BC66AE /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758C9671CF6554B00BC66AE /* LoadingScreenViewController.swift */; };
 		4758C9721CF6554B00BC66AE /* Logout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4758C9681CF6554B00BC66AE /* Logout.storyboard */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		473581231D837B5B00360DD8 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		4758C9651CF6554B00BC66AE /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		4758C9671CF6554B00BC66AE /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
 		4758C9681CF6554B00BC66AE /* Logout.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Logout.storyboard; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				4758C9691CF6554B00BC66AE /* MainViewController.swift */,
 				4758C96A1CF6554B00BC66AE /* NestConnectViewController.swift */,
 				4758C96C1CF6554B00BC66AE /* SettingsViewController.swift */,
+				473581231D837B5B00360DD8 /* HistoryTableViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				4786595F1CF5F9780089C977 /* AppDelegate.swift in Sources */,
 				4758C9711CF6554B00BC66AE /* LoadingScreenViewController.swift in Sources */,
 				4758C9731CF6554B00BC66AE /* MainViewController.swift in Sources */,
+				473581241D837B5B00360DD8 /* HistoryTableViewController.swift in Sources */,
 				4758C96F1CF6554B00BC66AE /* GradientView.swift in Sources */,
 				4758C9751CF6554B00BC66AE /* NetworkingDataSingleton.swift in Sources */,
 				4758C9741CF6554B00BC66AE /* NestConnectViewController.swift in Sources */,

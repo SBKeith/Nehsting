@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import NestSDK
 
 class SharedDataSingleton {
     
@@ -20,6 +21,8 @@ class SharedDataSingleton {
     var homeOrAwayStatus: UInt?
     var leafHidden: Bool?
     var thermostatName: String?
+    var hvacState: NestSDKThermostatHVACState?
+    var timeStamp: NSDate?
     
     // Thermostat max and min constants
     let kMAXTEMP = 90

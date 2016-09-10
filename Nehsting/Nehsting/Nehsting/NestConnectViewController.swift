@@ -27,13 +27,12 @@ class NestConnectViewController: UIViewController {
         if (NestSDKAccessToken.currentAccessToken() != nil) {
             sharedNetworkManager.observeStructures( { temp in
             })
-            
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Main") as! MainViewController
             presentViewController(vc, animated: true, completion: nil)
             
         }
     }
-    
+
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
