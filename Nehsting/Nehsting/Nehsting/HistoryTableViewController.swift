@@ -8,11 +8,18 @@
 
 import UIKit
 import NestSDK
+import CoreData
 
-class HistoryTableViewController: UITableViewController {
+class HistoryTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    let getTimes = MainViewController()
     let sharedNetworkManager = NetworkingDataSingleton.sharedNetworkManager
     let sharedDataManager = SharedDataSingleton.sharedDataManager
+    
+    let fetchRequestTime = NSFetchRequest(entityName: "TimeStamp")
+    
+    var time: TimeStamp? = nil
+    var timeStamps = [TimeStamp]()
 
     @IBAction func doneBarButtonItemTapped(sender: UIBarButtonItem) {
         
@@ -21,15 +28,17 @@ class HistoryTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        fetchRequestState.predicate = NSPredicate(format: "state == %@", self.hvacState!)
+//        fetchRequestTime.predicate = NSPredicate(format: "TimeStamp == %@", self.time!)
     }
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        print("HVAC STATE: ", self.sharedDataManager.hvacState?.rawValue)
-        print("Last Connection: ", self.sharedDataManager.timeStamp)
+        timeStamps = getTimes.dataFetchRequest()
     }
-    
+        
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -39,13 +48,22 @@ class HistoryTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return 1
+        return timeStamps.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-
+        
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "hh:mm"
+        
+        let date = dateFormatter.stringFromDate(timeStamps[indexPath.row].time!)
+        
+        cell.detailTextLabel?.text = date
+        
         return cell
     }
 }

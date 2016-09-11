@@ -8,6 +8,7 @@
 
 import UIKit
 import NestSDK
+import CoreData
 
 let indicator: UIActivityIndicatorView = UIActivityIndicatorView (activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
 
@@ -24,6 +25,7 @@ class MainViewController: UIViewController {
     // Singleton Values
     var sharedDataManager = SharedDataSingleton.sharedDataManager
     var sharedNetworkManager = NetworkingDataSingleton.sharedNetworkManager
+    let fetchRequestTime = NSFetchRequest(entityName: "TimeStamp")
     
     override func viewDidLoad() {
         
@@ -47,6 +49,13 @@ class MainViewController: UIViewController {
         // Remove observers
         sharedNetworkManager.removeObservers()
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        
+        if !checkIfTimeExists(sharedDataManager.timeStamp!) {
+            print("Saving new time stamp...")
+            saveTimeStampData()
+        }
+        // Save hvac mode along with time stamp...
+        print(sharedDataManager.hvacMode)
     }
     
     // MARK: -HELPER METHODS
