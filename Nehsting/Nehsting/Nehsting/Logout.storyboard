@@ -164,7 +164,16 @@
                                 <action selector="doneBarButtonItemTapped:" destination="Lgs-iZ-amQ" id="bJI-is-vWw"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Clear" id="vSL-Nl-SFP">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="clearButtonTapped:" destination="Lgs-iZ-amQ" id="yDR-6K-OhF"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="clearBarButtonItem" destination="vSL-Nl-SFP" id="Kyb-cR-fMN"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r2T-6X-9dk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -21,9 +21,18 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     var time: TimeStamp? = nil
     var timeStamps = [TimeStamp]()
 
+    @IBOutlet weak var clearBarButtonItem: UIBarButtonItem!
+    
     @IBAction func doneBarButtonItemTapped(sender: UIBarButtonItem) {
         
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func clearButtonTapped(sender: UIBarButtonItem) {
+        
+        self.deleteAllHistory()
+        self.navigationItem.rightBarButtonItem?.enabled = false
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -35,10 +44,13 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+            
         timeStamps = getTimes.dataFetchRequest()
-    }
         
+        timeStamps.count == 0 ? (self.navigationItem.rightBarButtonItem?.enabled = false) :
+            (self.navigationItem.rightBarButtonItem?.enabled = true)
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -84,4 +96,26 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
         
         return cell
     }
+    
+    // Delete all history
+    func deleteAllHistory() {
+        
+        print("Deleting all history...")
+        
+        let request = NSFetchRequest(entityName: "TimeStamp")
+        
+        do {
+            let stamps = try context.executeFetchRequest(request) as! [TimeStamp]
+            for stamp in stamps {
+                context.deleteObject(stamp)
+            }
+        } catch { print("Error deleting photo") }
+        
+        timeStamps.removeAll()
+        
+        do { try delegate.stack.saveContext() } catch {
+            print("Error saving deletion")
+        }
+    }
+
 }
