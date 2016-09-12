@@ -20,12 +20,8 @@ class SharedDataSingleton {
     var temperature: UInt = 75   // initial temperature
     var homeOrAwayStatus: UInt?
     var leafHidden: Bool?
-<<<<<<< HEAD:Nesting/Nesting/SharedDataSingleton.swift
-=======
     var thermostatName: String?
-    var hvacState: NestSDKThermostatHVACState?
     var timeStamp: NSDate?
->>>>>>> e2a53961e81e960751d7d3718bf8eccf00e3f77e:Nehsting/Nehsting/Nehsting/SharedDataSingleton.swift
     
     // Thermostat max and min constants
     let kMAXTEMP = 90

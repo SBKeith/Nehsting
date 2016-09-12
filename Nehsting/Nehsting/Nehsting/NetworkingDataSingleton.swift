@@ -120,18 +120,13 @@ class NetworkingDataSingleton {
         
         // Set leaf icon
         self.sharedDataManager.leafHidden = (self.thermostat?.hasLeaf)!
-<<<<<<< HEAD:Nesting/Nesting/NetworkingDataSingleton.swift
-=======
+
         
         // Set thermostat name
         self.sharedDataManager.thermostatName = (self.thermostat?.name)!
         
-        // Get current hvac status
-        self.sharedDataManager.hvacState = (self.thermostat?.hvacState)
-        
         // Get timestamp for last interaction
         self.sharedDataManager.timeStamp = (self.thermostat?.lastConnection)
->>>>>>> e2a53961e81e960751d7d3718bf8eccf00e3f77e:Nehsting/Nehsting/Nehsting/NetworkingDataSingleton.swift
     }
     
     

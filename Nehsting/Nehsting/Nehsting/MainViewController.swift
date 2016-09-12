@@ -18,18 +18,15 @@ class MainViewController: UIViewController {
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var mainButton: UIButton!
     @IBOutlet weak var leafImageView: UIImageView!
-<<<<<<< HEAD:Nesting/Nesting/MainViewController.swift
-=======
     @IBOutlet weak var menuButtons: UIView!
     @IBOutlet weak var offButton: UIButton!
     @IBOutlet weak var coolButton: UIButton!
     @IBOutlet weak var heatButton: UIButton!
->>>>>>> e2a53961e81e960751d7d3718bf8eccf00e3f77e:Nehsting/Nehsting/Nehsting/MainViewController.swift
 
     let container: UIView = UIView()
     let loadingView: UIView = UIView()
     
-    var menuButtonsActive = false
+    var menuButtonIsActive = false
 
     // Singleton Values
     var sharedDataManager = SharedDataSingleton.sharedDataManager
@@ -119,7 +116,14 @@ class MainViewController: UIViewController {
         default:
             break
         }
+        // Hide Buttons
+        self.menuButtonIsActive = true
+        mainButtonTapped(sender)
+        
+        // Update HVAC
         sharedNetworkManager.networkHVACUpdate()
+        
+        // Update Display
         displayValuesUpdate()
     }
     
@@ -197,23 +201,16 @@ class MainViewController: UIViewController {
     // Main button tapped
     @IBAction func mainButtonTapped(sender: UIButton) {
         
-        switch self.menuButtonsActive {
-        case false:
-            UIView.animateWithDuration(0.2, delay: 0.1, options: .CurveEaseOut, animations: {
-                
+        UIView.animateWithDuration(0.2, delay: 0.1, options: .CurveEaseOut, animations: {
+            switch self.menuButtonIsActive {
+            case false:
                 self.menuButtons.frame.origin.y -= self.menuButtons.frame.height * 2.25
-                
-            }) { (true) in
-                self.menuButtonsActive = true
-            }
-        case true:
-            UIView.animateWithDuration(0.2, delay: 0.1, options: .CurveEaseOut, animations: {
-                
+            case true:
                 self.menuButtons.frame.origin.y += self.menuButtons.frame.height * 2.25
-                
-            }) { (true) in
-                self.menuButtonsActive = false
             }
+        }) { (true) in
+            print(self.menuButtonIsActive)
+            self.menuButtonIsActive = !self.menuButtonIsActive
         }
     }
     
