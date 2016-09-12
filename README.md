@@ -6,5 +6,7 @@ Nehsting is a simple Nest thermostat iOS application, designed to allow the foll
 - Logging in / out of personal Nest thermostat
 - Viewing if current temperature set is saving money and energy (leaf icon appears)
 - Turning the system to COOL / HEAT / OFF
+- Saving the most recent user interaction to coredate
+- Provide the user with a fun and simple way to interact with ther Nest device.
 
-These are all basic functionalities, but that's the point.  The focus is to see a big clean number displayed, which is controlled by a simple finger drag.  There is very little data that should be shown on the main screen; the less, the better.
+These are all basic functionalities, but that's the point.  The focus is to see a big clean number displayed, which is controlled by a simple finger drag (and set when the finger is lifted).
