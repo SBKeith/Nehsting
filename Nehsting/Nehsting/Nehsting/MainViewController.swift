@@ -59,7 +59,6 @@ class MainViewController: UIViewController {
         // Remove observers
         sharedNetworkManager.removeObservers()
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        saveData()
     }
     
     // MARK: -HELPER METHODS
