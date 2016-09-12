@@ -18,9 +18,15 @@ class MainViewController: UIViewController {
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var mainButton: UIButton!
     @IBOutlet weak var leafImageView: UIImageView!
+    @IBOutlet weak var menuButtons: UIView!
+    @IBOutlet weak var offButton: UIButton!
+    @IBOutlet weak var coolButton: UIButton!
+    @IBOutlet weak var heatButton: UIButton!
 
     let container: UIView = UIView()
     let loadingView: UIView = UIView()
+    
+    var menuButtonsActive = false
 
     // Singleton Values
     var sharedDataManager = SharedDataSingleton.sharedDataManager
@@ -31,6 +37,10 @@ class MainViewController: UIViewController {
         
         super.viewDidLoad()
         showLoadingScreen(self.view)
+        
+        offButton.addTarget(self, action: #selector(self.setHVACMode), forControlEvents: .TouchUpInside)
+        coolButton.addTarget(self, action: #selector(self.setHVACMode), forControlEvents: .TouchUpInside)
+        heatButton.addTarget(self, action: #selector(self.setHVACMode), forControlEvents: .TouchUpInside)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -49,15 +59,20 @@ class MainViewController: UIViewController {
         // Remove observers
         sharedNetworkManager.removeObservers()
         NSNotificationCenter.defaultCenter().removeObserver(self)
+        saveData()
+    }
+    
+    // MARK: -HELPER METHODS
+    
+    // Save data to coredata
+    func saveData() {
         
         // If time does not exist in coredata; save it along with hvac mode and temp
-        if !checkIfTimeExists(sharedDataManager.timeStamp!, temp: sharedDataManager.temperature) {
+        if !checkIfTimeExists(sharedDataManager.timeStamp!, temp: sharedDataManager.temperature, mode: sharedDataManager.hvacMode) {
             print("Saving new time stamp...")
             saveTimeStampData()
         }
     }
-    
-    // MARK: -HELPER METHODS
     
     // Show loading screen function
     func showLoadingScreen(uiView: UIView) {
@@ -90,6 +105,22 @@ class MainViewController: UIViewController {
         indicator.startAnimating()
     }
     
+    func setHVACMode(sender: UIButton) {
+        // Set hvacMode
+        switch(sender.tag) {
+        case 1: // HEAT
+            sharedDataManager.hvacMode = 1
+        case 2: // COOL
+            sharedDataManager.hvacMode = 2
+        case 4: // OFF
+            sharedDataManager.hvacMode = 4
+        default:
+            break
+        }
+        sharedNetworkManager.networkHVACUpdate()
+        displayValuesUpdate()
+    }
+    
     // Fade out of loading screen function
     func hideLoadingScreen(notification: NSNotification) {
         
@@ -114,7 +145,7 @@ class MainViewController: UIViewController {
             if let hvacMode = hvacMode, temp = temp {
                 self.sharedDataManager.hvacMode = hvacMode
                 self.sharedDataManager.temperature = temp
-                self.setMainButton()
+                self.setGradient()
                 self.setDisplayTemp()
                 self.showOrHideLeafImage()
             }
@@ -122,30 +153,15 @@ class MainViewController: UIViewController {
     }
     
     // Set image for main button
-    func setMainButton() {
+    func setGradient() {
         
         if let hvacMode: UInt = sharedDataManager.hvacMode {
             switch(Int(hvacMode)) {
                 case 1: // HEAT
-                    // Set Image Values
-                    mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[0], forState: .Normal)
-                    mainButton.setTitle("HEAT", forState: .Normal)
-                    // Set Gradient
                     gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbHeat.0, green: sharedDataManager.rgbHeat.1, blue: sharedDataManager.rgbHeat.2))
-                
                 case 2: // COOL
-                    // Set Image Values
-                    mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[1], forState: .Normal)
-                    mainButton.setTitle("COOL", forState: .Normal)
-                    // Set Gradient
                     gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbCool.0, green: sharedDataManager.rgbCool.1, blue: sharedDataManager.rgbCool.2))
-                
                 case 4: // OFF
-                    // Set Image Values
-                    mainButton.setBackgroundImage(sharedDataManager.mainButtonImagesArray[2], forState: .Normal)
-                    mainButton.setTitle("OFF", forState: .Normal)
-                    
-                    // Set Gradient
                     gradientView.updateGradientColor(sharedDataManager.gradientValue(sharedDataManager.rgbOff.0, green: sharedDataManager.rgbOff.1, blue: sharedDataManager.rgbOff.2))
                 default:
                     break
@@ -165,6 +181,7 @@ class MainViewController: UIViewController {
                 default:
                     break
             }
+            saveData()
         }
     }
     
@@ -178,20 +195,23 @@ class MainViewController: UIViewController {
     // Main button tapped
     @IBAction func mainButtonTapped(sender: UIButton) {
         
-        // Set hvacMode
-        if let hvacMode: UInt =  sharedDataManager.hvacMode {
-            switch(hvacMode) {
-                case 1:
-                    sharedDataManager.hvacMode = 2
-                case 2:
-                    sharedDataManager.hvacMode = 4
-                case 4:
-                    sharedDataManager.hvacMode = 1
-                default:
-                    break
+        switch self.menuButtonsActive {
+        case false:
+            UIView.animateWithDuration(0.2, delay: 0.1, options: .CurveEaseOut, animations: {
+                
+                self.menuButtons.frame.origin.y -= self.menuButtons.frame.height * 2.25
+                
+            }) { (true) in
+                self.menuButtonsActive = true
             }
-            sharedNetworkManager.networkHVACUpdate()
-            displayValuesUpdate()
+        case true:
+            UIView.animateWithDuration(0.2, delay: 0.1, options: .CurveEaseOut, animations: {
+                
+                self.menuButtons.frame.origin.y += self.menuButtons.frame.height * 2.25
+                
+            }) { (true) in
+                self.menuButtonsActive = false
+            }
         }
     }
     
@@ -246,6 +266,9 @@ class MainViewController: UIViewController {
             
             // Set thermostat temperature via network to NEST
             sharedNetworkManager.networkTemperatureUpdate()
+            
+            // Save user data
+            saveData()
         }
     }
     

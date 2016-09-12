@@ -39,7 +39,7 @@ extension MainViewController {
         }
     }
     
-    func checkIfTimeExists(time: NSDate, temp: UInt) -> Bool {
+    func checkIfTimeExists(time: NSDate, temp: UInt, mode: UInt) -> Bool {
         
         let checkTimeArray = dataFetchRequest()
         
@@ -47,7 +47,7 @@ extension MainViewController {
             return false
         } else {
             for stamp in checkTimeArray {
-                if stamp.time! == time || stamp.temperature == temp {
+                if stamp.time! == time && stamp.temperature == temp && stamp.mode == mode {
                     return true
                 }
             }
