@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+<<<<<<< HEAD:Nesting/Nesting.xcworkspace/contents.xcworkspacedata
+      location = "group:/Users/keithkowalski/Documents/Development/iOS/SwiftlyBits/Final/Nesting/Nehsting.xcodeproj">
+=======
+      location = "group:Nehsting.xcodeproj">
+>>>>>>> e2a53961e81e960751d7d3718bf8eccf00e3f77e:Nehsting/Nehsting/Nehsting.xcworkspace/contents.xcworkspacedata
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>

@@ -1,0 +1,759 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		473581241D837B5B00360DD8 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473581231D837B5B00360DD8 /* HistoryTableViewController.swift */; };
+		4758C96F1CF6554B00BC66AE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758C9651CF6554B00BC66AE /* GradientView.swift */; };
+		4758C9711CF6554B00BC66AE /* LoadingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758C9671CF6554B00BC66AE /* LoadingScreenViewController.swift */; };
+		4758C9721CF6554B00BC66AE /* Logout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4758C9681CF6554B00BC66AE /* Logout.storyboard */; };
+		4758C9731CF6554B00BC66AE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758C9691CF6554B00BC66AE /* MainViewController.swift */; };
+		4758C9741CF6554B00BC66AE /* NestConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758C96A1CF6554B00BC66AE /* NestConnectViewController.swift */; };
+		4758C9751CF6554B00BC66AE /* NetworkingDataSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758C96B1CF6554B00BC66AE /* NetworkingDataSingleton.swift */; };
+		4758C9761CF6554B00BC66AE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758C96C1CF6554B00BC66AE /* SettingsViewController.swift */; };
+		4758C9771CF6554B00BC66AE /* SharedDataSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758C96D1CF6554B00BC66AE /* SharedDataSingleton.swift */; };
+		4758C9781CF6554B00BC66AE /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4758C96E1CF6554B00BC66AE /* SignIn.storyboard */; };
+		4764A3861CF77CFE006EF033 /* Pods_Nehsting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4764A3841CF77CFE006EF033 /* Pods_Nehsting.framework */; };
+		4786595F1CF5F9780089C977 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4786595E1CF5F9780089C977 /* AppDelegate.swift */; };
+		478659641CF5F9780089C977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 478659621CF5F9780089C977 /* Main.storyboard */; };
+		478659671CF5F9780089C977 /* Nehsting.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 478659651CF5F9780089C977 /* Nehsting.xcdatamodeld */; };
+		478659691CF5F9780089C977 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 478659681CF5F9780089C977 /* Assets.xcassets */; };
+		4786596C1CF5F9780089C977 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4786596A1CF5F9780089C977 /* LaunchScreen.storyboard */; };
+		478659771CF5F9780089C977 /* NehstingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478659761CF5F9780089C977 /* NehstingTests.swift */; };
+		478659821CF5F9780089C977 /* NehstingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478659811CF5F9780089C977 /* NehstingUITests.swift */; };
+		86019964DB54EF567D4C933A /* Pods_Nehsting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B3A99BCA63CDDE5EA42199 /* Pods_Nehsting.framework */; };
+		D8D666941D83FA0200B24E2A /* TemperatureHistory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8D666921D83FA0200B24E2A /* TemperatureHistory.xcdatamodeld */; };
+		D8D6669B1D83FB9000B24E2A /* TimeStamp+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D666971D83FB9000B24E2A /* TimeStamp+CoreDataProperties.swift */; };
+		D8D6669C1D83FB9000B24E2A /* TimeStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D666981D83FB9000B24E2A /* TimeStamp.swift */; };
+		D8D6669E1D83FC3E00B24E2A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D6669D1D83FC3E00B24E2A /* CoreDataStack.swift */; };
+		D8D666A21D83FF6200B24E2A /* MainViewController+CoreDataLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D666A11D83FF6200B24E2A /* MainViewController+CoreDataLoading.swift */; };
+		D8D666A41D8400CC00B24E2A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D666A31D8400CC00B24E2A /* Constants.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		478659731CF5F9780089C977 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 478659531CF5F9780089C977 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4786595A1CF5F9780089C977;
+			remoteInfo = Nehsting;
+		};
+		4786597E1CF5F9780089C977 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 478659531CF5F9780089C977 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4786595A1CF5F9780089C977;
+			remoteInfo = Nehsting;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		473581231D837B5B00360DD8 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
+		4758C9651CF6554B00BC66AE /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		4758C9671CF6554B00BC66AE /* LoadingScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewController.swift; sourceTree = "<group>"; };
+		4758C9681CF6554B00BC66AE /* Logout.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Logout.storyboard; sourceTree = "<group>"; };
+		4758C9691CF6554B00BC66AE /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		4758C96A1CF6554B00BC66AE /* NestConnectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NestConnectViewController.swift; sourceTree = "<group>"; };
+		4758C96B1CF6554B00BC66AE /* NetworkingDataSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingDataSingleton.swift; sourceTree = "<group>"; };
+		4758C96C1CF6554B00BC66AE /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		4758C96D1CF6554B00BC66AE /* SharedDataSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedDataSingleton.swift; sourceTree = "<group>"; };
+		4758C96E1CF6554B00BC66AE /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
+		4764A3831CF77CFE006EF033 /* NestSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NestSDK.framework; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Nehsting-brruybosllwbplcycknsorwqtmdf/Build/Products/Debug-iphonesimulator/NestSDK/NestSDK.framework"; sourceTree = "<group>"; };
+		4764A3841CF77CFE006EF033 /* Pods_Nehsting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Nehsting.framework; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Nehsting-brruybosllwbplcycknsorwqtmdf/Build/Products/Debug-iphonesimulator/Pods_Nehsting.framework"; sourceTree = "<group>"; };
+		4786595B1CF5F9780089C977 /* Nehsting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nehsting.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4786595E1CF5F9780089C977 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		478659631CF5F9780089C977 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		478659661CF5F9780089C977 /* Nehsting.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Nehsting.xcdatamodel; sourceTree = "<group>"; };
+		478659681CF5F9780089C977 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4786596B1CF5F9780089C977 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4786596D1CF5F9780089C977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		478659721CF5F9780089C977 /* NehstingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NehstingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		478659761CF5F9780089C977 /* NehstingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NehstingTests.swift; sourceTree = "<group>"; };
+		478659781CF5F9780089C977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4786597D1CF5F9780089C977 /* NehstingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NehstingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		478659811CF5F9780089C977 /* NehstingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NehstingUITests.swift; sourceTree = "<group>"; };
+		478659831CF5F9780089C977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9502E5EE73AF77046FB0655F /* Pods-Nehsting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nehsting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nehsting/Pods-Nehsting.debug.xcconfig"; sourceTree = "<group>"; };
+		AB5C72BCCF32301120E4E033 /* Pods-Nehsting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nehsting.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nehsting/Pods-Nehsting.release.xcconfig"; sourceTree = "<group>"; };
+		C1B3A99BCA63CDDE5EA42199 /* Pods_Nehsting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nehsting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D886C5441D86728C00880DA3 /* TemperatureHistory_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TemperatureHistory_2.xcdatamodel; sourceTree = "<group>"; };
+		D8D666931D83FA0200B24E2A /* TemperatureHistory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TemperatureHistory.xcdatamodel; sourceTree = "<group>"; };
+		D8D666971D83FB9000B24E2A /* TimeStamp+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeStamp+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D8D666981D83FB9000B24E2A /* TimeStamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStamp.swift; sourceTree = "<group>"; };
+		D8D6669D1D83FC3E00B24E2A /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		D8D666A11D83FF6200B24E2A /* MainViewController+CoreDataLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainViewController+CoreDataLoading.swift"; sourceTree = "<group>"; };
+		D8D666A31D8400CC00B24E2A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		478659581CF5F9780089C977 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4764A3861CF77CFE006EF033 /* Pods_Nehsting.framework in Frameworks */,
+				86019964DB54EF567D4C933A /* Pods_Nehsting.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4786596F1CF5F9780089C977 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4786597A1CF5F9780089C977 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0E7A7BF622377BC783AC3E05 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4764A3831CF77CFE006EF033 /* NestSDK.framework */,
+				4764A3841CF77CFE006EF033 /* Pods_Nehsting.framework */,
+				C1B3A99BCA63CDDE5EA42199 /* Pods_Nehsting.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		281ABA90AE9A594B6984A628 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9502E5EE73AF77046FB0655F /* Pods-Nehsting.debug.xcconfig */,
+				AB5C72BCCF32301120E4E033 /* Pods-Nehsting.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		4758C9791CF65C7900BC66AE /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				4786595E1CF5F9780089C977 /* AppDelegate.swift */,
+				478659681CF5F9780089C977 /* Assets.xcassets */,
+				4786596A1CF5F9780089C977 /* LaunchScreen.storyboard */,
+				4786596D1CF5F9780089C977 /* Info.plist */,
+				478659651CF5F9780089C977 /* Nehsting.xcdatamodeld */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		4758C97A1CF65CAB00BC66AE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				478659621CF5F9780089C977 /* Main.storyboard */,
+				4758C96E1CF6554B00BC66AE /* SignIn.storyboard */,
+				4758C9681CF6554B00BC66AE /* Logout.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		4758C97B1CF65CD100BC66AE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4758C9671CF6554B00BC66AE /* LoadingScreenViewController.swift */,
+				4758C9691CF6554B00BC66AE /* MainViewController.swift */,
+				4758C96A1CF6554B00BC66AE /* NestConnectViewController.swift */,
+				4758C96C1CF6554B00BC66AE /* SettingsViewController.swift */,
+				473581231D837B5B00360DD8 /* HistoryTableViewController.swift */,
+				D8D666A11D83FF6200B24E2A /* MainViewController+CoreDataLoading.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		4758C97C1CF65E4600BC66AE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D8D666A01D83FCA000B24E2A /* Networking */,
+				D8D6669F1D83FC7A00B24E2A /* Coredata */,
+				4758C96D1CF6554B00BC66AE /* SharedDataSingleton.swift */,
+				D8D666A31D8400CC00B24E2A /* Constants.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		4758C97D1CF65E5500BC66AE /* Sub Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4758C9651CF6554B00BC66AE /* GradientView.swift */,
+			);
+			name = "Sub Classes";
+			sourceTree = "<group>";
+		};
+		478659521CF5F9780089C977 = {
+			isa = PBXGroup;
+			children = (
+				4786595D1CF5F9780089C977 /* Nehsting */,
+				478659751CF5F9780089C977 /* NehstingTests */,
+				478659801CF5F9780089C977 /* NehstingUITests */,
+				4786595C1CF5F9780089C977 /* Products */,
+				281ABA90AE9A594B6984A628 /* Pods */,
+				0E7A7BF622377BC783AC3E05 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4786595C1CF5F9780089C977 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4786595B1CF5F9780089C977 /* Nehsting.app */,
+				478659721CF5F9780089C977 /* NehstingTests.xctest */,
+				4786597D1CF5F9780089C977 /* NehstingUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4786595D1CF5F9780089C977 /* Nehsting */ = {
+			isa = PBXGroup;
+			children = (
+				4758C97C1CF65E4600BC66AE /* Model */,
+				4758C97B1CF65CD100BC66AE /* Controllers */,
+				4758C97A1CF65CAB00BC66AE /* View */,
+				4758C97D1CF65E5500BC66AE /* Sub Classes */,
+				4758C9791CF65C7900BC66AE /* Support */,
+			);
+			path = Nehsting;
+			sourceTree = "<group>";
+		};
+		478659751CF5F9780089C977 /* NehstingTests */ = {
+			isa = PBXGroup;
+			children = (
+				478659761CF5F9780089C977 /* NehstingTests.swift */,
+				478659781CF5F9780089C977 /* Info.plist */,
+			);
+			path = NehstingTests;
+			sourceTree = "<group>";
+		};
+		478659801CF5F9780089C977 /* NehstingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				478659811CF5F9780089C977 /* NehstingUITests.swift */,
+				478659831CF5F9780089C977 /* Info.plist */,
+			);
+			path = NehstingUITests;
+			sourceTree = "<group>";
+		};
+		D8D6669F1D83FC7A00B24E2A /* Coredata */ = {
+			isa = PBXGroup;
+			children = (
+				D8D666921D83FA0200B24E2A /* TemperatureHistory.xcdatamodeld */,
+				D8D6669D1D83FC3E00B24E2A /* CoreDataStack.swift */,
+				D8D666971D83FB9000B24E2A /* TimeStamp+CoreDataProperties.swift */,
+				D8D666981D83FB9000B24E2A /* TimeStamp.swift */,
+			);
+			name = Coredata;
+			sourceTree = "<group>";
+		};
+		D8D666A01D83FCA000B24E2A /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				4758C96B1CF6554B00BC66AE /* NetworkingDataSingleton.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4786595A1CF5F9780089C977 /* Nehsting */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 478659861CF5F9790089C977 /* Build configuration list for PBXNativeTarget "Nehsting" */;
+			buildPhases = (
+				736F8A987462B4EF454F7B9C /* 📦 Check Pods Manifest.lock */,
+				478659571CF5F9780089C977 /* Sources */,
+				478659581CF5F9780089C977 /* Frameworks */,
+				478659591CF5F9780089C977 /* Resources */,
+				EAA88DC77D7C5223FCFF53D4 /* 📦 Embed Pods Frameworks */,
+				F8FD027FCFFFC2B9DE62E378 /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Nehsting;
+			productName = Nehsting;
+			productReference = 4786595B1CF5F9780089C977 /* Nehsting.app */;
+			productType = "com.apple.product-type.application";
+		};
+		478659711CF5F9780089C977 /* NehstingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 478659891CF5F9790089C977 /* Build configuration list for PBXNativeTarget "NehstingTests" */;
+			buildPhases = (
+				4786596E1CF5F9780089C977 /* Sources */,
+				4786596F1CF5F9780089C977 /* Frameworks */,
+				478659701CF5F9780089C977 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				478659741CF5F9780089C977 /* PBXTargetDependency */,
+			);
+			name = NehstingTests;
+			productName = NehstingTests;
+			productReference = 478659721CF5F9780089C977 /* NehstingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4786597C1CF5F9780089C977 /* NehstingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4786598C1CF5F9790089C977 /* Build configuration list for PBXNativeTarget "NehstingUITests" */;
+			buildPhases = (
+				478659791CF5F9780089C977 /* Sources */,
+				4786597A1CF5F9780089C977 /* Frameworks */,
+				4786597B1CF5F9780089C977 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4786597F1CF5F9780089C977 /* PBXTargetDependency */,
+			);
+			name = NehstingUITests;
+			productName = NehstingUITests;
+			productReference = 4786597D1CF5F9780089C977 /* NehstingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		478659531CF5F9780089C977 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = TouchTapApp;
+				TargetAttributes = {
+					4786595A1CF5F9780089C977 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = L5YJU4WM22;
+					};
+					478659711CF5F9780089C977 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 4786595A1CF5F9780089C977;
+					};
+					4786597C1CF5F9780089C977 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 4786595A1CF5F9780089C977;
+					};
+				};
+			};
+			buildConfigurationList = 478659561CF5F9780089C977 /* Build configuration list for PBXProject "Nehsting" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 478659521CF5F9780089C977;
+			productRefGroup = 4786595C1CF5F9780089C977 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4786595A1CF5F9780089C977 /* Nehsting */,
+				478659711CF5F9780089C977 /* NehstingTests */,
+				4786597C1CF5F9780089C977 /* NehstingUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		478659591CF5F9780089C977 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4786596C1CF5F9780089C977 /* LaunchScreen.storyboard in Resources */,
+				478659691CF5F9780089C977 /* Assets.xcassets in Resources */,
+				478659641CF5F9780089C977 /* Main.storyboard in Resources */,
+				4758C9781CF6554B00BC66AE /* SignIn.storyboard in Resources */,
+				4758C9721CF6554B00BC66AE /* Logout.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		478659701CF5F9780089C977 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4786597B1CF5F9780089C977 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		736F8A987462B4EF454F7B9C /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EAA88DC77D7C5223FCFF53D4 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nehsting/Pods-Nehsting-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8FD027FCFFFC2B9DE62E378 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nehsting/Pods-Nehsting-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		478659571CF5F9780089C977 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4758C9771CF6554B00BC66AE /* SharedDataSingleton.swift in Sources */,
+				4786595F1CF5F9780089C977 /* AppDelegate.swift in Sources */,
+				4758C9711CF6554B00BC66AE /* LoadingScreenViewController.swift in Sources */,
+				4758C9731CF6554B00BC66AE /* MainViewController.swift in Sources */,
+				D8D6669B1D83FB9000B24E2A /* TimeStamp+CoreDataProperties.swift in Sources */,
+				D8D6669E1D83FC3E00B24E2A /* CoreDataStack.swift in Sources */,
+				473581241D837B5B00360DD8 /* HistoryTableViewController.swift in Sources */,
+				D8D666A21D83FF6200B24E2A /* MainViewController+CoreDataLoading.swift in Sources */,
+				4758C96F1CF6554B00BC66AE /* GradientView.swift in Sources */,
+				4758C9751CF6554B00BC66AE /* NetworkingDataSingleton.swift in Sources */,
+				4758C9741CF6554B00BC66AE /* NestConnectViewController.swift in Sources */,
+				D8D6669C1D83FB9000B24E2A /* TimeStamp.swift in Sources */,
+				478659671CF5F9780089C977 /* Nehsting.xcdatamodeld in Sources */,
+				4758C9761CF6554B00BC66AE /* SettingsViewController.swift in Sources */,
+				D8D666941D83FA0200B24E2A /* TemperatureHistory.xcdatamodeld in Sources */,
+				D8D666A41D8400CC00B24E2A /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4786596E1CF5F9780089C977 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				478659771CF5F9780089C977 /* NehstingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		478659791CF5F9780089C977 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				478659821CF5F9780089C977 /* NehstingUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		478659741CF5F9780089C977 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4786595A1CF5F9780089C977 /* Nehsting */;
+			targetProxy = 478659731CF5F9780089C977 /* PBXContainerItemProxy */;
+		};
+		4786597F1CF5F9780089C977 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4786595A1CF5F9780089C977 /* Nehsting */;
+			targetProxy = 4786597E1CF5F9780089C977 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		478659621CF5F9780089C977 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				478659631CF5F9780089C977 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4786596A1CF5F9780089C977 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4786596B1CF5F9780089C977 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		478659841CF5F9790089C977 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = arm64;
+			};
+			name = Debug;
+		};
+		478659851CF5F9790089C977 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = arm64;
+			};
+			name = Release;
+		};
+		478659871CF5F9790089C977 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9502E5EE73AF77046FB0655F /* Pods-Nehsting.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Nehsting/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.touchtapapp.Nehsting;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7 armv7s";
+			};
+			name = Debug;
+		};
+		478659881CF5F9790089C977 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB5C72BCCF32301120E4E033 /* Pods-Nehsting.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Nehsting/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.touchtapapp.Nehsting;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7 armv7s";
+			};
+			name = Release;
+		};
+		4786598A1CF5F9790089C977 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = NehstingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TouchTapApp.Nehsting.NehstingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nehsting.app/Nehsting";
+			};
+			name = Debug;
+		};
+		4786598B1CF5F9790089C977 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = NehstingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TouchTapApp.Nehsting.NehstingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nehsting.app/Nehsting";
+			};
+			name = Release;
+		};
+		4786598D1CF5F9790089C977 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = NehstingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TouchTapApp.Nehsting.NehstingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Nehsting;
+			};
+			name = Debug;
+		};
+		4786598E1CF5F9790089C977 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = NehstingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TouchTapApp.Nehsting.NehstingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Nehsting;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		478659561CF5F9780089C977 /* Build configuration list for PBXProject "Nehsting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				478659841CF5F9790089C977 /* Debug */,
+				478659851CF5F9790089C977 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		478659861CF5F9790089C977 /* Build configuration list for PBXNativeTarget "Nehsting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				478659871CF5F9790089C977 /* Debug */,
+				478659881CF5F9790089C977 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		478659891CF5F9790089C977 /* Build configuration list for PBXNativeTarget "NehstingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4786598A1CF5F9790089C977 /* Debug */,
+				4786598B1CF5F9790089C977 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4786598C1CF5F9790089C977 /* Build configuration list for PBXNativeTarget "NehstingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4786598D1CF5F9790089C977 /* Debug */,
+				4786598E1CF5F9790089C977 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		478659651CF5F9780089C977 /* Nehsting.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				478659661CF5F9780089C977 /* Nehsting.xcdatamodel */,
+			);
+			currentVersion = 478659661CF5F9780089C977 /* Nehsting.xcdatamodel */;
+			path = Nehsting.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		D8D666921D83FA0200B24E2A /* TemperatureHistory.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D886C5441D86728C00880DA3 /* TemperatureHistory_2.xcdatamodel */,
+				D8D666931D83FA0200B24E2A /* TemperatureHistory.xcdatamodel */,
+			);
+			currentVersion = D886C5441D86728C00880DA3 /* TemperatureHistory_2.xcdatamodel */;
+			path = TemperatureHistory.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 478659531CF5F9780089C977 /* Project object */;
+}
