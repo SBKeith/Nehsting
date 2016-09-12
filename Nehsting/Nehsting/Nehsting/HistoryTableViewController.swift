@@ -29,8 +29,8 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        fetchRequestState.predicate = NSPredicate(format: "state == %@", self.hvacState!)
-//        fetchRequestTime.predicate = NSPredicate(format: "TimeStamp == %@", self.time!)
+        // Hide unused rows
+        tableView.tableFooterView = UIView()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -56,13 +56,31 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         
-        
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "hh:mm"
+        dateFormatter.dateFormat = "MMMM dd, hh:mm a"
         
         let date = dateFormatter.stringFromDate(timeStamps[indexPath.row].time!)
         
-        cell.detailTextLabel?.text = date
+        cell.detailTextLabel?.text = "\(timeStamps[indexPath.row].temperature!)"
+        cell.textLabel?.text = date
+        
+        
+        switch Int(timeStamps[indexPath.row].mode!) {
+        case 1: // HEAT
+            cell.backgroundColor = UIColor.orangeColor()
+        case 2: // COOL
+            cell.backgroundColor = UIColor.blueColor()
+        case 4: // OFF
+            cell.backgroundColor = UIColor.lightGrayColor()
+        default: break
+        }
+        
+        cell.textLabel?.textColor = UIColor.whiteColor()
+        cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 10)
+        
+        cell.detailTextLabel?.textColor = UIColor.whiteColor()
+        cell.detailTextLabel?.font = UIFont(name: "HelveticaNeue-UltraLight", size: 25)
+
         
         return cell
     }

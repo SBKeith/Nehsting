@@ -12,10 +12,12 @@ import CoreData
 
 class TimeStamp: NSManagedObject {
 
-    convenience init(time: NSDate, context: NSManagedObjectContext) {
+    convenience init(time: NSDate, mode: UInt, temp: UInt, context: NSManagedObjectContext) {
         if let ent = NSEntityDescription.entityForName("TimeStamp", inManagedObjectContext: context) {
             self.init(entity: ent, insertIntoManagedObjectContext: context)
             self.time = time
+            self.mode = mode
+            self.temperature = temp
         } else {
             fatalError("Unable to find Entity name!")
         }

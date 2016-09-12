@@ -80,6 +80,7 @@
 		9502E5EE73AF77046FB0655F /* Pods-Nehsting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nehsting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nehsting/Pods-Nehsting.debug.xcconfig"; sourceTree = "<group>"; };
 		AB5C72BCCF32301120E4E033 /* Pods-Nehsting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nehsting.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nehsting/Pods-Nehsting.release.xcconfig"; sourceTree = "<group>"; };
 		C1B3A99BCA63CDDE5EA42199 /* Pods_Nehsting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nehsting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D886C5441D86728C00880DA3 /* TemperatureHistory_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TemperatureHistory_2.xcdatamodel; sourceTree = "<group>"; };
 		D8D666931D83FA0200B24E2A /* TemperatureHistory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TemperatureHistory.xcdatamodel; sourceTree = "<group>"; };
 		D8D666971D83FB9000B24E2A /* TimeStamp+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeStamp+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D8D666981D83FB9000B24E2A /* TimeStamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeStamp.swift; sourceTree = "<group>"; };
@@ -744,9 +745,10 @@
 		D8D666921D83FA0200B24E2A /* TemperatureHistory.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				D886C5441D86728C00880DA3 /* TemperatureHistory_2.xcdatamodel */,
 				D8D666931D83FA0200B24E2A /* TemperatureHistory.xcdatamodel */,
 			);
-			currentVersion = D8D666931D83FA0200B24E2A /* TemperatureHistory.xcdatamodel */;
+			currentVersion = D886C5441D86728C00880DA3 /* TemperatureHistory_2.xcdatamodel */;
 			path = TemperatureHistory.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

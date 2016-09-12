@@ -40,7 +40,7 @@ class MainViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(launchAlertViewServerError), name: "displayErrorAlert", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(hideLoadingScreen), name: "hideLoadingScreen", object: nil)
         displayValuesUpdate()
-    }
+        }
     
     override func viewWillDisappear(animated: Bool) {
         
@@ -50,12 +50,11 @@ class MainViewController: UIViewController {
         sharedNetworkManager.removeObservers()
         NSNotificationCenter.defaultCenter().removeObserver(self)
         
-        if !checkIfTimeExists(sharedDataManager.timeStamp!) {
+        // If time does not exist in coredata; save it along with hvac mode and temp
+        if !checkIfTimeExists(sharedDataManager.timeStamp!, temp: sharedDataManager.temperature) {
             print("Saving new time stamp...")
             saveTimeStampData()
         }
-        // Save hvac mode along with time stamp...
-        print(sharedDataManager.hvacMode)
     }
     
     // MARK: -HELPER METHODS

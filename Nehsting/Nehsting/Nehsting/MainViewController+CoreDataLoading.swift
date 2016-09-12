@@ -15,6 +15,8 @@ extension MainViewController {
         if let entity = NSEntityDescription.entityForName("TimeStamp", inManagedObjectContext: context) {
             let newTime = TimeStamp(entity: entity, insertIntoManagedObjectContext: context)
             newTime.time = sharedDataManager.timeStamp
+            newTime.mode = sharedDataManager.hvacMode
+            newTime.temperature = sharedDataManager.temperature
         }
         
         do {
@@ -37,7 +39,7 @@ extension MainViewController {
         }
     }
     
-    func checkIfTimeExists(time: NSDate) -> Bool {
+    func checkIfTimeExists(time: NSDate, temp: UInt) -> Bool {
         
         let checkTimeArray = dataFetchRequest()
         
@@ -45,7 +47,7 @@ extension MainViewController {
             return false
         } else {
             for stamp in checkTimeArray {
-                if stamp.time! == time {
+                if stamp.time! == time || stamp.temperature == temp {
                     return true
                 }
             }
