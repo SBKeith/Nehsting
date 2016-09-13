@@ -35,12 +35,28 @@
                                     <segue destination="MkX-0T-VMe" kind="presentation" identifier="kSettingsID" modalTransitionStyle="crossDissolve" id="3I7-i7-ZF5"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hE-2T-VYi" userLabel="downButton">
+                                <rect key="frame" x="198" y="473" width="60" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="fgW-ON-PU5"/>
+                                    <constraint firstAttribute="width" constant="60" id="fu1-Sa-tX6"/>
+                                </constraints>
+                                <state key="normal" image="downTemp"/>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyc-aC-BMm">
-                                <rect key="frame" x="258" y="509" width="83" height="83"/>
+                                <rect key="frame" x="258" y="481" width="83" height="83"/>
                                 <state key="normal" backgroundImage="offButton"/>
                                 <connections>
                                     <action selector="mainButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hWO-SR-VUV"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LkC-3z-adX" userLabel="upButton">
+                                <rect key="frame" x="341" y="473" width="60" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="3Jg-iv-YIE"/>
+                                    <constraint firstAttribute="height" constant="100" id="MY7-lD-XqK"/>
+                                </constraints>
+                                <state key="normal" image="upTemp"/>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axe-bL-qdS">
                                 <rect key="frame" x="0.0" y="600" width="600" height="85"/>
@@ -110,16 +126,20 @@
                         <constraints>
                             <constraint firstItem="uAV-s7-W6F" firstAttribute="top" secondItem="c8O-RF-VP0" secondAttribute="bottom" constant="8" symbolic="YES" id="039-6D-CQ1"/>
                             <constraint firstItem="uAV-s7-W6F" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6QQ-uz-TfS"/>
+                            <constraint firstItem="0hE-2T-VYi" firstAttribute="centerY" secondItem="Wyc-aC-BMm" secondAttribute="centerY" id="6tm-xo-MVe"/>
                             <constraint firstItem="uAV-s7-W6F" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8Fs-DO-oHK"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Wyc-aC-BMm" secondAttribute="bottom" constant="8" symbolic="YES" id="Bvs-Im-KXd"/>
+                            <constraint firstItem="Wyc-aC-BMm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="K7D-0N-S2n"/>
                             <constraint firstItem="c8O-RF-VP0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.6" id="MLY-pZ-pde"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="axe-bL-qdS" secondAttribute="top" id="MLn-i4-gY8"/>
+                            <constraint firstItem="LkC-3z-adX" firstAttribute="centerY" secondItem="Wyc-aC-BMm" secondAttribute="centerY" id="ONW-Ds-kn2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Wyc-aC-BMm" secondAttribute="bottom" multiplier="1.05" constant="8" symbolic="YES" id="Or6-gf-ufA"/>
                             <constraint firstItem="axe-bL-qdS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="R9C-Ia-SXN"/>
                             <constraint firstItem="262-Gm-NrW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="S63-Pb-n8f"/>
+                            <constraint firstItem="LkC-3z-adX" firstAttribute="leading" secondItem="Wyc-aC-BMm" secondAttribute="trailing" id="SYI-FP-CXA"/>
                             <constraint firstAttribute="trailing" secondItem="TLd-7T-zH6" secondAttribute="trailing" id="Xt2-Vq-ljt"/>
+                            <constraint firstItem="0hE-2T-VYi" firstAttribute="trailing" secondItem="Wyc-aC-BMm" secondAttribute="leading" id="aFm-Dc-YSY"/>
                             <constraint firstItem="TLd-7T-zH6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="cPh-UA-KLt"/>
                             <constraint firstAttribute="trailing" secondItem="axe-bL-qdS" secondAttribute="trailing" id="hox-kZ-lap"/>
-                            <constraint firstItem="Wyc-aC-BMm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iGa-XM-so8"/>
                             <constraint firstItem="TLd-7T-zH6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lrM-jT-irf"/>
                             <constraint firstItem="262-Gm-NrW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="may-zq-UJA"/>
                             <constraint firstItem="c8O-RF-VP0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yEN-Pt-fxt"/>
@@ -138,12 +158,14 @@
                     <connections>
                         <outlet property="coolButton" destination="Ynz-5n-TBV" id="uY7-N8-LaL"/>
                         <outlet property="displayValue" destination="uAV-s7-W6F" id="In3-UW-rAX"/>
+                        <outlet property="downButton" destination="0hE-2T-VYi" id="Qcc-uD-Axy"/>
                         <outlet property="gradientView" destination="TLd-7T-zH6" id="g7W-AJ-fHO"/>
                         <outlet property="heatButton" destination="sVv-rs-8RL" id="Er6-jh-IhB"/>
                         <outlet property="leafImageView" destination="c8O-RF-VP0" id="vhS-KW-yia"/>
                         <outlet property="mainButton" destination="Wyc-aC-BMm" id="mcU-sx-TKy"/>
                         <outlet property="menuButtons" destination="axe-bL-qdS" id="c6R-f0-kvM"/>
                         <outlet property="offButton" destination="mUh-eU-hNa" id="sKU-F8-i4I"/>
+                        <outlet property="upButton" destination="LkC-3z-adX" id="c9J-i0-wua"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -153,8 +175,10 @@
     </scenes>
     <resources>
         <image name="coolButton" width="83" height="83"/>
+        <image name="downTemp" width="77" height="125"/>
         <image name="heatButton" width="83" height="83"/>
         <image name="icon-leaf" width="292" height="317"/>
         <image name="offButton" width="83" height="83"/>
+        <image name="upTemp" width="77" height="125"/>
     </resources>
 </document>

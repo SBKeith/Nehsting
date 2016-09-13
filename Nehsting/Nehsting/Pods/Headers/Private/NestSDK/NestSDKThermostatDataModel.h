@@ -1,0 +1,1 @@
+../../../NestSDK/NestSDK/NestSDK/NestSDKThermostatDataModel.h

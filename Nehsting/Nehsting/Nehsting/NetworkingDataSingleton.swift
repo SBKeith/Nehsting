@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import NestSDK
 
-class NetworkingDataSingleton {
+class NetworkingDataSingleton: UIViewController {
     
     // Set singleton for class
     static let sharedNetworkManager = NetworkingDataSingleton()
@@ -35,55 +35,86 @@ class NetworkingDataSingleton {
 ////// Find Structure(s)
     func observeStructures(tempClosure: (temp: UInt?, hvacMode: UInt?) -> Void) {
         
-        // Clean up previous observers
-        removeObservers()
+        if Reachability.isConnectedToNetwork() == true {
+            print("Internet connection OK")
         
-        // Start observing structures
-        structuresObserverHandle = dataManager.observeStructuresWithBlock({
-            structuresArray, error in
+            // Clean up previous observers
+            removeObservers()
             
-            // Structure may change while observing, so remove all current device observers and then set all new ones
-            self.removeDevicesObservers()
-            
+            // Start observing structures
+            structuresObserverHandle = dataManager.observeStructuresWithBlock({
+                structuresArray, error in
+                
+                // Structure may change while observing, so remove all current device observers and then set all new ones
+                self.removeDevicesObservers()
 
-            // Iterate through all structures and set observers for all devices
-            for structure in structuresArray as! [NestSDKStructure] {
-                
-                self.structureID = structure
-                self.getAndLocallySetStructure()
-                
-                self.observeThermostatsWithinStructure(structure, tempHandler: { (temp, hvacMode) in
-                    tempClosure(temp: temp, hvacMode: hvacMode)
-                    NSNotificationCenter.defaultCenter().postNotificationName("hideLoadingScreen", object: nil)
-                })
-//                print("Structure: \(structure.name)")
-            }
-            tempClosure(temp: nil, hvacMode: nil)
-        })
+                // Iterate through all structures and set observers for all devices
+                for structure in structuresArray as! [NestSDKStructure] {
+                    
+                            self.structureID = structure
+                            self.getAndLocallySetStructure()
+                            
+                            self.observeThermostatsWithinStructure(structure, tempHandler: { (temp, hvacMode) in
+                                tempClosure(temp: temp, hvacMode: hvacMode)
+                                NSNotificationCenter.defaultCenter().postNotificationName("hideLoadingScreen", object: nil)
+                            })
+                        
+                    tempClosure(temp: nil, hvacMode: nil)
+                }
+            })
+        } else {
+            print("Internet connection FAILED")
+            NSNotificationCenter.defaultCenter().postNotificationName("hideLoadingScreen", object: nil)
+            NestSDKAccessToken.setCurrentAccessToken(nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("noInternetConnection", object: nil)
+        }
     }
+    
 /////////////////////////////////////////////////////////////////////////////////////
     
 /////////////////////////////////////////////////////////////////////////////////////
 ////// Observe Thermostat(s)
     func observeThermostatsWithinStructure(structure: NestSDKStructure, tempHandler: (temp: UInt?, hvacMode: UInt?) -> Void) {
-        
-        for thermostatId in structure.thermostats as! [String] {
-            
-            
-            let handle = dataManager.observeThermostatWithId(thermostatId, block: {
-                thermostat, error in
+        if structure.thermostats != nil {
+            for thermostatId in structure.thermostats as! [String] {
                 
-                if (error != nil) {
-                    print("Error observing thermostat")
-                    tempHandler(temp: nil, hvacMode: nil)
-                } else {
-                    self.thermostat = thermostat
-                    self.getAndLocallySetThermostatTemperature()
+                let handle = dataManager.observeThermostatWithId(thermostatId, block: {
+                    thermostat, error in
                     
-                    tempHandler(temp: self.sharedDataManager.temperature, hvacMode: self.sharedDataManager.hvacMode)
-                }
-            })
-            deviceObserverHandles.append(handle)
+                    if (error != nil) {
+                        print("Error observing thermostat")
+                        tempHandler(temp: nil, hvacMode: nil)
+                    } else {
+                        
+                        if Reachability.isConnectedToNetwork() == true {
+                            print("Internet connection OK")
+                            self.thermostat = thermostat
+                            self.getAndLocallySetThermostatTemperature()
+                            
+                            tempHandler(temp: self.sharedDataManager.temperature, hvacMode: self.sharedDataManager.hvacMode)
+                        } else {
+                            print("Internet connection FAILED")
+                            NSNotificationCenter.defaultCenter().postNotificationName("hideLoadingScreen", object: nil)
+                            NestSDKAccessToken.setCurrentAccessToken(nil)
+                            
+                            let alertView = UIAlertController(title: "Server Error", message: "Internet connection FAILED", preferredStyle: .Alert)
+                            alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
+                                let vc = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewControllerWithIdentifier("SignIn") as! NestConnectViewController
+                                self.presentViewController(vc, animated: true, completion: nil)
+                            }))
+                            self.presentViewController(alertView, animated: true, completion: nil)
+                        }
+                        
+                        
+                    }
+                })
+                deviceObserverHandles.append(handle)
+            }
+        } else {
+            NSNotificationCenter.defaultCenter().postNotificationName("hideLoadingScreen", object: nil)
+            NestSDKAccessToken.setCurrentAccessToken(nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("displayNoThermostat", object: nil)
+            tempHandler(temp: nil, hvacMode: nil)
         }
     }
 /////////////////////////////////////////////////////////////////////////////////////

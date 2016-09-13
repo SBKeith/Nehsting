@@ -22,6 +22,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var offButton: UIButton!
     @IBOutlet weak var coolButton: UIButton!
     @IBOutlet weak var heatButton: UIButton!
+    @IBOutlet weak var downButton: UIButton!
+    @IBOutlet weak var upButton: UIButton!
 
     let container: UIView = UIView()
     let loadingView: UIView = UIView()
@@ -41,14 +43,19 @@ class MainViewController: UIViewController {
         offButton.addTarget(self, action: #selector(self.setHVACMode), forControlEvents: .TouchUpInside)
         coolButton.addTarget(self, action: #selector(self.setHVACMode), forControlEvents: .TouchUpInside)
         heatButton.addTarget(self, action: #selector(self.setHVACMode), forControlEvents: .TouchUpInside)
+        downButton.addTarget(self, action: #selector(self.setTempWithButton), forControlEvents: .TouchUpInside)
+        upButton.addTarget(self, action: #selector(self.setTempWithButton), forControlEvents: .TouchUpInside)
     }
     
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
         UIApplication.sharedApplication().statusBarStyle = .Default
+        temperatureControlOnOff(!sharedDataManager.temperatureControls)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(launchAlertViewServerError), name: "displayErrorAlert", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(hideLoadingScreen), name: "hideLoadingScreen", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(displayNoThermostat), name: "displayNoThermostat", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(noInternetConnection), name: "noInternetConnection", object: nil)
         displayValuesUpdate()
         }
     
@@ -59,6 +66,40 @@ class MainViewController: UIViewController {
         // Remove observers
         sharedNetworkManager.removeObservers()
         NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func temperatureControlOnOff(setBool: Bool) {
+        
+        downButton.hidden = setBool
+        upButton.hidden = setBool
+    }
+    
+    func setTempWithButton(sender: UIButton) {
+        
+        switch(sender.tag) {
+        case 0: // Increase Temp
+            sharedDataManager.temperature += 1
+            
+            if sharedDataManager.temperature % 1 == 0 {
+                gradientView.adjustGradient("INCREASE")
+            }
+        case 1: // Decrease Temp
+            sharedDataManager.temperature -= 1
+            
+            if sharedDataManager.temperature % 1 == 0 {
+                gradientView.adjustGradient("DECREASE")
+            }
+        default: break
+        }
+        
+        // Set display temperature reading
+        displayValue.text = "\(sharedDataManager.temperature)"
+        
+        // Set thermostat temperature via network to NEST
+        sharedNetworkManager.networkTemperatureUpdate()
+        
+        // Save user data
+        saveData()
     }
     
     // MARK: -HELPER METHODS
@@ -105,6 +146,7 @@ class MainViewController: UIViewController {
     }
     
     func setHVACMode(sender: UIButton) {
+        
         // Set hvacMode
         switch(sender.tag) {
         case 1: // HEAT
@@ -204,9 +246,9 @@ class MainViewController: UIViewController {
         UIView.animateWithDuration(0.2, delay: 0.1, options: .CurveEaseOut, animations: {
             switch self.menuButtonIsActive {
             case false:
-                self.menuButtons.frame.origin.y -= self.menuButtons.frame.height * 2.25
+                self.menuButtons.frame.origin.y -= self.menuButtons.frame.height * 2.5
             case true:
-                self.menuButtons.frame.origin.y += self.menuButtons.frame.height * 2.25
+                self.menuButtons.frame.origin.y += self.menuButtons.frame.height * 2.5
             }
         }) { (true) in
             print(self.menuButtonIsActive)
@@ -289,6 +331,28 @@ class MainViewController: UIViewController {
         
         let alertView = UIAlertController(title: "Server Error", message: "Nest server has blocked your request, due to too many calls.  Please try again after a few minutes.", preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        presentViewController(alertView, animated: true, completion: nil)
+    }
+    
+    func displayNoThermostat(notification: NSNotification) {
+        
+        let alertView = UIAlertController(title: "Server Error", message: "No thermostat found!", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
+            let vc = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewControllerWithIdentifier("SignIn") as! NestConnectViewController
+            self.presentViewController(vc, animated: true, completion: nil)
+        }))
+        
+        presentViewController(alertView, animated: true, completion: nil)
+    }
+    
+    func noInternetConnection(notification: NSNotification) {
+        
+        let alertView = UIAlertController(title: "Server Error", message: "Internet connection FAILED", preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
+            let vc = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewControllerWithIdentifier("SignIn") as! NestConnectViewController
+            self.presentViewController(vc, animated: true, completion: nil)
+        }))
+        
         presentViewController(alertView, animated: true, completion: nil)
     }
 }

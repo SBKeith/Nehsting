@@ -15,22 +15,18 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var homeOrAwayButton: UIButton!
     @IBOutlet weak var homeOrAwayLabel: UILabel!
     @IBOutlet weak var thermostatNameLabel: UILabel!
+    @IBOutlet weak var controlSwitch: UISwitch!
     
     let sharedNetworkManager = NetworkingDataSingleton.sharedNetworkManager
     let sharedDataManager = SharedDataSingleton.sharedDataManager
     var imageName = ""
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        UIApplication.sharedApplication().statusBarStyle = .LightContent
-//        backgroundView.addSubview(UIImageView(image: UIImage(named: "loadingScreen")))
-    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(launchAlertViewServerError), name: "displayErrorAlert", object: nil)
         getThermostatName()
         getHomeOrAwayStatusImage()
+        controlSwitch.on = sharedDataManager.temperatureControls
     }
     
     func getThermostatName() {
@@ -53,9 +49,12 @@ class SettingsViewController: UIViewController {
             }
             
             homeOrAwayButton.setImage(UIImage(named: imageName), forState: .Normal)
-            
-//            homeOrAwayButton.setBackgroundImage(UIImage(named: imageName), forState: .Normal)
         }
+    }
+    
+    @IBAction func temperatureControlSwitchTapped(sender: UISwitch) {
+        
+        sharedDataManager.temperatureControls = sender.on
     }
     
     @IBAction func doneButtonTapped(sender: UIBarButtonItem) {

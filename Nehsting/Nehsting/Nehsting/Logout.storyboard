@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kpc-eH-mfZ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -68,12 +69,40 @@
                                     <action selector="homeOrAwayButtonTapped:" destination="jNi-QI-qPG" eventType="touchUpInside" id="yCo-Ws-G09"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F6b-Ox-78b">
+                                <rect key="frame" x="0.0" y="450" width="600" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature Control Buttons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tws-it-3AH">
+                                        <rect key="frame" x="8" y="9" width="223" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bJS-CD-lTy">
+                                        <rect key="frame" x="543" y="4" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="temperatureControlSwitchTapped:" destination="jNi-QI-qPG" eventType="valueChanged" id="FzT-sx-Wyg"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="tws-it-3AH" firstAttribute="leading" secondItem="F6b-Ox-78b" secondAttribute="leadingMargin" id="OlR-B0-LAK"/>
+                                    <constraint firstItem="bJS-CD-lTy" firstAttribute="centerY" secondItem="F6b-Ox-78b" secondAttribute="centerY" id="VuS-Du-fSb"/>
+                                    <constraint firstItem="tws-it-3AH" firstAttribute="centerY" secondItem="F6b-Ox-78b" secondAttribute="centerY" id="Zei-Ve-eTZ"/>
+                                    <constraint firstAttribute="height" constant="40" id="j1s-bO-sj8"/>
+                                    <constraint firstItem="bJS-CD-lTy" firstAttribute="trailing" secondItem="F6b-Ox-78b" secondAttribute="trailingMargin" id="mbE-ng-h8c"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.85882352941176465" green="0.75294117647058822" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="WSc-Jp-77v" firstAttribute="centerX" secondItem="dSV-L8-tcl" secondAttribute="centerX" id="2bY-hm-t6V"/>
                             <constraint firstItem="dFq-vB-QFj" firstAttribute="bottom" secondItem="dSV-L8-tcl" secondAttribute="centerY" multiplier="0.9" id="HJc-ou-iYz"/>
+                            <constraint firstItem="F6b-Ox-78b" firstAttribute="leading" secondItem="dSV-L8-tcl" secondAttribute="leading" id="Hbg-F9-cxb"/>
+                            <constraint firstAttribute="trailing" secondItem="F6b-Ox-78b" secondAttribute="trailing" id="IdB-Db-rSY"/>
                             <constraint firstItem="QwZ-om-CSg" firstAttribute="centerX" secondItem="dSV-L8-tcl" secondAttribute="centerX" id="IjT-g1-fHP"/>
+                            <constraint firstItem="F6b-Ox-78b" firstAttribute="top" secondItem="YWQ-eF-gUg" secondAttribute="bottom" constant="30" id="K6c-bS-YSJ"/>
                             <constraint firstItem="YWQ-eF-gUg" firstAttribute="top" secondItem="dSV-L8-tcl" secondAttribute="centerY" multiplier="1.1" id="KFr-U2-Y64"/>
                             <constraint firstItem="dFq-vB-QFj" firstAttribute="centerX" secondItem="dSV-L8-tcl" secondAttribute="centerX" id="MYt-gH-CIS"/>
                             <constraint firstItem="DaG-cA-pQg" firstAttribute="centerX" secondItem="dSV-L8-tcl" secondAttribute="centerX" id="PbX-lP-Zh0"/>
@@ -82,7 +111,9 @@
                             <constraint firstAttribute="trailing" secondItem="QwZ-om-CSg" secondAttribute="trailing" constant="20" symbolic="YES" id="XgW-wK-hsD"/>
                             <constraint firstItem="SRx-80-cgL" firstAttribute="top" secondItem="QwZ-om-CSg" secondAttribute="bottom" constant="8" symbolic="YES" id="aCK-8d-QLr"/>
                             <constraint firstItem="WSc-Jp-77v" firstAttribute="centerY" secondItem="dFq-vB-QFj" secondAttribute="centerY" multiplier="1.25" id="aOd-1v-Kuv"/>
+                            <constraint firstItem="F6b-Ox-78b" firstAttribute="leading" secondItem="dSV-L8-tcl" secondAttribute="leadingMargin" id="cMQ-hy-ToH"/>
                             <constraint firstItem="YWQ-eF-gUg" firstAttribute="centerX" secondItem="dSV-L8-tcl" secondAttribute="centerX" id="gDo-Zj-W0T"/>
+                            <constraint firstItem="F6b-Ox-78b" firstAttribute="trailing" secondItem="dSV-L8-tcl" secondAttribute="trailingMargin" id="k21-M9-RcY"/>
                             <constraint firstItem="dFq-vB-QFj" firstAttribute="top" secondItem="DaG-cA-pQg" secondAttribute="bottom" multiplier="1.6" constant="8" symbolic="YES" id="pRq-jH-bgx"/>
                             <constraint firstItem="DaG-cA-pQg" firstAttribute="top" secondItem="bwg-J1-Scj" secondAttribute="bottom" constant="8" symbolic="YES" id="phf-PE-s0x"/>
                             <constraint firstItem="WSc-Jp-77v" firstAttribute="top" secondItem="dFq-vB-QFj" secondAttribute="bottom" constant="8" symbolic="YES" id="xYm-03-BG7"/>
@@ -92,6 +123,8 @@
                                 <exclude reference="phf-PE-s0x"/>
                                 <exclude reference="aOd-1v-Kuv"/>
                                 <exclude reference="xYm-03-BG7"/>
+                                <exclude reference="cMQ-hy-ToH"/>
+                                <exclude reference="k21-M9-RcY"/>
                             </mask>
                         </variation>
                     </view>
@@ -109,6 +142,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="backgroundView" destination="dSV-L8-tcl" id="r3K-DQ-h0W"/>
+                        <outlet property="controlSwitch" destination="bJS-CD-lTy" id="8GG-f1-d8E"/>
                         <outlet property="homeOrAwayButton" destination="dFq-vB-QFj" id="Yar-Ts-Rf0"/>
                         <outlet property="homeOrAwayLabel" destination="WSc-Jp-77v" id="GUx-Ob-PNu"/>
                         <outlet property="thermostatNameLabel" destination="DaG-cA-pQg" id="mOL-dY-mff"/>
@@ -138,7 +172,7 @@
                                             <rect key="frame" x="15" y="12" width="32" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZIi-cV-NlR">

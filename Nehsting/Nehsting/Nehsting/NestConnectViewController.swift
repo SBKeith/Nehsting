@@ -42,19 +42,25 @@ class NestConnectViewController: UIViewController {
     
     @IBAction func connectWithNestButtonTapped(sender: UIButton) {
         
-        let authorizationManager = NestSDKAuthorizationManager()
-        authorizationManager.authorizeWithNestAccountFromViewController(self, handler:{
-            result, error in
-            
-            if (error == nil) {
-                print("Process error: \(error)")
+        if Reachability.isConnectedToNetwork() == true {
+            print("Internet connection OK")
+            let authorizationManager = NestSDKAuthorizationManager()
+            authorizationManager.authorizeWithNestAccountFromViewController(self, handler:{
+                result, error in
                 
-            } else if (result.isCancelled) {
-                print("Cancelled")
-                
-            } else {
-                print("Authorized!")
-            }
-        })
+                if (error == nil) {
+                    print("Process error: \(error)")
+                } else if (result.isCancelled) {
+                    print("Cancelled")
+                } else {
+                    print("Authorized!")
+                }
+            })
+        } else {
+            print("Internet connection FAILED")
+            let alertView = UIAlertController(title: "Server Error", message: "Internet connection FAILED", preferredStyle: .Alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            presentViewController(alertView, animated: true, completion: nil)
+        }
     }
 }

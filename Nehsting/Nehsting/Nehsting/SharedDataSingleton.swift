@@ -22,6 +22,7 @@ class SharedDataSingleton {
     var leafHidden: Bool?
     var thermostatName: String?
     var timeStamp: NSDate?
+    var temperatureControls = true
     
     // Thermostat max and min constants
     let kMAXTEMP = 90

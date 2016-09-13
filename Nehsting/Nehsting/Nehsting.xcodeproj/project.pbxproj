@@ -18,6 +18,7 @@
 		4758C9771CF6554B00BC66AE /* SharedDataSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758C96D1CF6554B00BC66AE /* SharedDataSingleton.swift */; };
 		4758C9781CF6554B00BC66AE /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4758C96E1CF6554B00BC66AE /* SignIn.storyboard */; };
 		4764A3861CF77CFE006EF033 /* Pods_Nehsting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4764A3841CF77CFE006EF033 /* Pods_Nehsting.framework */; };
+		4772757B1D88AF630067E61A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4772757A1D88AF630067E61A /* Reachability.swift */; };
 		4786595F1CF5F9780089C977 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4786595E1CF5F9780089C977 /* AppDelegate.swift */; };
 		478659641CF5F9780089C977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 478659621CF5F9780089C977 /* Main.storyboard */; };
 		478659671CF5F9780089C977 /* Nehsting.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 478659651CF5F9780089C977 /* Nehsting.xcdatamodeld */; };
@@ -64,6 +65,7 @@
 		4758C96E1CF6554B00BC66AE /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		4764A3831CF77CFE006EF033 /* NestSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NestSDK.framework; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Nehsting-brruybosllwbplcycknsorwqtmdf/Build/Products/Debug-iphonesimulator/NestSDK/NestSDK.framework"; sourceTree = "<group>"; };
 		4764A3841CF77CFE006EF033 /* Pods_Nehsting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Nehsting.framework; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Nehsting-brruybosllwbplcycknsorwqtmdf/Build/Products/Debug-iphonesimulator/Pods_Nehsting.framework"; sourceTree = "<group>"; };
+		4772757A1D88AF630067E61A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		4786595B1CF5F9780089C977 /* Nehsting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nehsting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4786595E1CF5F9780089C977 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		478659631CF5F9780089C977 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -161,8 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				4758C9671CF6554B00BC66AE /* LoadingScreenViewController.swift */,
-				4758C9691CF6554B00BC66AE /* MainViewController.swift */,
 				4758C96A1CF6554B00BC66AE /* NestConnectViewController.swift */,
+				4758C9691CF6554B00BC66AE /* MainViewController.swift */,
 				4758C96C1CF6554B00BC66AE /* SettingsViewController.swift */,
 				473581231D837B5B00360DD8 /* HistoryTableViewController.swift */,
 				D8D666A11D83FF6200B24E2A /* MainViewController+CoreDataLoading.swift */,
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				4758C96B1CF6554B00BC66AE /* NetworkingDataSingleton.swift */,
+				4772757A1D88AF630067E61A /* Reachability.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				4758C9731CF6554B00BC66AE /* MainViewController.swift in Sources */,
 				D8D6669B1D83FB9000B24E2A /* TimeStamp+CoreDataProperties.swift in Sources */,
 				D8D6669E1D83FC3E00B24E2A /* CoreDataStack.swift in Sources */,
+				4772757B1D88AF630067E61A /* Reachability.swift in Sources */,
 				473581241D837B5B00360DD8 /* HistoryTableViewController.swift in Sources */,
 				D8D666A21D83FF6200B24E2A /* MainViewController+CoreDataLoading.swift in Sources */,
 				4758C96F1CF6554B00BC66AE /* GradientView.swift in Sources */,
