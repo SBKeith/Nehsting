@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var heatButton: UIButton!
     @IBOutlet weak var downButton: UIButton!
     @IBOutlet weak var upButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     let container: UIView = UIView()
     let loadingView: UIView = UIView()
@@ -132,32 +133,35 @@ class MainViewController: UIViewController {
     // Show loading screen function
     func showLoadingScreen(uiView: UIView) {
         
-        // Add background
-        container.frame = uiView.frame
-        container.center = uiView.center
-        container.addSubview(UIImageView(image: UIImage(named: "loadingScreen")))
-        uiView.addSubview(container)
+        activityIndicator.startAnimating()
+        activityIndicator.hidden = false
         
-        // Add transparent box overlay
-        loadingView.frame = CGRectMake(0, 0, 150, 150)
-        loadingView.center = uiView.center
-        loadingView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.7)
-        loadingView.clipsToBounds = true
-        loadingView.layer.cornerRadius = 10
-        
-        let label = UILabel(frame: CGRectMake(0, 0, 125, 20))
-        label.text = "Connecting to Server..."
-        label.adjustsFontSizeToFitWidth = true
-        label.textColor = UIColor.whiteColor()
-        loadingView.addSubview(label)
-        label.center = CGPointMake(loadingView.frame.size.width / 2, 20)
-        
-        container.addSubview(loadingView)
-        
-        // Add spinner animation
-        indicator.center = CGPointMake(loadingView.frame.size.width / 2, loadingView.frame.size.height / 2)
-        loadingView.addSubview(indicator)
-        indicator.startAnimating()
+//        // Add background
+//        container.frame = uiView.frame
+//        container.center = uiView.center
+//        container.addSubview(UIImageView(image: UIImage(named: "loadingScreen")))
+//        uiView.addSubview(container)
+//        
+//        // Add transparent box overlay
+//        loadingView.frame = CGRectMake(0, 0, 150, 150)
+//        loadingView.center = uiView.center
+//        loadingView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.7)
+//        loadingView.clipsToBounds = true
+//        loadingView.layer.cornerRadius = 10
+//        
+//        let label = UILabel(frame: CGRectMake(0, 0, 125, 20))
+//        label.text = "Connecting to Server..."
+//        label.adjustsFontSizeToFitWidth = true
+//        label.textColor = UIColor.whiteColor()
+//        loadingView.addSubview(label)
+//        label.center = CGPointMake(loadingView.frame.size.width / 2, 20)
+//        
+//        container.addSubview(loadingView)
+//        
+//        // Add spinner animation
+//        indicator.center = CGPointMake(loadingView.frame.size.width / 2, loadingView.frame.size.height / 2)
+//        loadingView.addSubview(indicator)
+//        indicator.startAnimating()
     }
     
     func setHVACMode(sender: UIButton) {
@@ -196,16 +200,19 @@ class MainViewController: UIViewController {
     // Fade out of loading screen function
     func hideLoadingScreen(notification: NSNotification) {
         
-        UIView.animateWithDuration(1.5, animations: {
-            indicator.alpha = 0
-            self.loadingView.alpha = 0
-            self.container.alpha = 0
-        }) { complete in
-            indicator.stopAnimating()
-            indicator.hidden = true
-            self.container.hidden = true
-            self.loadingView.hidden = true
-        }
+        activityIndicator.hidden = true
+        activityIndicator.stopAnimating()
+        
+//        UIView.animateWithDuration(1.5, animations: {
+//            indicator.alpha = 0
+//            self.loadingView.alpha = 0
+//            self.container.alpha = 0
+//        }) { complete in
+//            indicator.stopAnimating()
+//            indicator.hidden = true
+//            self.container.hidden = true
+//            self.loadingView.hidden = true
+//        }
     }
     
     // MARK: -SET VALUES
@@ -378,10 +385,7 @@ class MainViewController: UIViewController {
     func noInternetConnection() {
         
         let alertView = UIAlertController(title: "Server Error", message: "Internet connection FAILED", preferredStyle: .Alert)
-        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
-            let vc = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewControllerWithIdentifier("SignIn") as! NestConnectViewController
-            self.presentViewController(vc, animated: true, completion: nil)
-        }))
+        alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         
         presentViewController(alertView, animated: true, completion: nil)
     }

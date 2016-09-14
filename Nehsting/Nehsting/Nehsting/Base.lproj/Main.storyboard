@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -29,6 +30,10 @@
                                 <rect key="frame" x="0.0" y="-20" width="600" height="620"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="dwx-js-pyt">
+                                <rect key="frame" x="281" y="282" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="262-Gm-NrW">
                                 <rect key="frame" x="20" y="8" width="22" height="22"/>
                                 <connections>
@@ -131,6 +136,7 @@
                             <constraint firstItem="Wyc-aC-BMm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="K7D-0N-S2n"/>
                             <constraint firstItem="c8O-RF-VP0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.6" id="MLY-pZ-pde"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="axe-bL-qdS" secondAttribute="top" id="MLn-i4-gY8"/>
+                            <constraint firstItem="dwx-js-pyt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MiV-tg-hgL"/>
                             <constraint firstItem="LkC-3z-adX" firstAttribute="centerY" secondItem="Wyc-aC-BMm" secondAttribute="centerY" id="ONW-Ds-kn2"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Wyc-aC-BMm" secondAttribute="bottom" multiplier="1.05" constant="8" symbolic="YES" id="Or6-gf-ufA"/>
                             <constraint firstItem="axe-bL-qdS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="R9C-Ia-SXN"/>
@@ -139,6 +145,7 @@
                             <constraint firstAttribute="trailing" secondItem="TLd-7T-zH6" secondAttribute="trailing" id="Xt2-Vq-ljt"/>
                             <constraint firstItem="0hE-2T-VYi" firstAttribute="trailing" secondItem="Wyc-aC-BMm" secondAttribute="leading" id="aFm-Dc-YSY"/>
                             <constraint firstItem="TLd-7T-zH6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="cPh-UA-KLt"/>
+                            <constraint firstItem="dwx-js-pyt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dPH-SL-aKF"/>
                             <constraint firstAttribute="trailing" secondItem="axe-bL-qdS" secondAttribute="trailing" id="hox-kZ-lap"/>
                             <constraint firstItem="TLd-7T-zH6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lrM-jT-irf"/>
                             <constraint firstItem="262-Gm-NrW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="may-zq-UJA"/>
@@ -156,6 +163,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="dwx-js-pyt" id="6Sx-WT-NWd"/>
                         <outlet property="coolButton" destination="Ynz-5n-TBV" id="uY7-N8-LaL"/>
                         <outlet property="displayValue" destination="uAV-s7-W6F" id="In3-UW-rAX"/>
                         <outlet property="downButton" destination="0hE-2T-VYi" id="Qcc-uD-Axy"/>
