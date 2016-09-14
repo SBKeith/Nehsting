@@ -17,7 +17,6 @@
 		4758C9761CF6554B00BC66AE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758C96C1CF6554B00BC66AE /* SettingsViewController.swift */; };
 		4758C9771CF6554B00BC66AE /* SharedDataSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4758C96D1CF6554B00BC66AE /* SharedDataSingleton.swift */; };
 		4758C9781CF6554B00BC66AE /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4758C96E1CF6554B00BC66AE /* SignIn.storyboard */; };
-		4764A3861CF77CFE006EF033 /* Pods_Nehsting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4764A3841CF77CFE006EF033 /* Pods_Nehsting.framework */; };
 		4772757B1D88AF630067E61A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4772757A1D88AF630067E61A /* Reachability.swift */; };
 		4786595F1CF5F9780089C977 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4786595E1CF5F9780089C977 /* AppDelegate.swift */; };
 		478659641CF5F9780089C977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 478659621CF5F9780089C977 /* Main.storyboard */; };
@@ -26,13 +25,13 @@
 		4786596C1CF5F9780089C977 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4786596A1CF5F9780089C977 /* LaunchScreen.storyboard */; };
 		478659771CF5F9780089C977 /* NehstingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478659761CF5F9780089C977 /* NehstingTests.swift */; };
 		478659821CF5F9780089C977 /* NehstingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478659811CF5F9780089C977 /* NehstingUITests.swift */; };
-		86019964DB54EF567D4C933A /* Pods_Nehsting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B3A99BCA63CDDE5EA42199 /* Pods_Nehsting.framework */; };
 		D8D666941D83FA0200B24E2A /* TemperatureHistory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8D666921D83FA0200B24E2A /* TemperatureHistory.xcdatamodeld */; };
 		D8D6669B1D83FB9000B24E2A /* TimeStamp+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D666971D83FB9000B24E2A /* TimeStamp+CoreDataProperties.swift */; };
 		D8D6669C1D83FB9000B24E2A /* TimeStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D666981D83FB9000B24E2A /* TimeStamp.swift */; };
 		D8D6669E1D83FC3E00B24E2A /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D6669D1D83FC3E00B24E2A /* CoreDataStack.swift */; };
 		D8D666A21D83FF6200B24E2A /* MainViewController+CoreDataLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D666A11D83FF6200B24E2A /* MainViewController+CoreDataLoading.swift */; };
 		D8D666A41D8400CC00B24E2A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D666A31D8400CC00B24E2A /* Constants.swift */; };
+		F15DE4BDF102A29E686DB05D /* Pods_Nehsting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8595608A158D8FC2A0EC26F8 /* Pods_Nehsting.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +63,6 @@
 		4758C96D1CF6554B00BC66AE /* SharedDataSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedDataSingleton.swift; sourceTree = "<group>"; };
 		4758C96E1CF6554B00BC66AE /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		4764A3831CF77CFE006EF033 /* NestSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NestSDK.framework; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Nehsting-brruybosllwbplcycknsorwqtmdf/Build/Products/Debug-iphonesimulator/NestSDK/NestSDK.framework"; sourceTree = "<group>"; };
-		4764A3841CF77CFE006EF033 /* Pods_Nehsting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Nehsting.framework; path = "../../../../../../../Library/Developer/Xcode/DerivedData/Nehsting-brruybosllwbplcycknsorwqtmdf/Build/Products/Debug-iphonesimulator/Pods_Nehsting.framework"; sourceTree = "<group>"; };
 		4772757A1D88AF630067E61A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		4786595B1CF5F9780089C977 /* Nehsting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nehsting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4786595E1CF5F9780089C977 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,9 +77,9 @@
 		4786597D1CF5F9780089C977 /* NehstingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NehstingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		478659811CF5F9780089C977 /* NehstingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NehstingUITests.swift; sourceTree = "<group>"; };
 		478659831CF5F9780089C977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9502E5EE73AF77046FB0655F /* Pods-Nehsting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nehsting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nehsting/Pods-Nehsting.debug.xcconfig"; sourceTree = "<group>"; };
-		AB5C72BCCF32301120E4E033 /* Pods-Nehsting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nehsting.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nehsting/Pods-Nehsting.release.xcconfig"; sourceTree = "<group>"; };
-		C1B3A99BCA63CDDE5EA42199 /* Pods_Nehsting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nehsting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67A2C2134E812919B894F16B /* Pods-Nehsting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nehsting.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nehsting/Pods-Nehsting.release.xcconfig"; sourceTree = "<group>"; };
+		8595608A158D8FC2A0EC26F8 /* Pods_Nehsting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nehsting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5D73B139B80D3B5774A44F4 /* Pods-Nehsting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nehsting.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nehsting/Pods-Nehsting.debug.xcconfig"; sourceTree = "<group>"; };
 		D886C5441D86728C00880DA3 /* TemperatureHistory_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TemperatureHistory_2.xcdatamodel; sourceTree = "<group>"; };
 		D8D666931D83FA0200B24E2A /* TemperatureHistory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TemperatureHistory.xcdatamodel; sourceTree = "<group>"; };
 		D8D666971D83FB9000B24E2A /* TimeStamp+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeStamp+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -96,8 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4764A3861CF77CFE006EF033 /* Pods_Nehsting.framework in Frameworks */,
-				86019964DB54EF567D4C933A /* Pods_Nehsting.framework in Frameworks */,
+				F15DE4BDF102A29E686DB05D /* Pods_Nehsting.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,19 +119,9 @@
 			isa = PBXGroup;
 			children = (
 				4764A3831CF77CFE006EF033 /* NestSDK.framework */,
-				4764A3841CF77CFE006EF033 /* Pods_Nehsting.framework */,
-				C1B3A99BCA63CDDE5EA42199 /* Pods_Nehsting.framework */,
+				8595608A158D8FC2A0EC26F8 /* Pods_Nehsting.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		281ABA90AE9A594B6984A628 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9502E5EE73AF77046FB0655F /* Pods-Nehsting.debug.xcconfig */,
-				AB5C72BCCF32301120E4E033 /* Pods-Nehsting.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		4758C9791CF65C7900BC66AE /* Support */ = {
@@ -198,8 +185,8 @@
 				478659751CF5F9780089C977 /* NehstingTests */,
 				478659801CF5F9780089C977 /* NehstingUITests */,
 				4786595C1CF5F9780089C977 /* Products */,
-				281ABA90AE9A594B6984A628 /* Pods */,
 				0E7A7BF622377BC783AC3E05 /* Frameworks */,
+				825429B306080D9FCB65AC3D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -243,6 +230,15 @@
 			path = NehstingUITests;
 			sourceTree = "<group>";
 		};
+		825429B306080D9FCB65AC3D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C5D73B139B80D3B5774A44F4 /* Pods-Nehsting.debug.xcconfig */,
+				67A2C2134E812919B894F16B /* Pods-Nehsting.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D8D6669F1D83FC7A00B24E2A /* Coredata */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,12 +266,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 478659861CF5F9790089C977 /* Build configuration list for PBXNativeTarget "Nehsting" */;
 			buildPhases = (
-				736F8A987462B4EF454F7B9C /* 📦 Check Pods Manifest.lock */,
+				EF895A62D0327164EBEE52AA /* 📦 Check Pods Manifest.lock */,
 				478659571CF5F9780089C977 /* Sources */,
 				478659581CF5F9780089C977 /* Frameworks */,
 				478659591CF5F9780089C977 /* Resources */,
-				EAA88DC77D7C5223FCFF53D4 /* 📦 Embed Pods Frameworks */,
-				F8FD027FCFFFC2B9DE62E378 /* 📦 Copy Pods Resources */,
+				7F59DC5C214B51D5A7E397F6 /* 📦 Embed Pods Frameworks */,
+				C49C2518AF34D23931E822AF /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -396,22 +392,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		736F8A987462B4EF454F7B9C /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		EAA88DC77D7C5223FCFF53D4 /* 📦 Embed Pods Frameworks */ = {
+		7F59DC5C214B51D5A7E397F6 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -426,7 +407,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nehsting/Pods-Nehsting-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F8FD027FCFFFC2B9DE62E378 /* 📦 Copy Pods Resources */ = {
+		C49C2518AF34D23931E822AF /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -439,6 +420,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Nehsting/Pods-Nehsting-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF895A62D0327164EBEE52AA /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -611,13 +607,14 @@
 		};
 		478659871CF5F9790089C977 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9502E5EE73AF77046FB0655F /* Pods-Nehsting.debug.xcconfig */;
+			baseConfigurationReference = C5D73B139B80D3B5774A44F4 /* Pods-Nehsting.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Nehsting/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchtapapp.Nehsting;
@@ -632,13 +629,14 @@
 		};
 		478659881CF5F9790089C977 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB5C72BCCF32301120E4E033 /* Pods-Nehsting.release.xcconfig */;
+			baseConfigurationReference = 67A2C2134E812919B894F16B /* Pods-Nehsting.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Nehsting/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchtapapp.Nehsting;

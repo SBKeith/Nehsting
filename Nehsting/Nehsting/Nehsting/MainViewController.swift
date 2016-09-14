@@ -38,7 +38,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        showLoadingScreen(self.view)
         
         offButton.addTarget(self, action: #selector(self.setHVACMode), forControlEvents: .TouchUpInside)
         coolButton.addTarget(self, action: #selector(self.setHVACMode), forControlEvents: .TouchUpInside)
@@ -50,14 +49,24 @@ class MainViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
-        UIApplication.sharedApplication().statusBarStyle = .Default
-        temperatureControlOnOff(!sharedDataManager.temperatureControls)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(launchAlertViewServerError), name: "displayErrorAlert", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(hideLoadingScreen), name: "hideLoadingScreen", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(displayNoThermostat), name: "displayNoThermostat", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(noInternetConnection), name: "noInternetConnection", object: nil)
-        displayValuesUpdate()
+        
+        // Check internet connection
+        
+        if Reachability.isConnectedToNetwork() == true {
+            print("Internet connection OK")
+            showLoadingScreen(self.view)
+            UIApplication.sharedApplication().statusBarStyle = .Default
+            temperatureControlOnOff(!sharedDataManager.temperatureControls)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(launchAlertViewServerError), name: "displayErrorAlert", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(hideLoadingScreen), name: "hideLoadingScreen", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(displayNoThermostat), name: "displayNoThermostat", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(noInternetConnection), name: "noInternetConnection", object: nil)
+            displayValuesUpdate()
+        } else {
+            print("Internet connection FAILED")
+            noInternetConnection()
         }
+    }
     
     override func viewWillDisappear(animated: Bool) {
         
@@ -76,30 +85,36 @@ class MainViewController: UIViewController {
     
     func setTempWithButton(sender: UIButton) {
         
-        switch(sender.tag) {
-        case 0: // Increase Temp
-            sharedDataManager.temperature += 1
-            
-            if sharedDataManager.temperature % 1 == 0 {
-                gradientView.adjustGradient("INCREASE")
+        if Reachability.isConnectedToNetwork() == true {
+            print("Internet connection OK")
+            switch(sender.tag) {
+            case 0: // Increase Temp
+                sharedDataManager.temperature += 1
+                
+                if sharedDataManager.temperature % 1 == 0 {
+                    gradientView.adjustGradient("INCREASE")
+                }
+            case 1: // Decrease Temp
+                sharedDataManager.temperature -= 1
+                
+                if sharedDataManager.temperature % 1 == 0 {
+                    gradientView.adjustGradient("DECREASE")
+                }
+            default: break
             }
-        case 1: // Decrease Temp
-            sharedDataManager.temperature -= 1
             
-            if sharedDataManager.temperature % 1 == 0 {
-                gradientView.adjustGradient("DECREASE")
-            }
-        default: break
+            // Set display temperature reading
+            displayValue.text = "\(sharedDataManager.temperature)"
+            
+            // Set thermostat temperature via network to NEST
+            sharedNetworkManager.networkTemperatureUpdate()
+            
+            // Save user data
+            saveData()
+        } else {
+            print("Internet connection FAILED")
+            noInternetConnection()
         }
-        
-        // Set display temperature reading
-        displayValue.text = "\(sharedDataManager.temperature)"
-        
-        // Set thermostat temperature via network to NEST
-        sharedNetworkManager.networkTemperatureUpdate()
-        
-        // Save user data
-        saveData()
     }
     
     // MARK: -HELPER METHODS
@@ -147,26 +162,35 @@ class MainViewController: UIViewController {
     
     func setHVACMode(sender: UIButton) {
         
-        // Set hvacMode
-        switch(sender.tag) {
-        case 1: // HEAT
-            sharedDataManager.hvacMode = 1
-        case 2: // COOL
-            sharedDataManager.hvacMode = 2
-        case 4: // OFF
-            sharedDataManager.hvacMode = 4
-        default:
-            break
+        // Check internet connection here
+        if Reachability.isConnectedToNetwork() == true {
+            print("Internet connection OK")
+            // Set hvacMode
+            switch(sender.tag) {
+            case 1: // HEAT
+                sharedDataManager.hvacMode = 1
+            case 2: // COOL
+                sharedDataManager.hvacMode = 2
+            case 4: // OFF
+                sharedDataManager.hvacMode = 4
+            default:
+                break
+            }
+            // Hide Buttons
+            self.menuButtonIsActive = true
+            mainButtonTapped(sender)
+            
+            // Update HVAC
+            sharedNetworkManager.networkHVACUpdate()
+            
+            // Update Display
+            displayValuesUpdate()
+        } else {
+            print("Internet connection FAILED")
+            noInternetConnection()
         }
-        // Hide Buttons
-        self.menuButtonIsActive = true
-        mainButtonTapped(sender)
         
-        // Update HVAC
-        sharedNetworkManager.networkHVACUpdate()
         
-        // Update Display
-        displayValuesUpdate()
     }
     
     // Fade out of loading screen function
@@ -251,7 +275,6 @@ class MainViewController: UIViewController {
                 self.menuButtons.frame.origin.y += self.menuButtons.frame.height * 2.5
             }
         }) { (true) in
-            print(self.menuButtonIsActive)
             self.menuButtonIsActive = !self.menuButtonIsActive
         }
     }
@@ -298,18 +321,25 @@ class MainViewController: UIViewController {
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
-        // Reset valueParser when user lifts finger
+        // CHECK INTERNET CONNECTION
+        if Reachability.isConnectedToNetwork() == true {
+            print("Internet connection OK")
+            // Reset valueParser when user lifts finger
             sharedDataManager.valueParser = 0
-        
-        if sharedDataManager.hvacMode != 4 {    // Check that system is NOT off
-            // Set thermostat temperature on screen
-            displayValue.text = "\(sharedDataManager.temperature)"
             
-            // Set thermostat temperature via network to NEST
-            sharedNetworkManager.networkTemperatureUpdate()
-            
-            // Save user data
-            saveData()
+            if sharedDataManager.hvacMode != 4 {    // Check that system is NOT off
+                // Set thermostat temperature on screen
+                displayValue.text = "\(sharedDataManager.temperature)"
+                
+                // Set thermostat temperature via network to NEST
+                sharedNetworkManager.networkTemperatureUpdate()
+                
+                // Save user data
+                saveData()
+            }
+        } else {
+            print("Internet connection FAILED")
+            noInternetConnection()
         }
     }
     
@@ -345,7 +375,7 @@ class MainViewController: UIViewController {
         presentViewController(alertView, animated: true, completion: nil)
     }
     
-    func noInternetConnection(notification: NSNotification) {
+    func noInternetConnection() {
         
         let alertView = UIAlertController(title: "Server Error", message: "Internet connection FAILED", preferredStyle: .Alert)
         alertView.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
