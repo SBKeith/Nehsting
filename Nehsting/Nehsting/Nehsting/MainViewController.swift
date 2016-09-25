@@ -124,7 +124,7 @@ class MainViewController: UIViewController {
     func saveData() {
         
         // If time does not exist in coredata; save it along with hvac mode and temp
-        if !checkIfTimeExists(sharedDataManager.timeStamp!, temp: sharedDataManager.temperature, mode: sharedDataManager.hvacMode) {
+        if !checkIfTimeExists(sharedDataManager.timeStamp!, mode: sharedDataManager.hvacMode) {
             print("Saving new time stamp...")
             saveTimeStampData()
         }
@@ -135,33 +135,6 @@ class MainViewController: UIViewController {
         
         activityIndicator.startAnimating()
         activityIndicator.hidden = false
-        
-//        // Add background
-//        container.frame = uiView.frame
-//        container.center = uiView.center
-//        container.addSubview(UIImageView(image: UIImage(named: "loadingScreen")))
-//        uiView.addSubview(container)
-//        
-//        // Add transparent box overlay
-//        loadingView.frame = CGRectMake(0, 0, 150, 150)
-//        loadingView.center = uiView.center
-//        loadingView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.7)
-//        loadingView.clipsToBounds = true
-//        loadingView.layer.cornerRadius = 10
-//        
-//        let label = UILabel(frame: CGRectMake(0, 0, 125, 20))
-//        label.text = "Connecting to Server..."
-//        label.adjustsFontSizeToFitWidth = true
-//        label.textColor = UIColor.whiteColor()
-//        loadingView.addSubview(label)
-//        label.center = CGPointMake(loadingView.frame.size.width / 2, 20)
-//        
-//        container.addSubview(loadingView)
-//        
-//        // Add spinner animation
-//        indicator.center = CGPointMake(loadingView.frame.size.width / 2, loadingView.frame.size.height / 2)
-//        loadingView.addSubview(indicator)
-//        indicator.startAnimating()
     }
     
     func setHVACMode(sender: UIButton) {
@@ -202,17 +175,6 @@ class MainViewController: UIViewController {
         
         activityIndicator.hidden = true
         activityIndicator.stopAnimating()
-        
-//        UIView.animateWithDuration(1.5, animations: {
-//            indicator.alpha = 0
-//            self.loadingView.alpha = 0
-//            self.container.alpha = 0
-//        }) { complete in
-//            indicator.stopAnimating()
-//            indicator.hidden = true
-//            self.container.hidden = true
-//            self.loadingView.hidden = true
-//        }
     }
     
     // MARK: -SET VALUES
@@ -221,7 +183,7 @@ class MainViewController: UIViewController {
     func displayValuesUpdate() {
 
         sharedNetworkManager.observeStructures( { (temp, hvacMode) in
-            if let hvacMode = hvacMode, temp = temp {
+            if let hvacMode = hvacMode, let temp = temp {
                 self.sharedDataManager.hvacMode = hvacMode
                 self.sharedDataManager.temperature = temp
                 self.setGradient()
@@ -260,7 +222,6 @@ class MainViewController: UIViewController {
                 default:
                     break
             }
-            saveData()
         }
     }
     
