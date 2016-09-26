@@ -171,6 +171,7 @@ class NetworkingDataSingleton: UIViewController {
     func networkHVACUpdate() {
         
         var errorResult = ""
+        sharedDataManager.serverError = false
         
         self.thermostat?.hvacMode = NestSDKThermostatHVACMode(rawValue: sharedDataManager.hvacMode)!
         self.dataManager.setThermostat(self.thermostat, block: { (thermostat, error) in
@@ -178,6 +179,7 @@ class NetworkingDataSingleton: UIViewController {
             errorResult = error != nil ? "ERROR" : "SUCCESS"
             
             if errorResult == "ERROR" {
+                self.sharedDataManager.serverError = true
                 NSNotificationCenter.defaultCenter().postNotificationName("displayErrorAlert", object: nil)
             }
         })
@@ -186,12 +188,15 @@ class NetworkingDataSingleton: UIViewController {
     // Update thermostat temperature
     func networkTemperatureUpdate() {
         
+        sharedDataManager.serverError = false
+        
         self.thermostat?.targetTemperatureF = sharedDataManager.temperature
         self.dataManager.setThermostat(self.thermostat, block: { (thermostat, error) in
             
             let errorResult = error != nil ? "ERROR" : "SUCCESS"
             
             if errorResult == "ERROR" {
+                self.sharedDataManager.serverError = true
                 NSNotificationCenter.defaultCenter().postNotificationName("displayErrorAlert", object: nil)
             }
         })
@@ -200,12 +205,15 @@ class NetworkingDataSingleton: UIViewController {
     // Update structure status
     func structureHomeOrAwayStatusUpdate() {
         
+        sharedDataManager.serverError = false
+        
         self.structureID?.away = NestSDKStructureAwayState(rawValue: sharedDataManager.homeOrAwayStatus!)!
         self.dataManager.setStructure(self.structureID, block: { (structure, error) in
             
             let errorResult = error != nil ? "ERROR" : "SUCCESS"
             
             if errorResult == "ERROR" {
+                self.sharedDataManager.serverError = true
                 NSNotificationCenter.defaultCenter().postNotificationName("displayErrorAlert", object: nil)
             }
         })

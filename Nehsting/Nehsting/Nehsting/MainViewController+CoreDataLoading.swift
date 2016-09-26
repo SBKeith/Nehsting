@@ -47,7 +47,7 @@ extension MainViewController {
             return false
         } else {
             for stamp in checkTimeArray {
-                if stamp.time! == time &&  stamp.mode != mode {
+                if stamp.time! == time && stamp.mode == mode {
                     return true
                 }
             }

@@ -123,8 +123,9 @@ class MainViewController: UIViewController {
     // Save data to coredata
     func saveData() {
         
-        // If time does not exist in coredata; save it along with hvac mode and temp
-        if !checkIfTimeExists(sharedDataManager.timeStamp!, mode: sharedDataManager.hvacMode) {
+        // If time does not exist in coredata and the network call succeeds, save it along with hvac mode and temp
+        if !checkIfTimeExists(sharedDataManager.timeStamp!, mode: sharedDataManager.hvacMode) &&
+            !sharedDataManager.serverError {
             print("Saving new time stamp...")
             saveTimeStampData()
         }
@@ -162,6 +163,7 @@ class MainViewController: UIViewController {
             
             // Update Display
             displayValuesUpdate()
+            saveData()
         } else {
             print("Internet connection FAILED")
             noInternetConnection()

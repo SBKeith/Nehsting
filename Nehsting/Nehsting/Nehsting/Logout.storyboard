@@ -70,7 +70,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature Control Buttons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tws-it-3AH">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bJS-CD-lTy">
@@ -79,7 +79,7 @@
                                         </connections>
                                     </switch>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="tws-it-3AH" firstAttribute="leading" secondItem="F6b-Ox-78b" secondAttribute="leadingMargin" id="OlR-B0-LAK"/>
                                     <constraint firstItem="bJS-CD-lTy" firstAttribute="centerY" secondItem="F6b-Ox-78b" secondAttribute="centerY" id="VuS-Du-fSb"/>
@@ -115,10 +115,10 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="phf-PE-s0x"/>
-                                <exclude reference="aOd-1v-Kuv"/>
-                                <exclude reference="xYm-03-BG7"/>
                                 <exclude reference="cMQ-hy-ToH"/>
                                 <exclude reference="k21-M9-RcY"/>
+                                <exclude reference="aOd-1v-Kuv"/>
+                                <exclude reference="xYm-03-BG7"/>
                             </mask>
                         </variation>
                     </view>
@@ -159,7 +159,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PqO-Bb-fbM" id="fka-g4-eTs">
-                                    <frame key="frameInset" width="414" height="43.666666666666664"/>
+                                    <frame key="frameInset" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LSF-7d-1rv">
